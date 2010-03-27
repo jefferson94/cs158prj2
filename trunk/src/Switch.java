@@ -53,7 +53,7 @@ public class Switch
    }
    
    /**
-    * Send a BPDU to a 'receiver'
+    * Send a BPDU to all active ports in its switch interface. 
     * @param receiver 
     */
    public void sendBPDU()
@@ -73,7 +73,7 @@ public class Switch
    }
 
    /**
-    * Receive a BPDU from a 'sender'
+    * Receive a BPDU and configure itself(the switch) based on it. 
     * @param sender
     */
    public void receiveBPDU(BPDU frame)
