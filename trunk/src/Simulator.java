@@ -27,27 +27,24 @@ public class Simulator
 		ArrayList<Switch> topology = new ArrayList<Switch>();
 		for (int i = 0; i < switches; i++)
 		{
-			topology.add(new Switch());
+			String mac = Long.toHexString((new Random()).nextLong());
+			int length = mac.length();
+			if (length < 12)
+			{
+				for (int j = 0; j < 12 - length; j++)
+				{
+					mac = "0" + mac;
+				}
+			} else if (length > 12)
+				mac = mac.substring(0, 12);
+			mac = mac.substring(0, 4) + "." + mac.substring(4, 8) + "." + mac.substring(8);
+			topology.add(new Switch(0, 0, new ArrayList<Port>(), mac));
 		}
 		ListIterator<Switch> it1 = topology.listIterator();
 		ListIterator<Switch> it2 = topology.listIterator();
 		for (int i = 0; i < links; i++)
 		{
-			if (it1.hasNext())
-			{
-				it1.next();
-				if (it1.hasNext())
-				{
-					Switch sw1 = it1.next();
-					if (it2.hasNext())
-					{
-						it2.next().connectLink(sw1);
-					} else reset(it2);
-				} else reset(it1);
-			} else
-			{
-				reset(it1);
-			}
+			topology.get((new Random().nextInt(switches))).addPort(new Port(Port.BLOCKING, topology.get((new Random()).nextInt(switches))));
 		}
 		return topology;
 	}

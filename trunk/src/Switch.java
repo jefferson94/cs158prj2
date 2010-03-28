@@ -17,6 +17,8 @@ public class Switch
    private String macID;
    private String rootID;
    
+   private boolean converged = false;
+   
    public Switch()
    {
       clock = 0;
@@ -35,14 +37,26 @@ public class Switch
    }
    
    /**
-    * Adds a new port to the switch interface.
+    * Adds a new port to the switch interface. For now, it also prints the 
+    * addresses of the two Switches. This feature is useful for debugging and 
+    * may or may not be needed later.
     * NOTE: Be aware that ports shouldn't be blocked. LEARNING should be used.
+    * 
     * @param p the port to add to the list of interfaces for the switch.
     */
    public void addPort(Port p)
    {
       switchInterface.add(p);
+      System.out.println(macID + " connected to " + p.getNeighbor().getMac());
    }
+   
+   /**
+    * Returns this Switch's MAC address. Useful for debugging. We may or may 
+    * not need it later.
+    * 
+    * @return local MAC address
+    */
+   public String getMac() {return macID;}
    
    /**
     * Increment the clock value. (maybe use the Timer object instead?)
@@ -115,5 +129,10 @@ public class Switch
    public void electDesignatedPort()
    {
       
+   }
+   
+   public boolean isConverged()
+   {
+	   return converged;
    }
 }
