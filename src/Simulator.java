@@ -1,5 +1,19 @@
 import java.util.*;
 
+/**
+ * A Spanning Tree Protocol simulator. It builds a random topology with the 
+ * number of switches and links specified in the command line. The switches 
+ * then perform the STP algorithm. When they have converged, the simulator 
+ * should print the states of every switchport. Later implementations will 
+ * include random dropped links and RSTP. Further revisions may include MST, 
+ * PVST+, Portfast with BPDU Guard, Uplinkfast, and/or Backbonefast.
+ * 
+ * @author John Le Mieux
+ * @author Christopher Trinh
+ * @author Peter Le
+ * @version 0.1 April 5, 2010
+ *
+ */
 public class Simulator 
 {
 	public static void main(String[] args)
@@ -22,6 +36,16 @@ public class Simulator
 		}
 	}
 	
+	/**
+	 * Builds a random topology graph based on command line user preferences.
+	 * 
+	 * @param switches the number of switches in the topology, specified in the 
+	 * first command line argument
+	 * @param links the number of links (segments, extended LANs, cables) in 
+	 * the topology, specified in the second command line argument
+	 * @return an ArrayList of Switches, each with a MAC address and some 
+	 * number of links connecting it to other switches
+	 */
 	private static ArrayList<Switch> buildTopology(int switches, int links)
 	{
 		ArrayList<Switch> topology = new ArrayList<Switch>();
@@ -40,21 +64,11 @@ public class Simulator
 			mac = mac.substring(0, 4) + "." + mac.substring(4, 8) + "." + mac.substring(8);
 			topology.add(new Switch(0, 0, new ArrayList<Port>(), mac));
 		}
-		ListIterator<Switch> it1 = topology.listIterator();
-		ListIterator<Switch> it2 = topology.listIterator();
 		for (int i = 0; i < links; i++)
 		{
 			topology.get((new Random().nextInt(switches))).addPort(new Port(Port.BLOCKING, topology.get((new Random()).nextInt(switches))));
 		}
 		return topology;
-	}
-	
-	private static void reset(ListIterator<Switch> it)
-	{
-		while (it.hasPrevious())
-		{
-			it.previous();
-		}
 	}
 	
 	private static int switches;
