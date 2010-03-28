@@ -1,13 +1,21 @@
 /**
- * 
+ * A representation of a BPDU. See the 802.1D and 802.1w specs for the format 
+ * of a BPDU. An instance of this class doesn't need to know anything. It's 
+ * just a way to store information. Switches pass instances of this class back 
+ * and forth to communicate with each other. Each instance of this class is 
+ * (hopefully) cleaned up with the Java GarbageCollector.
  * 
  * @author John Le Mieux
- *
+ * @author Christopher Trinh
+ * @author Peter Le
+ * @version 0.1 April 5, 2010
  */
 public class BPDU 
 {
 	/**
-	 * Constructor for a STP Configuration BPDU
+	 * Constructor for a STP Configuration BPDU. These constructors have 
+	 * parameters for all of the 802.1 fields except the Protocol Identifier 
+	 * which is always 0. We may also be able to eliminate other parameters.
 	 * 
 	 * @param version 0 for STP
 	 * @param type 0 for Configuration

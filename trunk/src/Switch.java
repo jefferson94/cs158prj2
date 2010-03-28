@@ -1,5 +1,17 @@
 /**
+ * A representation of a Layer 2 switch. When multiple instances of this class 
+ * are connected to each other using Ports, they will perform Spanning Tree 
+ * Protocol algorithm until all Ports are either in BLOCKED or FORWARDING 
+ * state. At this time, each Switch will know it's converged, but continue 
+ * sending BPDUs. If a Switch stops hearing Configuration BPDUs from another 
+ * Switch or begins hearing Configuration BPDUs from a new Switch, it will 
+ * start sending Topology Change Notification BPDUs and prepare to recalculate 
+ * STP.
  * 
+ *  @author Christopher Trinh
+ *  @author John Le Mieux
+ *  @author Peter Le
+ *  @version 0.1 April 5, 2010
  */
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -19,6 +31,11 @@ public class Switch
    
    private boolean converged = false;
    
+   
+   /**
+    * Initializes clock, root cost, Bridge ID, Root Bridge ID, and ArrayList of 
+    * Ports to 0 or null.
+    */
    public Switch()
    {
       clock = 0;
@@ -28,6 +45,15 @@ public class Switch
       rootID = null;
    }
    
+   
+   /**
+    * Allows initialization of a new Switch.
+    * 
+    * @param clockValue the current (simulated) time
+    * @param costValue the cost to the Root Bridge
+    * @param portList an ArrayList of Ports on this Switch
+    * @param macID this Switch's Bridge ID or MAC address
+    */
    public Switch(int clockValue, int costValue, ArrayList<Port> portList, String macID)
    {
       cost = costValue;
@@ -131,6 +157,12 @@ public class Switch
       
    }
    
+   /**
+    * Determines if this Switch thinks the topology is in STP converged state. 
+    * Used to terminate the main simulator loop.
+    * 
+    * @return true if all Ports are in FORWARDING or BLOCKED state
+    */
    public boolean isConverged()
    {
 	   return converged;
