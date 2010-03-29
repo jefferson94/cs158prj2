@@ -23,15 +23,18 @@ import org.jgrapht.graph.*;
 
 public class Simulator 
 {
-   
+   /**
+    * Create a Simulator with a network topology. The topology is a weighted simple 
+    * undirected graph data structure. 
+    */
    public Simulator()
    {
      topology = new SimpleWeightedGraph<Switch, DefaultEdge>(DefaultEdge.class);
    }
    	
    /**
-    * Process a command file and execute the commands.
-    * @param inFile a File object, that contains the commands to execute.
+    * Process a topology file and creates a network topology based on it. 
+    * @param filename of the topology input file. 
     */
    public void processFile(String filename)
    {
@@ -43,32 +46,15 @@ public class Simulator
  
          while (in.hasNextLine())
          {
-            System.out.println("Call cmd.parse(in)  now!");
+            System.out.println("Call cmd.parse(in) now!");
             Command cmd = new Command();
             cmd.parse(in.nextLine());
             
-            Switch origin = new Switch();
-            origin.setMacID(cmd.getMacID());
-            // Will not recreate any switches already existing in the topology.
-            topology.addVertex(origin);
+            Switch source = (findSwitch(cmd.getMacID()) != null) ? findSwitch(cmd.getMacID()) :
+               addSwitch(cmd.getMacID());
             
             for(String macID : cmd.getConnectedSwitches())
-            {
-               Switch destination = new Switch();
-               destination.setMacID(macID);
-               // Will not recreate any switches already existing in the topology.
-               topology.addVertex(destination);
-           
-               // Create the linkage in the topology.
-               // Will not recreate any new links if link already exist between the two switches.
-               if(topology.addEdge(origin, destination) != null)
-               {
-                  // Create the linkage between switches first for the origin port to the 
-                  // destination, then destination to the origin.
-                  origin.addPort(new Port(Port.LISTENING, destination));
-                  destination.addPort(new Port(Port.LISTENING, origin));
-               }
-            }
+               addLink(source, macID);
          }
       }
       catch (FileNotFoundException ex)
@@ -77,6 +63,69 @@ public class Simulator
       }
    }
 	
+   /**
+    * Get the current topology of the network as string. First index being the list of 
+    * all the vertices/nodes. The rest are the the edges in tuple pair.
+    * @return the current topology of the network as a string.
+    */
+   public String getTopology()
+   {
+      return topology.toString();
+   }
+   
+   /**
+    * Adds a switch/node to the current network topology.
+    * @param macID the id to assign to the switch.
+    * @return the newly added switch.
+    */
+   private Switch addSwitch(String macID)
+   {
+      Switch node = new Switch();
+      node.setMacID(macID);
+      // Will not recreate any switches already existing in the topology.
+      topology.addVertex(node);
+      return node;
+   }
+   
+   /**
+    * Finds a switch based on the MAC id assigned to it.
+    * @param targetMacID string representation of the switch MAC id to find within the 
+    * current network topology.
+    * @return the switch with the targetMacID.
+    */
+   private Switch findSwitch(String targetMacID)
+   {
+      for(Switch temp : topology.vertexSet())
+      {
+         if(temp.getMac().compareTo(targetMacID) == 0)
+            return temp;
+      }
+      return null;
+   }
+   
+   /**
+    * Add a link(or an edge) to a pair of switches in the current network topology.
+    * If the destinationMacID doesn't have a switch already created, one will be created for that 
+    * MAC id and added to the network topology.
+    * @param origin the switch pair to connect to (ie. <v1, v2>, v1 in this representation).
+    * @param destinationMacID string MAC id of the switch to connect to. (v2 from the previous
+    * example).
+    */
+   private void addLink(Switch origin, String destinationMacID)
+   {  
+      Switch target = (findSwitch(destinationMacID) != null) ? findSwitch(destinationMacID) :
+         addSwitch(destinationMacID);
+      
+      // Create the linkage in the topology.
+      // Will not recreate any new links if link already exist between the two switches.
+      if(topology.addEdge(origin, target) != null)
+      {
+         // Create the linkage between switches first for the origin port to the 
+         // destination, then destination to the origin.
+         origin.addPort(new Port(Port.LISTENING, target));
+         target.addPort(new Port(Port.LISTENING, origin));
+      }
+   }
 	
 	/**
 	 * Builds a random topology graph based on command line user preferences.
@@ -118,6 +167,9 @@ public class Simulator
 	{
 	   Simulator demo = new Simulator();
 	   demo.processFile(args[0]);
+	   
+	   System.out.println("\nTopology output:");
+	   System.out.println(demo.getTopology());
 	}
 	
 	private UndirectedGraph<Switch, DefaultEdge> topology;
