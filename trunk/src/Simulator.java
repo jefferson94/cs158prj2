@@ -1,5 +1,3 @@
-import java.util.*;
-
 /**
  * A Spanning Tree Protocol simulator. It builds a random topology with the 
  * number of switches and links specified in the command line. The switches 
@@ -14,27 +12,71 @@ import java.util.*;
  * @version 0.1 April 5, 2010
  *
  */
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+import org.jgrapht.*;
+import org.jgrapht.graph.*;
+
 public class Simulator 
 {
-	public static void main(String[] args)
-	{
-		if (args.length != 2)
-		{
-			System.out.println("Usage: simulator switches links");
-			System.exit(1);
-		}
-		switches = Integer.parseInt(args[0]);
-		links = Integer.parseInt(args[1]);
-		ArrayList<Switch> topology = buildTopology(switches, links);
-		while(!topology.get(0).isConverged())
-		{
-			for (int i = 0; i < topology.size(); i++)
-			{
-				Switch current = topology.get(i);
-				current.incrementClock();
-			}
-		}
-	}
+   
+   public Simulator()
+   {
+     topology = new SimpleWeightedGraph<Switch, DefaultEdge>(DefaultEdge.class);
+   }
+   	
+   /**
+    * Process a command file and execute the commands.
+    * @param inFile a File object, that contains the commands to execute.
+    */
+   public void processFile(String filename)
+   {
+      try
+      {
+         FileReader r = new FileReader(filename);
+         Scanner in = new Scanner(r);
+         
+ 
+         while (in.hasNextLine())
+         {
+            System.out.println("Call cmd.parse(in)  now!");
+            Command cmd = new Command();
+            cmd.parse(in.nextLine());
+            
+            Switch origin = new Switch();
+            origin.setMacID(cmd.getMacID());
+            // Will not recreate any switches already existing in the topology.
+            topology.addVertex(origin);
+            
+            for(String macID : cmd.getConnectedSwitches())
+            {
+               Switch destination = new Switch();
+               destination.setMacID(macID);
+               // Will not recreate any switches already existing in the topology.
+               topology.addVertex(destination);
+           
+               // Create the linkage in the topology.
+               // Will not recreate any new links if link already exist between the two switches.
+               if(topology.addEdge(origin, destination) != null)
+               {
+                  // Create the linkage between switches first for the origin port to the 
+                  // destination, then destination to the origin.
+                  origin.addPort(new Port(Port.LISTENING, destination));
+                  destination.addPort(new Port(Port.LISTENING, origin));
+               }
+            }
+         }
+      }
+      catch (FileNotFoundException ex)
+      {
+         System.out.println("Reader/parser error, file probably not found");
+      }
+   }
+	
 	
 	/**
 	 * Builds a random topology graph based on command line user preferences.
@@ -71,6 +113,13 @@ public class Simulator
 		return topology;
 	}
 	
-	private static int switches;
-	private static int links;
+	
+	public static void main(String[] args)
+	{
+	   Simulator demo = new Simulator();
+	   demo.processFile(args[0]);
+	}
+	
+	private UndirectedGraph<Switch, DefaultEdge> topology;
+
 }
