@@ -1,11 +1,13 @@
 /**
  * Class used to parse the commands given by a string. Used to create a network topology.
+ * Format for the string to be parsed should be the following:
+ * ie. SwitchMacID SwitchMacID SwitchMacID (ending with /r or /n)
+ * 
  * @author Christoper Trinh
  * @version 1.0 2010/2/14
  */
 
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Command
@@ -14,7 +16,8 @@ public class Command
    private ArrayList<String> connectedSwitch;
 
    /**
-    * Construct a command object containing the command name and its' associated
+    * Construct a command object containing the Switch MAC id and its connected 
+    * Switched MAC ids. 
     * parameters. 
     */
    public Command()
@@ -23,19 +26,29 @@ public class Command
       connectedSwitch = new ArrayList<String>();
    }
 
+   /**
+    * Get the MAC id of Switch from the string being parsed. 
+    * @return the switch MAC id
+    */
    public String getMacID()
    {
       return switchMAC;
    }
 
+   /**
+    * Get an ArrayList of MAC ids that are connected to the switch.
+    * @return ArrayList of the MAC ids of other switches that are connected 
+    * to the switch.
+    */
    public ArrayList<String> getConnectedSwitches()
    {
       return connectedSwitch;
    }
 
    /**
-    * Parse a String a determine the command and their associated parameters.
-    * @param in
+    * Parse a String a determine the switch MAC id and their associated 
+    * connected switches' MAC id. Used to create the network topology from a string.
+    * @param input is String to be parsed to obtain network topology.
     */
    public void parse(String input)
    {
