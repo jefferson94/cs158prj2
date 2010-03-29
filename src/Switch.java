@@ -102,6 +102,28 @@ public class Switch
    }
    
    /**
+    * Displays the switches attributes, in particular the MAC ID. For debugging purposes.
+    * NOTE: Should add more attributes in the string. 
+    */
+   public String toString()
+   {
+      return "MAC ID: " + getMac();
+      //+ " Port count: " + switchInterface.size() + "\n";
+   }
+   
+   /**
+    * Checks to see if another switch is equal to this one. Checking is done by comparing
+    * their MAC ID, since this is by definition unique to each switch (universally). 
+    */
+   public boolean equals(Object other)
+   {
+       if (!(other instanceof Switch)) {
+           return false;
+       }
+       return macID.compareTo(((Switch) other).macID) == 0;
+   }
+
+   /**
     * Send a BPDU to all active ports in its switch interface. 
     * @param receiver 
     */
