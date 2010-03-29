@@ -13,7 +13,6 @@
  *  @author Peter Le
  *  @version 0.1 April 5, 2010
  */
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -60,6 +59,16 @@ public class Switch
       clock = clockValue;
       switchInterface = portList;
       this.macID = macID;
+   }
+   
+   public void setMacID(String input)
+   {
+      macID = input;
+   }
+   
+   public String getMacID()
+   {
+      return macID;
    }
    
    /**
