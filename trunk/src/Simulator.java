@@ -30,6 +30,13 @@ public class Simulator
    public Simulator()
    {
      topology = new SimpleWeightedGraph<Switch, DefaultEdge>(DefaultEdge.class);
+     /* TODO
+      * This is cool, but we need a way to access all of the Switches and 
+      * Ports. Can do the same thing with ArrayLists? We need an 
+      * ArrayList<Switch> in Simulator and an ArrayList<Port> in Switch. That 
+      * way, we can trigger each BPDU by Switch.incrementClock from here and 
+      * send BPDUs to neighbors with Port.sendBPDU from Switch.
+      */
    }
    	
    /**
@@ -167,6 +174,12 @@ public class Simulator
 	{
 	   Simulator demo = new Simulator();
 	   demo.processFile(args[0]);
+	   /* TODO
+	    * It might also be helpful do use both the file input and random with 
+	    * user-defined numbers of switches and links. Both could be handled 
+	    * with the same back-end method. Also need usage message for bad 
+	    * arguments.
+	    */
 	   
 	   System.out.println("\nTopology output:");
 	   System.out.println(demo.getTopology());
