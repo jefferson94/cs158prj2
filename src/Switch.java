@@ -99,6 +99,28 @@ public class Switch
    public void incrementClock()
    {
       clock++;
+      /* TODO
+       * if (clock - helloTime >= HELLO_TIMER)
+       *    sendBPDU
+       * if (!converged)
+       *    if I'm Root and I haven't heard anyone else say it
+       *       electRoot
+       *    if everyone says I'm root
+       *       make all Ports Designated
+       *    if I'm not Root
+       *       if I don't have a Root Port
+       *          choose one
+       *       otherwise
+       *          talk to my neighbors about root ports
+       *    if clock - forward >= FORWARDING_TIMER
+       *       if Ports are LISTENING
+       *          change them to LEARNING
+       *          start entering neighbors into MAC address table
+       *       if Ports are LEARNING
+       *          change Root and Designated Ports to FORWARDING
+       *          change Nondesignated Ports to BLOCKING
+       *          converged = true
+       */
    }
    
    /**
