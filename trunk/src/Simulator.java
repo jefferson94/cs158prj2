@@ -1,3 +1,11 @@
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+import org.jgrapht.*;
+import org.jgrapht.graph.*;
+
 /**
  * A Spanning Tree Protocol simulator. It builds a random topology with the 
  * number of switches and links specified in the command line. The switches 
@@ -12,15 +20,6 @@
  * @version 0.1 April 5, 2010
  *
  */
-
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
-import org.jgrapht.*;
-import org.jgrapht.graph.*;
-
 public class Simulator 
 {
    /**
@@ -43,8 +42,9 @@ public class Simulator
     * Process a topology file and creates a network topology based on it. 
     * @param filename of the topology input file. 
     */
-   public void processFile(String filename)
+   public ArrayList<Switch> processFile(String filename)
    {
+	   ArrayList<Switch> nodes = new ArrayList<Switch>();
       try
       {
          FileReader r = new FileReader(filename);
@@ -59,15 +59,22 @@ public class Simulator
             
             Switch source = (findSwitch(cmd.getMacID()) != null) ? findSwitch(cmd.getMacID()) :
                addSwitch(cmd.getMacID());
+            nodes.add(source);
             
             for(String macID : cmd.getConnectedSwitches())
+            {
                addLink(source, macID);
+               Switch target = findSwitch(macID);
+               if (!nodes.contains(target))
+            		   nodes.add(target);
+            }
          }
       }
       catch (FileNotFoundException ex)
       {
          System.out.println("Reader/parser error, file probably not found");
       }
+      return nodes;
    }
 	
    /**
@@ -144,9 +151,9 @@ public class Simulator
 	 * @return an ArrayList of Switches, each with a MAC address and some 
 	 * number of links connecting it to other switches
 	 */
-	private static ArrayList<Switch> buildTopology(int switches, int links)
+	private ArrayList<Switch> buildTopology(int switches, int links)
 	{
-		ArrayList<Switch> topology = new ArrayList<Switch>();
+		ArrayList<Switch> nodes = new ArrayList<Switch>();
 		for (int i = 0; i < switches; i++)
 		{
 			String mac = Long.toHexString((new Random()).nextLong());
@@ -160,31 +167,49 @@ public class Simulator
 			} else if (length > 12)
 				mac = mac.substring(0, 12);
 			mac = mac.substring(0, 4) + "." + mac.substring(4, 8) + "." + mac.substring(8);
-			topology.add(new Switch(0, 0, new ArrayList<Port>(), mac));
+			if (!nodes.contains(findSwitch(mac)))
+				nodes.add(new Switch(0, 0, new ArrayList<Port>(), mac));
 		}
 		for (int i = 0; i < links; i++)
 		{
-			topology.get((new Random().nextInt(switches))).addPort(new Port(Port.BLOCKING, topology.get((new Random()).nextInt(switches))));
+			nodes.get((new Random().nextInt(switches))).
+				addPort(new Port(Port.BLOCKING, nodes.get((new Random()).nextInt(switches))));
 		}
-		return topology;
+		return nodes;
 	}
 	
+	public boolean isConverged()
+	{
+		for (Switch s : switches)
+		{
+			if (!s.isConverged())
+				return false;
+		}
+		return true;
+	}
 	
 	public static void main(String[] args)
 	{
 	   Simulator demo = new Simulator();
-	   demo.processFile(args[0]);
-	   /* TODO
-	    * It might also be helpful do use both the file input and random with 
-	    * user-defined numbers of switches and links. Both could be handled 
-	    * with the same back-end method. Also need usage message for bad 
-	    * arguments.
-	    */
+	   if (args.length == 1)
+		   demo.switches = demo.processFile(args[0]);
+	   else if (args.length == 2)
+		   demo.switches = demo.buildTopology(Integer.valueOf(args[0]), Integer.valueOf(args[1]));
+	   else
+	   {
+		   System.out.println("Usage: simulator filename");
+		   System.out.println("       simulator switches links");
+	   }
 	   
 	   System.out.println("\nTopology output:");
 	   System.out.println(demo.getTopology());
+	   while (!demo.isConverged())
+	   {
+		   for (Switch s : demo.switches)
+			   s.incrementClock();
+	   }
 	}
 	
 	private UndirectedGraph<Switch, DefaultEdge> topology;
-
+	private ArrayList<Switch> switches;
 }
