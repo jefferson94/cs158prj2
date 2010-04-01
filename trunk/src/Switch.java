@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Calendar;
+
 /**
  * A representation of a Layer 2 switch. When multiple instances of this class 
  * are connected to each other using Ports, they will perform Spanning Tree 
@@ -13,9 +16,6 @@
  *  @author Peter Le
  *  @version 0.1 April 5, 2010
  */
-import java.util.ArrayList;
-import java.util.Calendar;
-
 public class Switch 
 {
    private final static int HELLO_TIMER = 2;
@@ -27,7 +27,18 @@ public class Switch
    private int cost;
    private String macID;
    private String rootID;
+   private String priority;
    
+   private ArrayList<String> macAddressTable = new ArrayList<String>();
+   
+   private boolean topologyChange = false;
+   private boolean topologyChangeAck = false;
+   
+   private int helloTime = clock;
+   private int forwardTime = clock;
+   private int ageTime = clock;
+   
+   private boolean start = true;
    private boolean converged = false;
    
    
@@ -42,6 +53,7 @@ public class Switch
       switchInterface = new ArrayList<Port>();
       macID = null;
       rootID = null;
+      priority = "8000";
    }
    
    
@@ -58,7 +70,9 @@ public class Switch
       cost = costValue;
       clock = clockValue;
       switchInterface = portList;
-      this.macID = macID;
+      priority = "8000.";
+      this.macID = priority + macID;
+      rootID = macID;
    }
    
    public void setMacID(String input)
@@ -66,10 +80,10 @@ public class Switch
       macID = input;
    }
    
-   public String getMacID()
+   /* public String getMacID()
    {
       return macID;
-   }
+   } */
    
    /**
     * Adds a new port to the switch interface. For now, it also prints the 
@@ -99,28 +113,16 @@ public class Switch
    public void incrementClock()
    {
       clock++;
-      /* TODO
-       * if (clock - helloTime >= HELLO_TIMER)
-       *    sendBPDU
-       * if (!converged)
-       *    if I'm Root and I haven't heard anyone else say it
-       *       electRoot
-       *    if everyone says I'm root
-       *       make all Ports Designated
-       *    if I'm not Root
-       *       if I don't have a Root Port
-       *          choose one
-       *       otherwise
-       *          talk to my neighbors about root ports
-       *    if clock - forward >= FORWARDING_TIMER
-       *       if Ports are LISTENING
-       *          change them to LEARNING
-       *          start entering neighbors into MAC address table
-       *       if Ports are LEARNING
-       *          change Root and Designated Ports to FORWARDING
-       *          change Nondesignated Ports to BLOCKING
-       *          converged = true
-       */
+      if (start)
+      {
+    	  for (Port p : switchInterface)
+    	  {
+    		  p.setState(p.LISTENING);
+    	  }
+    	  start = false;
+      }
+      if (clock - helloTime >= HELLO_TIMER)
+    	  sendBPDU();
    }
    
    /**
@@ -153,33 +155,69 @@ public class Switch
    {
       for(int i = 0; i < switchInterface.size(); i++)
       {
-         int timestampSec = Calendar.getInstance().get(Calendar.SECOND);
+         int timestampSec = clock; // Calendar.getInstance().get(Calendar.SECOND);
          // BPDU for STP.
-         BPDU dataFrame = new BPDU(0, 0, false, 
-               false, rootID, cost, 
-               macID, i, timestampSec, AGE_TIMER, 
-               HELLO_TIMER, FORWARDING_TIMER);
+         BPDU dataFrame = new BPDU(0, 0, topologyChange, 
+        		 topologyChangeAck, rootID, cost, macID, i, timestampSec,
+        		 AGE_TIMER, helloTime, FORWARDING_TIMER);
          Port p = switchInterface.get(i);
          if(p.getState() != Port.BLOCKING)
-            p.getNeighbor().receiveBPDU(dataFrame);
+            p.getNeighbor().receiveBPDU(p, dataFrame);
       }
+   }
+   
+   /**
+    * 
+    * @return true if this switch has a Root Port
+    */
+   public boolean haveRootPort()
+   {
+	   for (Port p : switchInterface)
+		   if (p.getRole() == Port.ROOT)
+			   return true;
+	   return false;
    }
 
    /**
     * Receive a BPDU and configure itself(the switch) based on it. 
     * @param sender
     */
-   public void receiveBPDU(BPDU frame)
+   public void receiveBPDU(Port p, BPDU frame)
    {
-      if(frame.getTopologyChange())
-      {
-         electRootBridge(frame);
-      }
-      else
-      {
-         electRootPort(frame);
-         
-      }
+	   if (p.getState() == Port.LEARNING)
+	   {
+		   int index = switchInterface.indexOf(p);
+		   if (index > macAddressTable.size())
+		   {
+			   for (int i = switchInterface.size(); i < index; i++)
+				   macAddressTable.add(null);
+		   }
+		   macAddressTable.add(index, frame.getSenderID().substring(4));
+	   }
+	   if (!converged)
+	   {
+		   if (!rootID.equals(frame.getRootID()))
+			   electRootBridge(frame);
+		   else if (macID.equals(frame.getRootID()))
+		   {
+			   p.setRole(p.DESIGNATED);
+		   } else if (!haveRootPort())
+			   electRootPort(frame);
+		   else
+			   electDesignatedPort();
+		   if (clock - forwardTime >= FORWARDING_TIMER)
+		   {
+			   if (p.getState() == Port.LEARNING)
+				   {
+					   if (p.getRole() == Port.ROOT || p.getRole() == Port.DESIGNATED)
+						   p.setState(Port.FORWARDING);
+					   else
+						   p.setState(Port.BLOCKING);
+					   converged = true;
+				   } else
+					   p.setState(Port.LEARNING);
+		   }
+	   }
    }
    
    /**
@@ -190,7 +228,7 @@ public class Switch
       if(frame.getRootID().compareTo(this.rootID) < 0)
       {
          this.rootID = frame.getRootID();
-         this.cost = frame.getCost() + 1;
+         this.cost += frame.getCost();
       }
    }
    

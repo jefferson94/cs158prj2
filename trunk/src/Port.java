@@ -27,9 +27,16 @@ public class Port
    public final static int LEARNING = 2;
    public final static int FORWARDING = 3;
    public final static int DISABLED = 4;
+   
+   public final static int ROOT = 0;
+   public final static int DESIGNATED = 1;
+   public final static int ALTERNATE = 2;
+   public final static int BACKUP = 3;
+   public final static int NONDESIGNATED = 4;
   
    private Switch neighbor;
    private int portState;
+   private int role;
    
    /**
     * Initial state of the port is set to BLOCKING (the value of 0).
@@ -86,5 +93,24 @@ public class Port
    public void setNeighbor(Switch connectedNeighbor)
    {
       neighbor = connectedNeighbor;
+   }
+   
+   /**
+    * Sets the role for this interface.
+    * 
+    * @param portRole ROOT, DESIGNATED, ALTERNATE, BACKUP, or NONDESIGNATED
+    */
+   public void setRole(int portRole)
+   {
+	   role = portRole;
+   }
+   
+   /**
+    * 
+    * @return ROOT, DESIGNATED, ALTERNATE, BACKUP, or NONDESIGNATED
+    */
+   public int getRole()
+   {
+	   return role;
    }
 }
