@@ -63,8 +63,8 @@ public class Simulator
             
             for(String macID : cmd.getConnectedSwitches())
             {
-               addLink(source, macID);
                Switch target = findSwitch(macID);
+               addLink(source, target);
                if (!nodes.contains(target))
             		   nodes.add(target);
             }
@@ -125,20 +125,25 @@ public class Simulator
     * @param destinationMacID string MAC id of the switch to connect to. (v2 from the previous
     * example).
     */
-   private void addLink(Switch origin, String destinationMacID)
+   private void addLink(Switch origin, Switch target)
    {  
-      Switch target = (findSwitch(destinationMacID) != null) ? findSwitch(destinationMacID) :
-         addSwitch(destinationMacID);
+      //Switch target = (findSwitch(destinationMacID) != null) ? findSwitch(destinationMacID) :
+      //   addSwitch(destinationMacID);
       
       // Create the linkage in the topology.
       // Will not recreate any new links if link already exist between the two switches.
-      if(topology.addEdge(origin, target) != null)
-      {
+      //if(topology.addEdge(origin, target) != null)
+      //{
          // Create the linkage between switches first for the origin port to the 
          // destination, then destination to the origin.
-         origin.addPort(new Port(Port.LISTENING, target));
-         target.addPort(new Port(Port.LISTENING, origin));
-      }
+         Port egress = new Port(Port.LISTENING, target);
+         Port ingress = new Port(Port.LISTENING, origin);
+         origin.addPort(egress);
+         target.addPort(ingress);
+         egress.connectTo(ingress);
+         ingress.connectTo(egress);
+         System.out.println(origin.getMac() + " connected to " + target.getMac());
+      //}
    }
 	
 	/**
@@ -169,11 +174,12 @@ public class Simulator
 			mac = mac.substring(0, 4) + "." + mac.substring(4, 8) + "." + mac.substring(8);
 			if (!nodes.contains(findSwitch(mac)))
 				nodes.add(new Switch(0, 0, new ArrayList<Port>(), mac));
+			else
+				i--;
 		}
 		for (int i = 0; i < links; i++)
 		{
-			nodes.get((new Random().nextInt(switches))).
-				addPort(new Port(Port.BLOCKING, nodes.get((new Random()).nextInt(switches))));
+			addLink(nodes.get(new Random().nextInt(nodes.size())), nodes.get(new Random().nextInt(nodes.size())));
 		}
 		return nodes;
 	}
@@ -207,6 +213,10 @@ public class Simulator
 	   {
 		   for (Switch s : demo.switches)
 			   s.incrementClock();
+	   }
+	   for (Switch s : demo.switches)
+	   {
+		   s.printState();
 	   }
 	}
 	
