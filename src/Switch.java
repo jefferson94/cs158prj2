@@ -71,7 +71,7 @@ public class Switch
       clock = clockValue;
       switchInterface = portList;
       priority = "8000.";
-      this.macID = priority + macID;
+      this.macID = macID;
       rootID = macID;
    }
    
@@ -96,7 +96,6 @@ public class Switch
    public void addPort(Port p)
    {
       switchInterface.add(p);
-      System.out.println(macID + " connected to " + p.getNeighbor().getMac());
    }
    
    /**
@@ -153,16 +152,18 @@ public class Switch
     */
    public void sendBPDU()
    {
-      for(int i = 0; i < switchInterface.size(); i++)
-      {
          int timestampSec = clock; // Calendar.getInstance().get(Calendar.SECOND);
          // BPDU for STP.
+         String root = priority + rootID;
+         String mac = priority + macID;
+         for(int i = 0; i < switchInterface.size(); i++)
+         {
          BPDU dataFrame = new BPDU(0, 0, topologyChange, 
-        		 topologyChangeAck, rootID, cost, macID, i, timestampSec,
+        		 topologyChangeAck, root, cost, mac, i, timestampSec,
         		 AGE_TIMER, helloTime, FORWARDING_TIMER);
          Port p = switchInterface.get(i);
          if(p.getState() != Port.BLOCKING)
-            p.getNeighbor().receiveBPDU(p, dataFrame);
+            p.getNeighbor().receiveBPDU(p.getConnected(), dataFrame);
       }
    }
    
@@ -187,10 +188,10 @@ public class Switch
 	   if (p.getState() == Port.LEARNING)
 	   {
 		   int index = switchInterface.indexOf(p);
-		   if (index > macAddressTable.size())
+		   if (index >= macAddressTable.size())
 		   {
-			   for (int i = switchInterface.size(); i < index; i++)
-				   macAddressTable.add(null);
+			   for (int i = 0; i <= index; i++)
+				   macAddressTable.add("");
 		   }
 		   macAddressTable.add(index, frame.getSenderID().substring(4));
 	   }
@@ -227,7 +228,7 @@ public class Switch
    {
       if(frame.getRootID().compareTo(this.rootID) < 0)
       {
-         this.rootID = frame.getRootID();
+         this.rootID = frame.getRootID().substring(4);
          this.cost += frame.getCost();
       }
    }
@@ -257,5 +258,44 @@ public class Switch
    public boolean isConverged()
    {
 	   return converged;
+   }
+   
+   /**
+    * Prints the state of each interface. Call this method when the LAN is 
+    * converged.
+    */
+   public void printState()
+   {
+	   System.out.println("Bridge ID: " + macID);
+	   if (macID == rootID)
+		   System.out.println("I am the Root Bridge");
+	   System.out.println("\tTime: " + clock);
+	   for (int i = 0; i < switchInterface.size(); i++)
+	   {
+		   System.out.println("\tInterface ID: " + i);
+		   Port p = switchInterface.get(i);
+		   System.out.print("\t\tPort Role: ");
+		   switch (p.getRole())
+		   {
+		   case Port.ROOT: 
+			   System.out.println("Root");
+			   break;
+		   case Port.DESIGNATED: 
+			   System.out.println("Designated");
+			   break;
+		   default:
+			   System.out.println("Nondesignated");
+		   }
+		   System.out.print("\t\tPort State: ");
+		   switch (p.getState())
+		   {
+		   case Port.FORWARDING:
+			   System.out.println("Forwarding");
+			   break;
+		   default:
+			   System.out.println("Blocking");
+		   }
+		   System.out.println("\t\tPort State: " + p.getState());
+	   }
    }
 }

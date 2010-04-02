@@ -35,6 +35,7 @@ public class Port
    public final static int NONDESIGNATED = 4;
   
    private Switch neighbor;
+   private Port connected = null;
    private int portState;
    private int role;
    
@@ -56,6 +57,25 @@ public class Port
    {
       portState = initialState;
       neighbor = connectedNeighbor;
+   }
+   
+   /**
+    * Connect two Ports.
+    * 
+    * @param ingress the Port to be connected
+    */
+   public void connectTo(Port ingress)
+   {
+	   connected = ingress;
+   }
+   
+   /**
+    * 
+    * @return the connected switchport
+    */
+   public Port getConnected()
+   {
+	   return connected;
    }
    
    /**
