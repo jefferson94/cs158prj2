@@ -140,6 +140,11 @@ public class BPDU
 	
 	public int getForwardDelay() {return forwardDelay;}
 	
+	public String toString()
+	{
+	   return "Root id: " + getRootID() + " Sender id: " + getSenderID() + " Port id: " + getPortID();
+	}
+	
 	private int version;
 	private int type;
 	private boolean topologyChange;
