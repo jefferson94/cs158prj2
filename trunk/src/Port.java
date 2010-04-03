@@ -15,10 +15,12 @@
  *    incoming BPDUs that would indicate it should return to the blocking state to prevent
  *    a loop.
  * Disabled - Not strictly part of STP, a network administrator can manually disable a port
- * @author chtrinh
+ * 
+ * TODO 
+ * Ports no longer know their 'neighboring' switch, instead they only know the other switch's port 
+ * which is connected/linked to. Received packets are now attributed to ports. 
  *
  */
-
 
 public class Port 
 {
@@ -34,40 +36,50 @@ public class Port
    public final static int BACKUP = 3;
    public final static int NONDESIGNATED = 4;
   
-   private Switch neighbor;
-   private Port connected = null;
+//   private Switch neighbor;
+   private Port connected;
    private int portState;
-   private int role = NONDESIGNATED;
-   private int rootCost = 0;
+   private int pathCost;
+   private int role;
+   private BPDU recievedPacket;
    
    /**
     * Initial state of the port is set to BLOCKING (the value of 0).
     */
    public Port()
    {
-      portState = BLOCKING;
-      neighbor = new Switch();
+      this(BLOCKING, null, 1);
    }
    
    /**
     * Set the initial state of the port.
     * @param initialState is the state to set the port to, use the constant values
     * defined already in this class (see the 'final' constant listed values above). 
+    * @param otherSwitchPort is the switch port 'this' port is connected to. 
+    * @param cost is the path cost for the link this port uses; for fast-ethernet this value would be 19.
+    * 
+    * TODO
+    * Previously we had 'Switch connectedNeighbor' that made no sense. Ports are located on 
+    * switches and they connect to other ports on other switches (not to the switch themselves).
     */
-   public Port(int initialState, Switch connectedNeighbor)
+   public Port(int initialState, Port otherSwitchPort, int cost)
    {
       portState = initialState;
-      neighbor = connectedNeighbor;
+      connectTo(otherSwitchPort);
+      recievedPacket = null;
+      pathCost = cost;
    }
    
    /**
-    * Connect two Ports.
+    * Connect two Ports. They are bi-directional connections, since there is no such representation 
+    * of a one way connection.
     * 
-    * @param ingress the Port to be connected
+    * @param ingress the Port to be bi-directionally connected.
     */
    public void connectTo(Port ingress)
    {
-	   connected = ingress;
+	   this.connected = ingress;
+	   ingress.connected = this.connected;
    }
    
    /**
@@ -77,6 +89,36 @@ public class Port
    public Port getConnected()
    {
 	   return connected;
+   }
+   
+   /**
+    * Get the received packet that was sent to this port.
+    * 
+    * @return packet data that was setn to this port.
+    */
+   public BPDU receivedBPDU()
+   {
+      return recievedPacket;
+   }
+   
+   /**
+    * Send a packet to the port(target) that this port is connect to.
+    * @param sent packet to send to the connect port(target)
+    */
+   public void sendBPDU(BPDU sent)
+   {
+      connected.recievedPacket = sent;
+   }
+   
+   public int getPathCost()
+   {
+      return pathCost;
+   }
+   
+   
+   public void setPathCost(int cost)
+   {
+      pathCost = cost;
    }
    
    /**
@@ -97,24 +139,24 @@ public class Port
       portState = stateValue;
    }
    
-   /**
-    * Get all the neighbors or the links(other switch's port) to this port.
-    * NOTE: we are making the assumption there is only 1 link per port. 
-    * @return the connected neighboring switch.
-    */
-   public Switch getNeighbor()
-   {
-      return neighbor;
-   }
-   
-   /**
-    * Set the neighboring switch.
-    * @param connectedNeighbor switch that this port is connected to. 
-    */
-   public void setNeighbor(Switch connectedNeighbor)
-   {
-      neighbor = connectedNeighbor;
-   }
+//   /**
+//    * Get all the neighbors or the links(other switch's port) to this port.
+//    * NOTE: we are making the assumption there is only 1 link per port. 
+//    * @return the connected neighboring switch.
+//    */
+//   public Switch getNeighbor()
+//   {
+//      return neighbor;
+//   }
+//   
+//   /**
+//    * Set the neighboring switch.
+//    * @param connectedNeighbor switch that this port is connected to. 
+//    */
+//   public void setNeighbor(Switch connectedNeighbor)
+//   {
+//      neighbor = connectedNeighbor;
+//   }
    
    /**
     * Sets the role for this interface.
@@ -133,23 +175,5 @@ public class Port
    public int getRole()
    {
 	   return role;
-   }
-   
-   /**
-    * 
-    * @return the cost from this interface to the Root Bridge
-    */
-   public int getCost()
-   {
-	   return rootCost;
-   }
-   
-   /**
-    * 
-    * @param cost the new cost from this interface to the Root Bridge
-    */
-   public void setCost(int cost)
-   {
-	   rootCost = cost;
    }
 }
