@@ -70,7 +70,7 @@ public class Switch
       cost = costValue;
       clock = clockValue;
       switchInterface = portList;
-      priority = "8000.";
+      priority = "8000";
       this.macID = macID;
       rootID = macID;
    }
@@ -117,6 +117,7 @@ public class Switch
     	  for (Port p : switchInterface)
     	  {
     		  p.setState(p.LISTENING);
+    		  forwardTime = clock;
     	  }
     	  start = false;
       }
@@ -154,17 +155,19 @@ public class Switch
    {
          int timestampSec = clock; // Calendar.getInstance().get(Calendar.SECOND);
          // BPDU for STP.
-         String root = priority + rootID;
-         String mac = priority + macID;
-         for(int i = 0; i < switchInterface.size(); i++)
+         String root = priority + "." + rootID;
+         String mac = priority + "." + macID;
+         for (int i = 0; i < switchInterface.size(); i++)
          {
-         BPDU dataFrame = new BPDU(0, 0, topologyChange, 
-        		 topologyChangeAck, root, cost, mac, i, timestampSec,
-        		 AGE_TIMER, helloTime, FORWARDING_TIMER);
-         Port p = switchInterface.get(i);
-         if(p.getState() != Port.BLOCKING)
-            p.getNeighbor().receiveBPDU(p.getConnected(), dataFrame);
-      }
+        	 BPDU dataFrame = new BPDU(0, 0, topologyChange, 
+        		topologyChangeAck, root, cost, mac, i, timestampSec,
+        		AGE_TIMER, helloTime, FORWARDING_TIMER);
+        	 Port p = switchInterface.get(i);
+        	 if (p.getState() != Port.BLOCKING)
+        		 p.getNeighbor().receiveBPDU(p.getConnected(), dataFrame);
+        	 // Frame transmission in this case is instantaneous
+        	 // Does it need to arrive at a different time than it left?
+        }
    }
    
    /**
@@ -185,64 +188,84 @@ public class Switch
     */
    public void receiveBPDU(Port p, BPDU frame)
    {
-	   if (p.getState() == Port.LEARNING)
+	   if (p.getState() == Port.LISTENING)
 	   {
-		   int index = switchInterface.indexOf(p);
-		   if (index >= macAddressTable.size())
-		   {
-			   for (int i = 0; i <= index; i++)
-				   macAddressTable.add("");
-		   }
-		   macAddressTable.add(index, frame.getSenderID().substring(4));
-	   }
-	   if (!converged)
-	   {
-		   if (!rootID.equals(frame.getRootID()))
-			   electRootBridge(frame);
-		   else if (macID.equals(frame.getRootID()))
-		   {
-			   p.setRole(p.DESIGNATED);
-		   } else if (!haveRootPort())
-			   electRootPort(frame);
+		   String root = priority + "." + rootID;
+		   if (!root.equals(frame.getRootID()))
+			   electRootBridge(p, frame);
+		   else if (!haveRootPort())
+			   electRootPort();
 		   else
 			   electDesignatedPort();
 		   if (clock - forwardTime >= FORWARDING_TIMER)
 		   {
-			   if (p.getState() == Port.LEARNING)
-				   {
-					   if (p.getRole() == Port.ROOT || p.getRole() == Port.DESIGNATED)
-						   p.setState(Port.FORWARDING);
-					   else
-						   p.setState(Port.BLOCKING);
-					   converged = true;
-				   } else
-					   p.setState(Port.LEARNING);
+			   p.setState(Port.LEARNING);
+			   forwardTime = clock;
 		   }
-	   }
+		} else if (p.getState() == Port.LEARNING)
+		{
+			int index = switchInterface.indexOf(p);
+			if (index >= macAddressTable.size())
+			{
+				for (int i = 0; i <= index; i++)
+					macAddressTable.add("");
+			}
+			macAddressTable.add(index, frame.getSenderID().substring(5));
+			if (clock - forwardTime >= FORWARDING_TIMER)
+			{
+				if (p.getRole() == Port.ROOT || p.getRole() == Port.DESIGNATED)
+					p.setState(Port.FORWARDING);
+				else
+					p.setState(Port.BLOCKING);
+				converged = true;
+			}
+		}
    }
    
    /**
-    * Assign a root Bridge.
+    * Assign a Root Bridge.
+    * 
+    * @param p the ingress port for the BPDU
+    * @param frame the BPDU
     */
-   public void electRootBridge(BPDU frame)
+   public void electRootBridge(Port p, BPDU frame)
    {
-      if(frame.getRootID().compareTo(this.rootID) < 0)
+      if(frame.getRootID().compareTo(priority + "." + this.rootID) < 0)
       {
-         this.rootID = frame.getRootID().substring(4);
-         this.cost += frame.getCost();
+         this.rootID = frame.getRootID().substring(5);
+         p.setCost(frame.getCost() + 19); // Assuming all interfaces are FastEthernet
       }
    }
    
    /**
-    * Assign a root port.
+    * Assign exactly one Root Port on this Switch.
     */
-   public void electRootPort(BPDU frame)
+   public void electRootPort()
    {
-      cost += frame.getCost();
+	   int portCost = 0;
+	   int size = switchInterface.size();
+	   int rootPort = size - 1;
+      if (size > 0)
+      {
+    	  for (int i = size - 1; i >= 0; i--)
+    	  {
+    		  int rootCost = switchInterface.get(i).getCost();
+    		  if (portCost == 0 || (rootCost != 0 && rootCost < portCost))
+    		  {
+    			  portCost = rootCost;
+    			  rootPort = i;
+    		  }
+    	  }
+    	  if (portCost > 0)
+    	  {
+    		  switchInterface.get(rootPort).setRole(Port.ROOT);
+    		  cost = portCost;
+    	  }
+      }
    }
    
    /**
-    * Assign a designated port.
+    * Assign a designated port on one end of every link.
     */
    public void electDesignatedPort()
    {
@@ -274,11 +297,13 @@ public class Switch
 	   {
 		   System.out.println("\tInterface ID: " + i);
 		   Port p = switchInterface.get(i);
+		   System.out.println("\t\tConnected to " + p.getNeighbor().getMac());
 		   System.out.print("\t\tPort Role: ");
 		   switch (p.getRole())
 		   {
 		   case Port.ROOT: 
 			   System.out.println("Root");
+			   System.out.println("\t\tRoot Cost: " + cost);
 			   break;
 		   case Port.DESIGNATED: 
 			   System.out.println("Designated");
@@ -295,7 +320,8 @@ public class Switch
 		   default:
 			   System.out.println("Blocking");
 		   }
-		   System.out.println("\t\tPort State: " + p.getState());
 	   }
+	   System.out.println("MAC Address Table");
+	   System.out.println("\t\t" + macAddressTable);
    }
 }

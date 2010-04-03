@@ -37,7 +37,8 @@ public class Port
    private Switch neighbor;
    private Port connected = null;
    private int portState;
-   private int role;
+   private int role = NONDESIGNATED;
+   private int rootCost = 0;
    
    /**
     * Initial state of the port is set to BLOCKING (the value of 0).
@@ -132,5 +133,23 @@ public class Port
    public int getRole()
    {
 	   return role;
+   }
+   
+   /**
+    * 
+    * @return the cost from this interface to the Root Bridge
+    */
+   public int getCost()
+   {
+	   return rootCost;
+   }
+   
+   /**
+    * 
+    * @param cost the new cost from this interface to the Root Bridge
+    */
+   public void setCost(int cost)
+   {
+	   rootCost = cost;
    }
 }
