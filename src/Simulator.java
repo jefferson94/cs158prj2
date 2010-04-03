@@ -205,6 +205,7 @@ public class Simulator
 	   {
 		   System.out.println("Usage: simulator filename");
 		   System.out.println("       simulator switches links");
+		   System.exit(0);
 	   }
 	   
 	   System.out.println("\nTopology output:");
