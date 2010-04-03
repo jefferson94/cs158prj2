@@ -222,49 +222,54 @@ public class Switch
     */
    private void processReceivedBPDU()
    {
+	   String root = priority + "." + rootID;
 	   for (Port p : switchInterface)
 	   {
 		   BPDU frame = p.getFrame();
-		   if (p.getState() == Port.LISTENING)
+		   if (frame != null)
 		   {
-			   String root = priority + "." + rootID;
-			   if (!root.equals(frame.getRootID()))
-				   electRootBridge(p, frame);
-			   else if (!haveRootPort())
-				   electRootPort();
-			   if (rootID == macID || (p.getRole() != Port.DESIGNATED && p.getConnected().getRole() != Port.DESIGNATED))
-				   electDesignatedPort(p, frame);
-			   if (clock - forwardTime >= FORWARDING_TIMER)
+			   if (p.getState() == Port.BLOCKING && !root.equals(frame.getRootID()))
+				   p.setState(Port.LISTENING);
+			   if (p.getState() == Port.LISTENING)
 			   {
-				   p.setState(Port.LEARNING);
-				   forwardTime = clock;
-				   System.out.println("At time " + clock + " Switch " + macID + " Port " + switchInterface.indexOf(p) + " is LEARNING");
+				   if (!root.equals(frame.getRootID()))
+					   electRootBridge(p, frame);
+				   else if (!haveRootPort())
+					   electRootPort();
+				   if (rootID == macID || (p.getRole() != Port.DESIGNATED && p.getConnected().getRole() != Port.DESIGNATED))
+					   electDesignatedPort(p, frame);
+				   if (clock - forwardTime >= FORWARDING_TIMER)
+				   {
+					   p.setState(Port.LEARNING);
+					   forwardTime = clock;
+					   System.out.println("At time " + clock + " Switch " + macID + " Port " + switchInterface.indexOf(p) + " is LEARNING");
+				   }
+			   } else if (p.getState() == Port.LEARNING)
+			   {
+				   /* TODO
+				    * LEARNING state is for loading the MAC Address Table with the 
+				    * addresses of other switches and the interfaces to use to get
+				    * there.
+				    */
+				   int index = switchInterface.indexOf(p);
+				   if (index >= macAddressTable.size())
+				   {
+					   for (int i = 0; i <= index; i++)
+						   macAddressTable.add("");
+					   }
+				   macAddressTable.add(index, frame.getSenderID().substring(5));
+				   if (clock - forwardTime >= FORWARDING_TIMER)
+				   {
+					   int role = p.getRole();
+					   if (role == Port.ROOT || role == Port.DESIGNATED)
+						   p.setState(Port.FORWARDING);
+					   else
+						   p.setState(Port.BLOCKING);
+					   checkConverged();
+				   }
 			   }
-			} else if (p.getState() == Port.LEARNING)
-			{
-				/* TODO
-				 * LEARNING state is for loading the MAC Address Table with the 
-				 * addresses of other switches and the interfaces to use to get 
-				 * there.
-				 */
-				int index = switchInterface.indexOf(p);
-				if (index >= macAddressTable.size())
-				{
-					for (int i = 0; i <= index; i++)
-						macAddressTable.add("");
-				}
-				macAddressTable.add(index, frame.getSenderID().substring(5));
-				if (clock - forwardTime >= FORWARDING_TIMER)
-				{
-					int role = p.getRole();
-					if (role == Port.ROOT || role == Port.DESIGNATED)
-						p.setState(Port.FORWARDING);
-					else
-						p.setState(Port.BLOCKING);
-					checkConverged();
-				}
-			}
-		}
+		   }
+	   }
    }
    
    /**
@@ -342,10 +347,10 @@ public class Switch
     	  } else
     		  p.getConnected().setRole(Port.DESIGNATED);
       }
-      /*if (p.getRole() == Port.DESIGNATED)
-    	  System.out.println("At time " + clock + ", between " + macID + " and " + p.getNeighbor().getMac() + ", " + macID + " has the Designated Port");
+      if (p.getRole() == Port.DESIGNATED)
+    	  System.out.println("At time " + clock + ", between " + macID + " and " + p.getConnected() + ", " + macID + " has the Designated Port");
       else if (p.getConnected().getRole() == Port.DESIGNATED)
-    	  System.out.println("At time " + clock + ", between " + macID + " and " + p.getNeighbor().getMac() + ", " + p.getNeighbor().getMac() + " has the the Designated Port");*/
+    	  System.out.println("At time " + clock + ", between " + macID + " and " + p.getConnected() + ", " + p.getConnected() + " has the the Designated Port");
    }
    
    private void checkConverged()
