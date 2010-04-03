@@ -100,6 +100,11 @@ public class Switch
     */
    public String getMac() {return macID;}
    
+   public int getCost()
+   {
+	   return cost;
+   }
+   
    /**
     * Increment the clock value.
     */
@@ -111,6 +116,10 @@ public class Switch
        * NOTE
        * Ports are set to Port.BLOCKING after initialization and only changed after 
        * STP tells them to (which is when BDPUs are received on that port).
+       */
+      /*
+       * This is just a cheater way to simulate the recently powered up Switch 
+       * transitioning all STP interfaces to LISTENING at the end of POST.
        */
 //      if (start)
 //      {
@@ -130,7 +139,12 @@ public class Switch
     	   * of BDPUs simultaneously sending out other BDPUs.
     	   * Does that make sense in terms of an event simulator?
     	   */
-    	  processReceivedBPDU(); 
+    	  /*
+    	   * NOTE
+    	   * This is important in a real world situation. Not really important 
+    	   * one way or the other here.
+    	   */
+    	  processReceivedBPDU();
       }
    }
    
@@ -157,8 +171,7 @@ public class Switch
    }
 
    /**
-    * Send a BPDU to all active ports in its switch interface. 
-    * @param receiver 
+    * Send a BPDU to all non-blocking ports.
     */
    private void sendBPDU()
    {
@@ -178,6 +191,12 @@ public class Switch
           * Reasoning: BLOCKING ports are still able to receive BPDUs and all ports are set to
           * BLOCKING after initialization.
           * Sidenote: If we implement disable then we can just replace that with != Port.DISABLED
+          */
+         /* NOTE
+          * An interface in BLOCKING state receives BPDUs but does not forward 
+          * them. When it receives a TCN (next implementation), it sends a 
+          * TCN ACK out that interface, transitions to LISTENING state, and 
+          * floods TCNs until the FORWARDING_TIMER expires.
           */
 //         if(p.getState() != Port.BLOCKING)
 //           p.getConnected().receiveBPDU(p.getConnected(), dataFrame);
@@ -201,84 +220,51 @@ public class Switch
     * Process a Received BPDU and configure itself(the switch) based on it.
     * Utilizes the STP.  
     */
-   private void processReceivedBPDU( )
+   private void processReceivedBPDU()
    {
-      for(Port p : switchInterface)
-      {
-         BPDU frame = p.receivedBPDU();
-         /**
-          * NOTE
-          * I'm not understanding what is going on here. I know it something to do with 
-          * learning of the different mac address this switch is connected to. Can you clarify?
-          */
-//   	   if (p.getState() == Port.LEARNING)
-//   	   {
-//   		   int index = switchInterface.indexOf(p);
-//   		   if (index >= macAddressTable.size())
-//   		   {
-//   			   for (int i = 0; i <= index; i++)
-//   				   macAddressTable.add("");
-//   		   }
-//   		   macAddressTable.add(index, frame.getSenderID().substring(4));
-//   	   }
-         
-         if((frame != null) && (!converged))
-         {
-            //This part is the root war. All switches will continue this process
-            //till there is an agreement for the Root Switch.
-            if (!rootID.equals(frame.getRootID()))
-            { 
-               electRootBridge(p, frame);
-               //Port that received the BPDUs most likely the root port (conditions where it 
-               //is not taken care of in the else statement).
-               electRootPort(p);
-            }
-            else //RootIDs are equal compare distance/cost from root.
-            {
-               //Try and elect root port
-               if(cost > (frame.getCost() + p.getPathCost()))
-               {
-                  //Better path cost is found, receiving port must be the root port.
-                  cost = frame.getCost() + p.getPathCost();
-                  electRootPort(p);
-               }
-               else if(cost == frame.getCost())
-               {
-                  //Compare BDPU's sender ID to Root Port ID's sender id.
-                  if(rootPort.receivedBPDU().getSenderID().compareTo(frame.getSenderID()) < 0)
-                     electRootPort(p);
-               }   
-               
-               //Check to see if there is a possibility the port is a designated port.
-               if(p.getState() == Port.BLOCKING)
-               {
-                  if(this.cost < frame.getCost())
-                     electDesignatedPort(p);
-                  else if(this.cost == frame.getCost())
-                  {
-                     if(this.macID.compareTo(frame.getSenderID()) < 0)
-                        electDesignatedPort(p);
-                  }  
-               }
-               
-               //Check to see if timer has aged to set port to forwarding.
-               if (clock - forwardTime >= FORWARDING_TIMER)
-               {
-                  if (p.getState() == Port.LEARNING)
-                  {
-                     p.setState(Port.FORWARDING);
-                     /**
-                      * NOTE
-                      * How do you find if the switch is convergent? 
-                      * The statement below will set convergence after one port is found to be forwarding, 
-                      * which isn't always the case when there are multiple ports.
-                      */
-                     //converged = true;
-                  }
-               }
-            }
-         }
-	   }
+	   for (Port p : switchInterface)
+	   {
+		   BPDU frame = p.getFrame();
+		   if (p.getState() == Port.LISTENING)
+		   {
+			   String root = priority + "." + rootID;
+			   if (!root.equals(frame.getRootID()))
+				   electRootBridge(p, frame);
+			   else if (!haveRootPort())
+				   electRootPort();
+			   if (rootID == macID || (p.getRole() != Port.DESIGNATED && p.getConnected().getRole() != Port.DESIGNATED))
+				   electDesignatedPort(p, frame);
+			   if (clock - forwardTime >= FORWARDING_TIMER)
+			   {
+				   p.setState(Port.LEARNING);
+				   forwardTime = clock;
+				   System.out.println("At time " + clock + " Switch " + macID + " Port " + switchInterface.indexOf(p) + " is LEARNING");
+			   }
+			} else if (p.getState() == Port.LEARNING)
+			{
+				/* TODO
+				 * LEARNING state is for loading the MAC Address Table with the 
+				 * addresses of other switches and the interfaces to use to get 
+				 * there.
+				 */
+				int index = switchInterface.indexOf(p);
+				if (index >= macAddressTable.size())
+				{
+					for (int i = 0; i <= index; i++)
+						macAddressTable.add("");
+				}
+				macAddressTable.add(index, frame.getSenderID().substring(5));
+				if (clock - forwardTime >= FORWARDING_TIMER)
+				{
+					int role = p.getRole();
+					if (role == Port.ROOT || role == Port.DESIGNATED)
+						p.setState(Port.FORWARDING);
+					else
+						p.setState(Port.BLOCKING);
+					checkConverged();
+				}
+			}
+		}
    }
    
    /**
@@ -288,38 +274,89 @@ public class Switch
    {
       if(this.rootID.compareTo(frame.getRootID()) > 0)
       {
-         this.rootID = frame.getRootID().substring(4);
-         this.cost = frame.getCost() + p.getPathCost();
+         this.rootID = frame.getRootID().substring(5);
+         p.setPathCost(frame.getCost() + 19); // Assuming all interfaces are FastEthernet
+	   for (Port switchport : switchInterface)
+	   {
+		   if (switchport.getRole() == Port.ROOT || switchport.getRole() == Port.DESIGNATED)
+			   switchport.setRole(Port.NONDESIGNATED);
+	   }
+         System.out.println("At time " + clock + " Switch " + macID + " thinks " + rootID + " is the root.\nMy cost is " + p.getPathCost());
       }
    }
    
    /**
     * Assign a root port.
     */
-   public void electRootPort(Port p)
+   public void electRootPort()
    {
+	   int portCost = 0;
+	   int size = switchInterface.size();
+	   int port = size;
       //Remove previous root port, meaning it should set back to a blocking state.
       if(this.rootPort != null)
       {
-         this.rootPort.setState(Port.BLOCKING);
-         this.rootPort.setRole(Port.NONDESIGNATED);
+    	  for (int i = size - 1; i >= 0; i--)
+    	  {
+    		  int rootCost = switchInterface.get(i).getPathCost();
+    		  if (portCost == 0 || (rootCost > 0 && rootCost < portCost))
+    		  {
+    			  portCost = rootCost;
+    			  port = i;
+    		  }
+    	  }
+    	  if (portCost > 0)
+    	  {
+    		  rootPort = switchInterface.get(port);
+    		  rootPort.setRole(Port.ROOT);
+    		  cost = portCost;
+    		  System.out.println("At time " + clock + " Switch " + macID + " has Port " + rootPort + " as root.\nMy cost is " + cost);
+    	  }
       }
-      
-      //Set new root port for this switch.
-      this.rootPort = p;
-      this.rootPort.setRole(Port.ROOT);
       
       //Port is set to Listening after it knows it is a root port.
       this.rootPort.setState(Port.LISTENING);
    }
    
-   /**
+   /* TODO
     * Assign a designated port.
     */
-   public void electDesignatedPort(Port p)
+   public void electDesignatedPort(Port p, BPDU frame)
    {
-      p.setRole(Port.DESIGNATED);
-      p.setState(Port.LISTENING);
+      if (p.getRole() != Port.ROOT && p.getConnected().getRole() != Port.DESIGNATED)
+      {
+    	  if (p.getConnected().getRole() == Port.ROOT)
+    		  p.setRole(Port.DESIGNATED);
+    	  else if (cost < frame.getCost())
+    		  p.setRole(Port.DESIGNATED);
+    	  else if (cost == frame.getCost())
+    	  {
+    		  if ((priority + "." + macID).compareTo(frame.getSenderID()) < 0)
+    			  p.setRole(Port.DESIGNATED);
+    		  else if ((priority + "." + macID).compareTo(frame.getSenderID()) == 0)
+    		  {
+    			  if (switchInterface.indexOf(p) < frame.getPortID())
+    				  p.setRole(Port.DESIGNATED);
+    		  } else
+    			  p.getConnected().setRole(Port.DESIGNATED);
+    	  } else
+    		  p.getConnected().setRole(Port.DESIGNATED);
+      }
+      /*if (p.getRole() == Port.DESIGNATED)
+    	  System.out.println("At time " + clock + ", between " + macID + " and " + p.getNeighbor().getMac() + ", " + macID + " has the Designated Port");
+      else if (p.getConnected().getRole() == Port.DESIGNATED)
+    	  System.out.println("At time " + clock + ", between " + macID + " and " + p.getNeighbor().getMac() + ", " + p.getNeighbor().getMac() + " has the the Designated Port");*/
+   }
+   
+   private void checkConverged()
+   {
+	   boolean maybe = true;
+	   for (Port p : switchInterface)
+	   {
+		   if (p.getState() == Port.LISTENING || p.getState() == Port.LEARNING)
+			   maybe = false;
+	   }
+	   converged = maybe;
    }
    
    /**
@@ -347,6 +384,12 @@ public class Switch
 	   {
 		   System.out.println("\tInterface ID: " + i);
 		   Port p = switchInterface.get(i);
+		   /*
+		    * TODO
+		    * For the output, as well as debugging, we need a mechanism for 
+		    * telling the Switch what is on the other end of a link.
+		    */
+		   //System.out.println("\t\tConnected to " + p.getNeighbor().getMac());
 		   System.out.print("\t\tPort Role: ");
 		   switch (p.getRole())
 		   {
@@ -369,6 +412,12 @@ public class Switch
 			   System.out.println("Blocking");
 		   }
 		   System.out.println("\t\tPort State: " + p.getState());
+	   }
+	   System.out.println("MAC Address Table");
+	   for (int i = 0; i < macAddressTable.size(); i++)
+	   {
+		   if (macAddressTable.get(i) != "")
+			   System.out.println("\t\t" + i + " " + macAddressTable.get(i));
 	   }
    }
 }
