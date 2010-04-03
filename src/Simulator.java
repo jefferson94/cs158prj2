@@ -136,8 +136,8 @@ public class Simulator
       //{
          // Create the linkage between switches first for the origin port to the 
          // destination, then destination to the origin.
-         Port egress = new Port(Port.LISTENING, target);
-         Port ingress = new Port(Port.LISTENING, origin);
+         Port egress = new Port();
+         Port ingress = new Port();
          origin.addPort(egress);
          target.addPort(ingress);
          egress.connectTo(ingress);

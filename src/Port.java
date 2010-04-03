@@ -41,7 +41,11 @@ public class Port
    private int portState;
    private int pathCost;
    private int role;
-   private BPDU recievedPacket;
+   /*
+    * NOTE
+    * Frames are Layer 2. Packets are Layer 3.
+    */
+   private BPDU receivedFrame;
    
    /**
     * Initial state of the port is set to BLOCKING (the value of 0).
@@ -65,8 +69,9 @@ public class Port
    public Port(int initialState, Port otherSwitchPort, int cost)
    {
       portState = initialState;
-      connectTo(otherSwitchPort);
-      recievedPacket = null;
+      if (otherSwitchPort != null)
+    	  connectTo(otherSwitchPort);
+      receivedFrame = null;
       pathCost = cost;
    }
    
@@ -92,13 +97,19 @@ public class Port
    }
    
    /**
+<<<<<<< .mine
+    * Get the received packet that was sent to this port.
+    * 
+    * @return packet data that was sent to this port.
+=======
     * Get the received packet that was sent to this port.
     * 
     * @return packet data that was setn to this port.
+>>>>>>> .r23
     */
    public BPDU receivedBPDU()
    {
-      return recievedPacket;
+      return receivedFrame;
    }
    
    /**
@@ -107,7 +118,7 @@ public class Port
     */
    public void sendBPDU(BPDU sent)
    {
-      connected.recievedPacket = sent;
+      connected.receivedFrame = sent;
    }
    
    public int getPathCost()
@@ -175,5 +186,10 @@ public class Port
    public int getRole()
    {
 	   return role;
+   }
+   
+   public BPDU getFrame()
+   {
+	   return receivedFrame;
    }
 }
