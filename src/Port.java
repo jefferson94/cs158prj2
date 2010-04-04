@@ -52,7 +52,7 @@ public class Port
     */
    public Port()
    {
-      this(BLOCKING, null, 1);
+      this(BLOCKING, null, 0);
    }
    
    /**
@@ -84,7 +84,7 @@ public class Port
    public void connectTo(Port ingress)
    {
 	   this.connected = ingress;
-	   ingress.connected = this.connected;
+	   ingress.connected = this;
    }
    
    /**
@@ -188,8 +188,15 @@ public class Port
 	   return role;
    }
    
+   /**
+    * Takes the current BPDU out of the queue and gives it to the calling Switch.
+    * 
+    * @return the current BPDU on this interface
+    */
    public BPDU getFrame()
    {
-	   return receivedFrame;
+	   BPDU frame = receivedFrame;
+	   receivedFrame = null;
+	   return frame;
    }
 }
