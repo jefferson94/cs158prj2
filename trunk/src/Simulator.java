@@ -141,7 +141,7 @@ public class Simulator
          origin.addPort(egress);
          target.addPort(ingress);
          egress.connectTo(ingress);
-         ingress.connectTo(egress);
+         //ingress.connectTo(egress);
          System.out.println(origin.getMac() + " connected to " + target.getMac());
       //}
    }

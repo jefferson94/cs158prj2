@@ -228,7 +228,7 @@ public class Switch
 		   BPDU frame = p.getFrame();
 		   if (frame != null)
 		   {
-			   if (p.getState() == Port.BLOCKING && (macID.equals(rootID) || !root.equals(frame.getRootID())))
+			   if (p.getState() == Port.BLOCKING && (macID == rootID || root != frame.getRootID()))
 			   {
 				   p.setState(Port.LISTENING);
 				   System.out.println("At time " + clock + " Switch " + macID + " Port " + p + " is LISTENING");
@@ -302,7 +302,7 @@ public class Switch
 	   int portCost = 0;
 	   int size = switchInterface.size();
 	   int port = size;
-      if(this.rootPort == null)
+      if(this.rootPort == null && macID != rootID)
       {
     	  for (int i = size - 1; i >= 0; i--)
     	  {
@@ -319,7 +319,7 @@ public class Switch
     		  rootPort.setRole(Port.ROOT);
     		  cost = portCost;
     		  System.out.println("At time " + clock + " Switch " + macID + " has Port " + rootPort + " as root.\nMy cost is " + cost);
-    		  rootPort.getConnected().setRole(Port.DESIGNATED);
+    		  //rootPort.getConnected().setRole(Port.DESIGNATED);
     	  }
       }
    }
@@ -329,7 +329,10 @@ public class Switch
     */
    public void electDesignatedPort(Port p, BPDU frame)
    {
-      if (p.getRole() != Port.ROOT && p.getConnected().getRole() != Port.DESIGNATED)
+	   if (macID == rootID)
+	   {
+		   p.setRole(Port.DESIGNATED);
+	   } else if (p.getRole() != Port.ROOT && p.getConnected().getRole() != Port.DESIGNATED)
       {
     	  if (p.getConnected().getRole() == Port.ROOT)
     		  p.setRole(Port.DESIGNATED);
