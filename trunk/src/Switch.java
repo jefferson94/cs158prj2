@@ -66,7 +66,7 @@ public class Switch
       clock = clockValue;
       rootPort = null;
       switchInterface = portList;
-      priority = "8000.";
+      priority = "8000";
       this.macID = macID;
       rootID = macID;
    }
@@ -176,8 +176,8 @@ public class Switch
    private void sendBPDU()
    {
       int timestampSec = clock;
-      String root = priority + rootID;
-      String mac = priority + macID;
+      String root = priority + "." + rootID;
+      String mac = priority + "." + macID;
       for(int i = 0; i < switchInterface.size(); i++)
       {
          // BPDU for STP.
@@ -228,8 +228,11 @@ public class Switch
 		   BPDU frame = p.getFrame();
 		   if (frame != null)
 		   {
-			   if (p.getState() == Port.BLOCKING && !root.equals(frame.getRootID()))
+			   if (p.getState() == Port.BLOCKING && (macID.equals(rootID) || !root.equals(frame.getRootID())))
+			   {
 				   p.setState(Port.LISTENING);
+				   System.out.println("At time " + clock + " Switch " + macID + " Port " + p + " is LISTENING");
+			   }
 			   if (p.getState() == Port.LISTENING)
 			   {
 				   if (!root.equals(frame.getRootID()))
@@ -256,8 +259,8 @@ public class Switch
 				   {
 					   for (int i = 0; i <= index; i++)
 						   macAddressTable.add("");
-					   }
-				   macAddressTable.add(index, frame.getSenderID().substring(5));
+				   }
+				   macAddressTable.set(index, frame.getSenderID().substring(5));
 				   if (clock - forwardTime >= FORWARDING_TIMER)
 				   {
 					   int role = p.getRole();
@@ -277,7 +280,8 @@ public class Switch
     */
    public void electRootBridge(Port p, BPDU frame)
    {
-      if(this.rootID.compareTo(frame.getRootID()) > 0)
+	   String root = priority + "." + rootID;
+      if(root.compareTo(frame.getRootID()) > 0)
       {
          this.rootID = frame.getRootID().substring(5);
          p.setPathCost(frame.getCost() + 19); // Assuming all interfaces are FastEthernet
@@ -298,8 +302,7 @@ public class Switch
 	   int portCost = 0;
 	   int size = switchInterface.size();
 	   int port = size;
-      //Remove previous root port, meaning it should set back to a blocking state.
-      if(this.rootPort != null)
+      if(this.rootPort == null)
       {
     	  for (int i = size - 1; i >= 0; i--)
     	  {
@@ -316,11 +319,9 @@ public class Switch
     		  rootPort.setRole(Port.ROOT);
     		  cost = portCost;
     		  System.out.println("At time " + clock + " Switch " + macID + " has Port " + rootPort + " as root.\nMy cost is " + cost);
+    		  rootPort.getConnected().setRole(Port.DESIGNATED);
     	  }
       }
-      
-      //Port is set to Listening after it knows it is a root port.
-      this.rootPort.setState(Port.LISTENING);
    }
    
    /* TODO
@@ -416,7 +417,6 @@ public class Switch
 		   default:
 			   System.out.println("Blocking");
 		   }
-		   System.out.println("\t\tPort State: " + p.getState());
 	   }
 	   System.out.println("MAC Address Table");
 	   for (int i = 0; i < macAddressTable.size(); i++)
