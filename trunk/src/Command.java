@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.StringTokenizer;
 /**
  * Class used to parse the commands given by a string. Used to create a network topology.
  * Format for the string to be parsed should be the following:
@@ -6,10 +8,6 @@
  * @author Christoper Trinh
  * @version 1.0 2010/2/14
  */
-
-import java.util.ArrayList;
-import java.util.StringTokenizer;
-
 public class Command
 {  
    private String switchMAC;
@@ -18,7 +16,6 @@ public class Command
    /**
     * Construct a command object containing the Switch MAC id and its connected 
     * Switched MAC ids. 
-    * parameters. 
     */
    public Command()
    {
@@ -56,15 +53,15 @@ public class Command
       StringTokenizer st = new StringTokenizer(input);
       
       switchMAC = st.nextToken();
-      System.out.println("MACID: " + switchMAC);
+      //System.out.println("MACID: " + switchMAC);
       
       while (st.hasMoreTokens()) {
          connectedSwitch.add(st.nextToken());
-         System.out.println("Connected to #" + (i+1) + ": " + connectedSwitch.get(i));
+         //System.out.println("Connected to #" + (i+1) + ": " + connectedSwitch.get(i));
          i++;
       }
       
-      System.out.println("parse: done");
+      //System.out.println("parse: done");
    }
 }
 
