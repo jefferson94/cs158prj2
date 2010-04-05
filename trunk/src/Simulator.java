@@ -56,7 +56,9 @@ public class Simulator
             
             for(String macID : cmd.getConnectedSwitches())
             {
-               Switch target = new Switch();
+               Switch target = findSwitch(macID);
+               if (target == null)
+            	   target = new Switch();
                target.setMacID(macID);
                addLink(source, target);
                if (!nodes.contains(target))
