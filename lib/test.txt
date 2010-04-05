@@ -1,2 +1,6 @@
-R1 R2 R3
-R2 R3
+s6 s0 s4 s1 s5
+s0 s1 s2 s3 s5
+s4 s5 s3 s2
+s1 s3 s2
+s5 s3
+s3 s2

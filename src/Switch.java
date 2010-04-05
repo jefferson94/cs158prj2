@@ -318,9 +318,9 @@ public class Switch
     		  p.getConnected().setRole(Port.DESIGNATED);
       }
       //if (p.getRole() == Port.DESIGNATED)
-    	  //System.out.println("At time " + clock + ", between " + macID + " and " + p.getConnected() + ", " + macID + " has the Designated Port");
-     // else if (p.getConnected().getRole() == Port.DESIGNATED)
-    	  //System.out.println("At time " + clock + ", between " + macID + " and " + p.getConnected() + ", " + p.getConnected() + " has the the Designated Port");
+    	//  System.out.println("At time " + clock + ", between " + macID + " and " + p.getConnected() + ", " + macID + " has the Designated Port");
+      //else if (p.getConnected().getRole() == Port.DESIGNATED)
+    	//  System.out.println("At time " + clock + ", between " + macID + " and " + p.getConnected() + ", " + p.getConnected() + " has the the Designated Port");
    }
    
    private void checkConverged()
