@@ -16,12 +16,10 @@
  *    a loop.
  * Disabled - Not strictly part of STP, a network administrator can manually disable a port
  * 
- * TODO 
- * Ports no longer know their 'neighboring' switch, instead they only know the other switch's port 
- * which is connected/linked to. Received packets are now attributed to ports. 
- *
+ * @author Christopher Trinh
+ * @author John Le Mieux
+ * @version 0.1 April 5, 2010
  */
-
 public class Port 
 {
    public final static int BLOCKING = 0;
@@ -41,10 +39,6 @@ public class Port
    private int portState;
    private int pathCost;
    private int role;
-   /*
-    * NOTE
-    * Frames are Layer 2. Packets are Layer 3.
-    */
    private BPDU receivedFrame;
    
    /**
@@ -60,11 +54,9 @@ public class Port
     * @param initialState is the state to set the port to, use the constant values
     * defined already in this class (see the 'final' constant listed values above). 
     * @param otherSwitchPort is the switch port 'this' port is connected to. 
-    * @param cost is the path cost for the link this port uses; for fast-ethernet this value would be 19.
+    * @param cost is the path cost for the link this port uses; for 
+    * fast-ethernet this value would be 19.
     * 
-    * TODO
-    * Previously we had 'Switch connectedNeighbor' that made no sense. Ports are located on 
-    * switches and they connect to other ports on other switches (not to the switch themselves).
     */
    public Port(int initialState, Port otherSwitchPort, int cost)
    {
@@ -76,8 +68,8 @@ public class Port
    }
    
    /**
-    * Connect two Ports. They are bi-directional connections, since there is no such representation 
-    * of a one way connection.
+    * Connect two Ports. They are bi-directional connections, since there is no 
+    * such representation of a one way connection.
     * 
     * @param ingress the Port to be bi-directionally connected.
     */
@@ -97,15 +89,9 @@ public class Port
    }
    
    /**
-<<<<<<< .mine
     * Get the received packet that was sent to this port.
     * 
     * @return packet data that was sent to this port.
-=======
-    * Get the received packet that was sent to this port.
-    * 
-    * @return packet data that was setn to this port.
->>>>>>> .r23
     */
    public BPDU receivedBPDU()
    {
@@ -149,25 +135,6 @@ public class Port
    {
       portState = stateValue;
    }
-   
-//   /**
-//    * Get all the neighbors or the links(other switch's port) to this port.
-//    * NOTE: we are making the assumption there is only 1 link per port. 
-//    * @return the connected neighboring switch.
-//    */
-//   public Switch getNeighbor()
-//   {
-//      return neighbor;
-//   }
-//   
-//   /**
-//    * Set the neighboring switch.
-//    * @param connectedNeighbor switch that this port is connected to. 
-//    */
-//   public void setNeighbor(Switch connectedNeighbor)
-//   {
-//      neighbor = connectedNeighbor;
-//   }
    
    /**
     * Sets the role for this interface.

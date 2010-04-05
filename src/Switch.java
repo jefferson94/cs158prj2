@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Calendar;
 
 /**
  * A representation of a Layer 2 switch. When multiple instances of this class 
@@ -13,7 +12,6 @@ import java.util.Calendar;
  * 
  *  @author Christopher Trinh
  *  @author John Le Mieux
- *  @author Peter Le
  *  @version 0.1 April 5, 2010
  */
 public class Switch 
@@ -37,9 +35,8 @@ public class Switch
    
    private int helloTime = clock;
    private int forwardTime = clock;
-   private int ageTime = clock;
-   
-   private boolean start = true;
+   //private int ageTime = clock;
+
    private boolean converged = false;
    
    
@@ -84,12 +81,14 @@ public class Switch
    
    /**
     * Set the Switch's MAC address(or ID). 
+    * Also tells this switch that it is root.
     * NOTE: input MUST be unique across the network topology.
     * @param input a unique String use as a the switch's MAC address(or ID).
     */
    public void setMacID(String input)
    {
       macID = input;
+      rootID = input;
    }
    
    /**
@@ -117,40 +116,15 @@ public class Switch
        * Ports are set to Port.BLOCKING after initialization and only changed after 
        * STP tells them to (which is when BDPUs are received on that port).
        */
-      /*
-       * This is just a cheater way to simulate the recently powered up Switch 
-       * transitioning all STP interfaces to LISTENING at the end of POST.
-       */
-//      if (start)
-//      {
-//    	  for (Port p : switchInterface)
-//    	  {
-//    		  p.setState(p.LISTENING);
-//    	  }
-//    	  start = false;
-//      }
       if (clock - helloTime >= HELLO_TIMER)
       {
     	  sendBPDU();
-    	  /**
-    	   * NOTE
-    	   * Since this is a event simulator and helloTimer doesn't really expire. I think we should set processing
-    	   * of received BPDUs after the initial sending of the BDPUs. And subsequent events will have the processing 
-    	   * of BDPUs simultaneously sending out other BDPUs.
-    	   * Does that make sense in terms of an event simulator?
-    	   */
-    	  /*
-    	   * NOTE
-    	   * This is important in a real world situation. Not really important 
-    	   * one way or the other here.
-    	   */
     	  processReceivedBPDU();
       }
    }
    
    /**
     * Displays the switches attributes, in particular the MAC ID. For debugging purposes.
-    * NOTE: Should add more attributes in the string. 
     */
    public String toString()
    {
@@ -231,7 +205,7 @@ public class Switch
 			   if (p.getState() == Port.BLOCKING && (macID == rootID || root != frame.getRootID()))
 			   {
 				   p.setState(Port.LISTENING);
-				   System.out.println("At time " + clock + " Switch " + macID + " Port " + p + " is LISTENING");
+				   //System.out.println("At time " + clock + " Switch " + macID + " Port " + p + " is LISTENING");
 			   }
 			   if (p.getState() == Port.LISTENING)
 			   {
@@ -245,15 +219,10 @@ public class Switch
 				   {
 					   p.setState(Port.LEARNING);
 					   forwardTime = clock;
-					   System.out.println("At time " + clock + " Switch " + macID + " Port " + switchInterface.indexOf(p) + " is LEARNING");
+					   //System.out.println("At time " + clock + " Switch " + macID + " Port " + switchInterface.indexOf(p) + " is LEARNING");
 				   }
 			   } else if (p.getState() == Port.LEARNING)
 			   {
-				   /* TODO
-				    * LEARNING state is for loading the MAC Address Table with the 
-				    * addresses of other switches and the interfaces to use to get
-				    * there.
-				    */
 				   int index = switchInterface.indexOf(p);
 				   if (index >= macAddressTable.size())
 				   {
@@ -290,7 +259,7 @@ public class Switch
 		   if (switchport.getRole() == Port.ROOT || switchport.getRole() == Port.DESIGNATED)
 			   switchport.setRole(Port.NONDESIGNATED);
 	   }
-         System.out.println("At time " + clock + " Switch " + macID + " thinks " + rootID + " is the root.\nMy cost is " + p.getPathCost());
+         //System.out.println("At time " + clock + " Switch " + macID + " thinks " + rootID + " is the root.\nMy cost is " + p.getPathCost());
       }
    }
    
@@ -318,15 +287,12 @@ public class Switch
     		  rootPort = switchInterface.get(port);
     		  rootPort.setRole(Port.ROOT);
     		  cost = portCost;
-    		  System.out.println("At time " + clock + " Switch " + macID + " has Port " + rootPort + " as root.\nMy cost is " + cost);
+    		  //System.out.println("At time " + clock + " Switch " + macID + " has Port " + rootPort + " as root.\nMy cost is " + cost);
     		  //rootPort.getConnected().setRole(Port.DESIGNATED);
     	  }
       }
    }
    
-   /* TODO
-    * Assign a designated port.
-    */
    public void electDesignatedPort(Port p, BPDU frame)
    {
 	   if (macID == rootID)
@@ -351,10 +317,10 @@ public class Switch
     	  } else
     		  p.getConnected().setRole(Port.DESIGNATED);
       }
-      if (p.getRole() == Port.DESIGNATED)
-    	  System.out.println("At time " + clock + ", between " + macID + " and " + p.getConnected() + ", " + macID + " has the Designated Port");
-      else if (p.getConnected().getRole() == Port.DESIGNATED)
-    	  System.out.println("At time " + clock + ", between " + macID + " and " + p.getConnected() + ", " + p.getConnected() + " has the the Designated Port");
+      //if (p.getRole() == Port.DESIGNATED)
+    	  //System.out.println("At time " + clock + ", between " + macID + " and " + p.getConnected() + ", " + macID + " has the Designated Port");
+     // else if (p.getConnected().getRole() == Port.DESIGNATED)
+    	  //System.out.println("At time " + clock + ", between " + macID + " and " + p.getConnected() + ", " + p.getConnected() + " has the the Designated Port");
    }
    
    private void checkConverged()
@@ -393,17 +359,13 @@ public class Switch
 	   {
 		   System.out.println("\tInterface ID: " + i);
 		   Port p = switchInterface.get(i);
-		   /*
-		    * TODO
-		    * For the output, as well as debugging, we need a mechanism for 
-		    * telling the Switch what is on the other end of a link.
-		    */
 		   //System.out.println("\t\tConnected to " + p.getNeighbor().getMac());
 		   System.out.print("\t\tPort Role: ");
 		   switch (p.getRole())
 		   {
 		   case Port.ROOT: 
 			   System.out.println("Root");
+			   System.out.println("\t\tCost: " + p.getPathCost());
 			   break;
 		   case Port.DESIGNATED: 
 			   System.out.println("Designated");

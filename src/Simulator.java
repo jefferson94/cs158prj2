@@ -16,7 +16,6 @@ import org.jgrapht.graph.*;
  * 
  * @author John Le Mieux
  * @author Christopher Trinh
- * @author Peter Le
  * @version 0.1 April 5, 2010
  *
  */
@@ -29,13 +28,6 @@ public class Simulator
    public Simulator()
    {
      topology = new SimpleWeightedGraph<Switch, DefaultEdge>(DefaultEdge.class);
-     /* TODO
-      * This is cool, but we need a way to access all of the Switches and 
-      * Ports. Can do the same thing with ArrayLists? We need an 
-      * ArrayList<Switch> in Simulator and an ArrayList<Port> in Switch. That 
-      * way, we can trigger each BPDU by Switch.incrementClock from here and 
-      * send BPDUs to neighbors with Port.sendBPDU from Switch.
-      */
    }
    	
    /**
@@ -53,17 +45,19 @@ public class Simulator
  
          while (in.hasNextLine())
          {
-            System.out.println("Call cmd.parse(in) now!");
+            //System.out.println("Call cmd.parse(in) now!");
             Command cmd = new Command();
             cmd.parse(in.nextLine());
             
-            Switch source = (findSwitch(cmd.getMacID()) != null) ? findSwitch(cmd.getMacID()) :
-               addSwitch(cmd.getMacID());
-            nodes.add(source);
+            Switch source = new Switch();
+            source.setMacID(cmd.getMacID());
+            if (!nodes.contains(source))
+            	nodes.add(source);
             
             for(String macID : cmd.getConnectedSwitches())
             {
-               Switch target = findSwitch(macID);
+               Switch target = new Switch();
+               target.setMacID(macID);
                addLink(source, target);
                if (!nodes.contains(target))
             		   nodes.add(target);
@@ -127,13 +121,6 @@ public class Simulator
     */
    private void addLink(Switch origin, Switch target)
    {  
-      //Switch target = (findSwitch(destinationMacID) != null) ? findSwitch(destinationMacID) :
-      //   addSwitch(destinationMacID);
-      
-      // Create the linkage in the topology.
-      // Will not recreate any new links if link already exist between the two switches.
-      //if(topology.addEdge(origin, target) != null)
-      //{
          // Create the linkage between switches first for the origin port to the 
          // destination, then destination to the origin.
          Port egress = new Port();
@@ -142,7 +129,7 @@ public class Simulator
          target.addPort(ingress);
          egress.connectTo(ingress);
          //ingress.connectTo(egress);
-         System.out.println(origin.getMac() + " connected to " + target.getMac());
+         System.out.println(origin.getMac() + " " + target.getMac());
       //}
    }
 	
@@ -208,8 +195,8 @@ public class Simulator
 		   System.exit(0);
 	   }
 	   
-	   System.out.println("\nTopology output:");
-	   System.out.println(demo.getTopology());
+	   //System.out.println("\nTopology output:");
+	   //System.out.println(demo.getTopology());
 	   while (!demo.isConverged())
 	   {
 		   for (Switch s : demo.switches)

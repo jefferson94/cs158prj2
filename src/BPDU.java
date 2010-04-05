@@ -7,7 +7,6 @@
  * 
  * @author John Le Mieux
  * @author Christopher Trinh
- * @author Peter Le
  * @version 0.1 April 5, 2010
  */
 public class BPDU 
@@ -15,7 +14,7 @@ public class BPDU
 	/**
 	 * Constructor for a STP Configuration BPDU. These constructors have 
 	 * parameters for all of the 802.1 fields except the Protocol Identifier 
-	 * which is always 0. We may also be able to eliminate other parameters.
+	 * which is always 0.
 	 * 
 	 * @param version 0 for STP
 	 * @param type 0 for Configuration
