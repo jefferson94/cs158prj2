@@ -3,6 +3,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Collections;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
 
@@ -148,6 +149,8 @@ public class Simulator
 	private ArrayList<Switch> buildTopology(int switches, int links)
 	{
 		ArrayList<Switch> nodes = new ArrayList<Switch>();
+                ArrayList<Edge> edges = new ArrayList<Edge>();
+
 		for (int i = 0; i < switches; i++)
 		{
 			String mac = Long.toHexString((new Random()).nextLong());
@@ -171,19 +174,35 @@ public class Simulator
                     // get 2 random switches to build a link between
                     Switch s1 = nodes.get(new Random().nextInt(nodes.size()));
                     Switch s2 = nodes.get(new Random().nextInt(nodes.size()));
-                    
+                    // create the edge between the switches
+                    Edge e1 = new Edge(s1,s2);
+
+                    // make sure the two random switches are not the same switch (loop to self)
+                    while (s1.getMac().compareTo(s2.getMac()) == 0) {
+                        // get new switches and update the edge
+                        //System.out.println("warning: cannot create link to same switch (" + s1.toString() + ")");
+                        s1 = nodes.get(new Random().nextInt(nodes.size()));
+                        s2 = nodes.get(new Random().nextInt(nodes.size()));
+                        e1 = new Edge(s1,s2);
+                    }
                     // make sure there's not already an edge between switches
-                    
-                        // make sure the two random switches are not the same switch (loop to self)
-                        while (s1.getMac().compareTo(s2.getMac()) == 0) {
-                            // get new switches
-                            s1 = nodes.get(new Random().nextInt(nodes.size()));
-                            s2 = nodes.get(new Random().nextInt(nodes.size()));
-                            System.out.println("cannot create link to same switch");
-                        }
-                    
+                    while (edges.contains(e1)) {
+                        // get new switches and update the edge
+                        //System.out.println("warning: already contains link between " + s1.toString() + " and " + s2.toString());
+                        s1 = nodes.get(new Random().nextInt(nodes.size()));
+                        s2 = nodes.get(new Random().nextInt(nodes.size()));
+                        e1 = new Edge(s1,s2);
+                    }
+
+                    // add to the arraylists
+                    edges.add(e1);
                     addLink(s1,s2);
 		}
+                Collections.sort(edges);
+                for (int i = 0; i < edges.size() ; i++) {
+                    System.out.println("Link between " + (edges.get(i)).toString());
+                }
+
 		return nodes;
 	}
 	
