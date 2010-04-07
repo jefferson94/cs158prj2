@@ -168,7 +168,21 @@ public class Simulator
 		}
 		for (int i = 0; i < links; i++)
 		{
-			addLink(nodes.get(new Random().nextInt(nodes.size())), nodes.get(new Random().nextInt(nodes.size())));
+                    // get 2 random switches to build a link between
+                    Switch s1 = nodes.get(new Random().nextInt(nodes.size()));
+                    Switch s2 = nodes.get(new Random().nextInt(nodes.size()));
+                    
+                    // make sure there's not already an edge between switches
+                    
+                        // make sure the two random switches are not the same switch (loop to self)
+                        while (s1.getMac().compareTo(s2.getMac()) == 0) {
+                            // get new switches
+                            s1 = nodes.get(new Random().nextInt(nodes.size()));
+                            s2 = nodes.get(new Random().nextInt(nodes.size()));
+                            System.out.println("cannot create link to same switch");
+                        }
+                    
+                    addLink(s1,s2);
 		}
 		return nodes;
 	}
