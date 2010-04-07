@@ -1,5 +1,5 @@
 
-public class Edge
+public class Edge implements Comparable<Edge>
 {
    private Switch target;
    private Switch origin;
@@ -32,7 +32,10 @@ public class Edge
    
    public String toString()
    {
-      return target.toString() + " " + origin.toString();
+      return target.getMac() + " and " + origin.getMac();
    }
-   
+
+   public int compareTo(Edge e) {
+       return (this.target.getMac()).compareTo(e.target.getMac());
+   }
 }
