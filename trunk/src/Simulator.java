@@ -198,11 +198,16 @@ public class Simulator
                     edges.add(e1);
                     addLink(s1,s2);
 		}
+
+                // sort the edges by MAC for easier reading
                 Collections.sort(edges);
+                System.out.println("Links in the topology (sorted by switch MAC)");
+
                 for (int i = 0; i < edges.size() ; i++) {
-                    System.out.println("Link between " + (edges.get(i)).toString());
+                    System.out.println((i + 1) + ". " + (edges.get(i)).toString());
                 }
 
+                System.out.println("Done with topology construction");
 		return nodes;
 	}
 	
@@ -210,6 +215,7 @@ public class Simulator
 	{
 		for (Switch s : switches)
 		{
+                    // sometimes never gets out of this loop
 			if (!s.isConverged())
 				return false;
 		}
