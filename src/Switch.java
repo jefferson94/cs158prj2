@@ -221,7 +221,8 @@ public class Switch
 					   forwardTime = clock;
 					   //System.out.println("At time " + clock + " Switch " + macID + " Port " + switchInterface.indexOf(p) + " is LEARNING");
 				   }
-			   } else if (p.getState() == Port.LEARNING)
+			   } 
+			   else if (p.getState() == Port.LEARNING)
 			   {
 				   int index = switchInterface.indexOf(p);
 				   if (index >= macAddressTable.size())
@@ -237,7 +238,7 @@ public class Switch
 						   p.setState(Port.FORWARDING);
 					   else
 						   p.setState(Port.BLOCKING);
-					   checkConverged();
+					   checkConverged(); // CHANGE: Checking should be done at the very end. 
 				   }
 			   }
 		   }
@@ -254,11 +255,11 @@ public class Switch
       {
          this.rootID = frame.getRootID().substring(5);
          p.setPathCost(frame.getCost() + 19); // Assuming all interfaces are FastEthernet
-	   for (Port switchport : switchInterface)
-	   {
-		   if (switchport.getRole() == Port.ROOT || switchport.getRole() == Port.DESIGNATED)
-			   switchport.setRole(Port.NONDESIGNATED);
-	   }
+   	   for (Port switchport : switchInterface)
+   	   {
+   		   if (switchport.getRole() == Port.ROOT || switchport.getRole() == Port.DESIGNATED)
+   			   switchport.setRole(Port.NONDESIGNATED);
+   	   }
          //System.out.println("At time " + clock + " Switch " + macID + " thinks " + rootID + " is the root.\nMy cost is " + p.getPathCost());
       }
    }
@@ -328,10 +329,12 @@ public class Switch
 	   boolean maybe = true;
 	   for (Port p : switchInterface)
 	   {
+	      System.out.println("Port state = " + p.getState());
 		   if (p.getState() == Port.LISTENING || p.getState() == Port.LEARNING)
 			   maybe = false;
 	   }
 	   converged = maybe;
+	   System.out.println("I think im converged = " + converged);
    }
    
    /**
@@ -363,24 +366,32 @@ public class Switch
 		   System.out.print("\t\tPort Role: ");
 		   switch (p.getRole())
 		   {
-		   case Port.ROOT: 
-			   System.out.println("Root");
-			   System.out.println("\t\tCost: " + p.getPathCost());
-			   break;
-		   case Port.DESIGNATED: 
-			   System.out.println("Designated");
-			   break;
-		   default:
-			   System.out.println("Nondesignated");
+   		   case Port.ROOT: 
+   			   System.out.println("Root");
+   			   System.out.println("\t\tCost: " + p.getPathCost());
+   			   break;
+   		   case Port.DESIGNATED: 
+   			   System.out.println("Designated");
+   			   break;
+   		   default:
+   			   System.out.println("Nondesignated");
 		   }
 		   System.out.print("\t\tPort State: ");
 		   switch (p.getState())
 		   {
-		   case Port.FORWARDING:
-			   System.out.println("Forwarding");
-			   break;
-		   default:
-			   System.out.println("Blocking");
+		      case Port.BLOCKING:
+		         System.out.println("Blocking");
+		      case Port.LEARNING:
+	            System.out.println("Learning");
+	            break;
+	         case Port.LISTENING:
+	            System.out.println("Listening");
+	            break;
+   		   case Port.FORWARDING:
+   			   System.out.println("Forwarding");
+   			   break;
+   		   default:
+   			   System.out.println("Disabled - error.");
 		   }
 	   }
 	   System.out.println("MAC Address Table");
