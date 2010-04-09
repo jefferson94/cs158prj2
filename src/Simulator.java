@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Collections;
-import org.jgrapht.*;
-import org.jgrapht.graph.*;
 
 /**
  * A Spanning Tree Protocol simulator. It builds a random topology with the 
@@ -22,31 +20,32 @@ import org.jgrapht.graph.*;
  */
 public class Simulator 
 {
+   private ArrayList<Switch> nodes;
+   private ArrayList<Edge> edges;
+   
    /**
     * Create a Simulator with a network topology. The topology is a weighted simple 
     * undirected graph data structure. 
     */
    public Simulator()
    {
-     topology = new SimpleWeightedGraph<Switch, DefaultEdge>(DefaultEdge.class);
+      nodes = new ArrayList<Switch>();
+      edges = new ArrayList<Edge>();
    }
    	
    /**
     * Process a topology file and creates a network topology based on it. 
     * @param filename of the topology input file. 
     */
-   public ArrayList<Switch> processFile(String filename)
+   public void processFile(String filename)
    {
-	   ArrayList<Switch> nodes = new ArrayList<Switch>();
       try
       {
          FileReader r = new FileReader(filename);
          Scanner in = new Scanner(r);
          
- 
          while (in.hasNextLine())
          {
-            //System.out.println("Call cmd.parse(in) now!");
             Command cmd = new Command();
             cmd.parse(in.nextLine());
             
@@ -59,44 +58,24 @@ public class Simulator
             {
                Switch target = findSwitch(macID);
                if (target == null)
+               {
             	   target = new Switch();
-               target.setMacID(macID);
-               addLink(source, target);
-               if (!nodes.contains(target))
-            		   nodes.add(target);
+            	   target.setMacID(macID);
+            	   nodes.add(target);
+               }
+
+               createTopologyLink(source, target);
             }
          }
+         
+         displayTopologyLink();
       }
       catch (FileNotFoundException ex)
       {
          System.out.println("Reader/parser error, file probably not found");
       }
-      return nodes;
    }
 	
-   /**
-    * Get the current topology of the network as string. First index being the list of 
-    * all the vertices/nodes. The rest are the the edges in tuple pair.
-    * @return the current topology of the network as a string.
-    */
-   public String getTopology()
-   {
-      return topology.toString();
-   }
-   
-   /**
-    * Adds a switch/node to the current network topology.
-    * @param macID the id to assign to the switch.
-    * @return the newly added switch.
-    */
-   private Switch addSwitch(String macID)
-   {
-      Switch node = new Switch();
-      node.setMacID(macID);
-      // Will not recreate any switches already existing in the topology.
-      topology.addVertex(node);
-      return node;
-   }
    
    /**
     * Finds a switch based on the MAC id assigned to it.
@@ -106,7 +85,7 @@ public class Simulator
     */
    private Switch findSwitch(String targetMacID)
    {
-      for(Switch temp : topology.vertexSet())
+      for(Switch temp : nodes)
       {
          if(temp.getMac().compareTo(targetMacID) == 0)
             return temp;
@@ -131,27 +110,65 @@ public class Simulator
          origin.addPort(egress);
          target.addPort(ingress);
          egress.connectTo(ingress);
-         //ingress.connectTo(egress);
          System.out.println(origin.getMac() + " " + target.getMac());
-      //}
+   }
+   
+   /**
+    * Create a link between two switches. In terms of graphs it creates an edge
+    * between two vertices.
+    * @param s1 first switch/origin node for connection
+    * @param s2 second switch/target node for connection
+    * @return false if s1 and s2 are the same switch and if there already exist 
+    *    an between s1 and s2, otherwise create edge and link and return true.
+    */
+   private boolean createTopologyLink(Switch s1, Switch s2)
+   {
+      // create the edge between the switches
+      Edge e1 = new Edge(s1,s2);
+
+      // make sure the two random switches are not the same switch (loop to self)
+      if(s1.getMac().compareTo(s2.getMac()) == 0)
+         return false;
+      // make sure there's not already an edge between switches
+      else if (edges.contains(e1))
+         return false;
+      else
+      {
+         // add to array list
+         edges.add(e1);
+         addLink(s1, s2);
+         return true;
+      }
    }
 	
+   /**
+    * Display the all links(edges in terms of graphs) in the current topology.
+    */
+   private void displayTopologyLink()
+   {
+      // sort the edges by MAC for easier reading
+      Collections.sort(edges);
+      System.out.println("Links in the topology (sorted by switch MAC)");
+      
+      for (int i = 0; i < edges.size() ; i++) 
+         System.out.println((i + 1) + ". " + (edges.get(i)).toString());
+
+      System.out.println("Done with topology construction");
+   }
+   
 	/**
 	 * Builds a random topology graph based on command line user preferences.
 	 * 
-	 * @param switches the number of switches in the topology, specified in the 
+	 * @param switchAmount the number of switches in the topology, specified in the 
 	 * first command line argument
-	 * @param links the number of links (segments, extended LANs, cables) in 
+	 * @param linkAmount the number of links (segments, extended LANs, cables) in 
 	 * the topology, specified in the second command line argument
 	 * @return an ArrayList of Switches, each with a MAC address and some 
 	 * number of links connecting it to other switches
 	 */
-	private ArrayList<Switch> buildTopology(int switches, int links)
+	public void buildTopology(int switchAmount, int linkAmount)
 	{
-		ArrayList<Switch> nodes = new ArrayList<Switch>();
-                ArrayList<Edge> edges = new ArrayList<Edge>();
-
-		for (int i = 0; i < switches; i++)
+		for (int i = 0; i < switchAmount; i++)
 		{
 			String mac = Long.toHexString((new Random()).nextLong());
 			int length = mac.length();
@@ -161,7 +178,8 @@ public class Simulator
 				{
 					mac = "0" + mac;
 				}
-			} else if (length > 12)
+			} 
+			else if (length > 12)
 				mac = mac.substring(0, 12);
 			mac = mac.substring(0, 4) + "." + mac.substring(4, 8) + "." + mac.substring(8);
 			if (!nodes.contains(findSwitch(mac)))
@@ -169,51 +187,32 @@ public class Simulator
 			else
 				i--;
 		}
-		for (int i = 0; i < links; i++)
+		for (int i = 0; i < linkAmount; i++)
 		{
-                    // get 2 random switches to build a link between
-                    Switch s1 = nodes.get(new Random().nextInt(nodes.size()));
-                    Switch s2 = nodes.get(new Random().nextInt(nodes.size()));
-                    // create the edge between the switches
-                    Edge e1 = new Edge(s1,s2);
-
-                    // make sure the two random switches are not the same switch (loop to self)
-                    while (s1.getMac().compareTo(s2.getMac()) == 0) {
-                        // get new switches and update the edge
-                        //System.out.println("warning: cannot create link to same switch (" + s1.toString() + ")");
-                        s1 = nodes.get(new Random().nextInt(nodes.size()));
-                        s2 = nodes.get(new Random().nextInt(nodes.size()));
-                        e1 = new Edge(s1,s2);
-                    }
-                    // make sure there's not already an edge between switches
-                    while (edges.contains(e1)) {
-                        // get new switches and update the edge
-                        //System.out.println("warning: already contains link between " + s1.toString() + " and " + s2.toString());
-                        s1 = nodes.get(new Random().nextInt(nodes.size()));
-                        s2 = nodes.get(new Random().nextInt(nodes.size()));
-                        e1 = new Edge(s1,s2);
-                    }
-
-                    // add to the arraylists
-                    edges.add(e1);
-                    addLink(s1,s2);
+		   // get 2 random switches to build a link between
+		   Switch s1 = nodes.get(new Random().nextInt(nodes.size()));
+         Switch s2 = nodes.get(new Random().nextInt(nodes.size()));
+         
+         while(!createTopologyLink(s1, s2))
+         {
+            s1 = nodes.get(new Random().nextInt(nodes.size()));
+            s2 = nodes.get(new Random().nextInt(nodes.size()));
+         }     
 		}
 
-                // sort the edges by MAC for easier reading
-                Collections.sort(edges);
-                System.out.println("Links in the topology (sorted by switch MAC)");
-
-                for (int i = 0; i < edges.size() ; i++) {
-                    System.out.println((i + 1) + ". " + (edges.get(i)).toString());
-                }
-
-                System.out.println("Done with topology construction");
-		return nodes;
+		displayTopologyLink();
 	}
 	
+	/**
+	 * Check if all the switches in the topology is converged.
+	 * This means that all ports are either BLOCKING or FORWARDING.
+	 *
+	 * @return true if all switches' ports are blocking or forwarding, 
+	 *   false otherwise.
+	 */
 	public boolean isConverged()
 	{
-		for (Switch s : switches)
+		for (Switch s : nodes)
 		{
                     // sometimes never gets out of this loop
 			if (!s.isConverged())
@@ -222,13 +221,22 @@ public class Simulator
 		return true;
 	}
 	
+	/**
+	 * Get a list of all the switches in the current topology.
+	 * @return an array list of all the switches in the current topology.
+	 */
+   public ArrayList<Switch> getSwitches()
+   {
+      return nodes;
+   }
+	
 	public static void main(String[] args)
 	{
 	   Simulator demo = new Simulator();
 	   if (args.length == 1)
-		   demo.switches = demo.processFile(args[0]);
+		   demo.processFile(args[0]);
 	   else if (args.length == 2)
-		   demo.switches = demo.buildTopology(Integer.valueOf(args[0]), Integer.valueOf(args[1]));
+		   demo.buildTopology(Integer.valueOf(args[0]), Integer.valueOf(args[1]));
 	   else
 	   {
 		   System.out.println("Usage: simulator filename");
@@ -236,11 +244,9 @@ public class Simulator
 		   System.exit(0);
 	   }
 	   
-	   //System.out.println("\nTopology output:");
-	   //System.out.println(demo.getTopology());
 	   while (!demo.isConverged())
 	   {
-		   for (Switch s : demo.switches)
+		   for (Switch s : demo.getSwitches())
 		   {
             s.printState();
 		      s.incrementClock();
@@ -250,12 +256,9 @@ public class Simulator
 	   
 	   System.out.println("CONVERGED!@!@!@!");
 	   
-	   for (Switch s : demo.switches)
+	   for (Switch s : demo.getSwitches())
 	   {
 		   s.printState();
 	   }
 	}
-	
-	private UndirectedGraph<Switch, DefaultEdge> topology;
-	private ArrayList<Switch> switches;
 }
