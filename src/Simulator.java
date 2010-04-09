@@ -241,8 +241,15 @@ public class Simulator
 	   while (!demo.isConverged())
 	   {
 		   for (Switch s : demo.switches)
-			   s.incrementClock();
+		   {
+            s.printState();
+		      s.incrementClock();
+		   }
+		   
 	   }
+	   
+	   System.out.println("CONVERGED!@!@!@!");
+	   
 	   for (Switch s : demo.switches)
 	   {
 		   s.printState();
