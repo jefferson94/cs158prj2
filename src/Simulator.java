@@ -49,11 +49,15 @@ public class Simulator
             Command cmd = new Command();
             cmd.parse(in.nextLine());
             
-            Switch source = new Switch();
-            source.setMacID(cmd.getMacID());
-            if (!nodes.contains(source))
-            	nodes.add(source);
             
+            Switch source = findSwitch(cmd.getMacID());
+            if(source == null)
+            {
+               source = new Switch();
+               source.setMacID(cmd.getMacID());
+               nodes.add(source);
+            }
+                        
             for(String macID : cmd.getConnectedSwitches())
             {
                Switch target = findSwitch(macID);
