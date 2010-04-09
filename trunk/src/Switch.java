@@ -381,6 +381,7 @@ public class Switch
 		   {
 		      case Port.BLOCKING:
 		         System.out.println("Blocking");
+		         break;
 		      case Port.LEARNING:
 	            System.out.println("Learning");
 	            break;
