@@ -215,11 +215,10 @@ public class Switch
 					   electRootPort();
 				   if (rootID == macID || (p.getRole() != Port.DESIGNATED && p.getConnected().getRole() != Port.DESIGNATED))
 					   electDesignatedPort(p, frame);
-				   if (clock - forwardTime >= FORWARDING_TIMER)
+				   if ((clock - forwardTime) >= FORWARDING_TIMER)
 				   {
 					   p.setState(Port.LEARNING);
-					   forwardTime = clock;
-					   //System.out.println("At time " + clock + " Switch " + macID + " Port " + switchInterface.indexOf(p) + " is LEARNING");
+					   //	forwardTime = clock;
 				   }
 			   } 
 			   else if (p.getState() == Port.LEARNING)
@@ -231,7 +230,7 @@ public class Switch
 						   macAddressTable.add("");
 				   }
 				   macAddressTable.set(index, frame.getSenderID().substring(5));
-				   if (clock - forwardTime >= FORWARDING_TIMER)
+				   if ((clock - forwardTime) >= FORWARDING_TIMER)
 				   {
 					   int role = p.getRole();
 					   if (role == Port.ROOT || role == Port.DESIGNATED)
@@ -260,7 +259,6 @@ public class Switch
    		   if (switchport.getRole() == Port.ROOT || switchport.getRole() == Port.DESIGNATED)
    			   switchport.setRole(Port.NONDESIGNATED);
    	   }
-         //System.out.println("At time " + clock + " Switch " + macID + " thinks " + rootID + " is the root.\nMy cost is " + p.getPathCost());
       }
    }
    
@@ -288,8 +286,6 @@ public class Switch
     		  rootPort = switchInterface.get(port);
     		  rootPort.setRole(Port.ROOT);
     		  cost = portCost;
-    		  //System.out.println("At time " + clock + " Switch " + macID + " has Port " + rootPort + " as root.\nMy cost is " + cost);
-    		  //rootPort.getConnected().setRole(Port.DESIGNATED);
     	  }
       }
    }
@@ -318,10 +314,6 @@ public class Switch
     	  } else
     		  p.getConnected().setRole(Port.DESIGNATED);
       }
-      //if (p.getRole() == Port.DESIGNATED)
-    	//  System.out.println("At time " + clock + ", between " + macID + " and " + p.getConnected() + ", " + macID + " has the Designated Port");
-      //else if (p.getConnected().getRole() == Port.DESIGNATED)
-    	//  System.out.println("At time " + clock + ", between " + macID + " and " + p.getConnected() + ", " + p.getConnected() + " has the the Designated Port");
    }
    
    private void checkConverged()
@@ -329,7 +321,6 @@ public class Switch
 	   boolean maybe = true;
 	   for (Port p : switchInterface)
 	   {
-	      System.out.println("Port state = " + p.getState());
 		   if (p.getState() == Port.LISTENING || p.getState() == Port.LEARNING)
 			   maybe = false;
 	   }
@@ -362,7 +353,6 @@ public class Switch
 	   {
 		   System.out.println("\tInterface ID: " + i);
 		   Port p = switchInterface.get(i);
-		   //System.out.println("\t\tConnected to " + p.getNeighbor().getMac());
 		   System.out.print("\t\tPort Role: ");
 		   switch (p.getRole())
 		   {
