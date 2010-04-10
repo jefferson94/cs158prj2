@@ -332,11 +332,25 @@ public class Switch
     * Determines if this Switch thinks the topology is in STP converged state. 
     * Used to terminate the main simulator loop.
     * 
-    * @return true if all Ports are in FORWARDING or BLOCKED state
+    * @return true if all Ports are in FORWARDING or BLOCKED state, also 
+    *    in a case where a switch has no connection to other switches (stranded/leaf node).
     */
    public boolean isConverged()
    {
-	   return converged;
+      if(hasPorts())
+         return converged;
+      else
+         return true;
+   }
+   
+   /**
+    * Determine whether this switch has connections to other switches
+    * @return true if switch has ports to connect to other switches, otherwise
+    *    false.
+    */
+   public boolean hasPorts()
+   {
+      return switchInterface.size() > 0;
    }
    
    /**
@@ -346,50 +360,57 @@ public class Switch
    public void printState()
    {
 	   System.out.println("Bridge ID: " + macID);
-	   if (macID == rootID)
-		   System.out.println("I am the Root Bridge");
-	   System.out.println("\tTime: " + clock);
-	   for (int i = 0; i < switchInterface.size(); i++)
+	   
+	   if(!hasPorts())
+	      System.out.println("Leaf/stranded switch not connected to the topology.");
+	   else
 	   {
-		   System.out.println("\tInterface ID: " + i);
-		   Port p = switchInterface.get(i);
-		   System.out.print("\t\tPort Role: ");
-		   switch (p.getRole())
-		   {
-   		   case Port.ROOT: 
-   			   System.out.println("Root");
-   			   System.out.println("\t\tCost: " + p.getPathCost());
-   			   break;
-   		   case Port.DESIGNATED: 
-   			   System.out.println("Designated");
-   			   break;
-   		   default:
-   			   System.out.println("Nondesignated");
-		   }
-		   System.out.print("\t\tPort State: ");
-		   switch (p.getState())
-		   {
-		      case Port.BLOCKING:
-		         System.out.println("Blocking");
-		         break;
-		      case Port.LEARNING:
-	            System.out.println("Learning");
-	            break;
-	         case Port.LISTENING:
-	            System.out.println("Listening");
-	            break;
-   		   case Port.FORWARDING:
-   			   System.out.println("Forwarding");
-   			   break;
-   		   default:
-   			   System.out.println("Disabled - error.");
-		   }
-	   }
-	   System.out.println("MAC Address Table");
-	   for (int i = 0; i < macAddressTable.size(); i++)
-	   {
-		   if (macAddressTable.get(i) != "")
-			   System.out.println("\t\t" + i + " " + macAddressTable.get(i));
+   	   if(macID == rootID)
+   		   System.out.println("I am the Root Bridge");
+   	   
+   	   System.out.println("\tTime: " + clock);
+   	   for (int i = 0; i < switchInterface.size(); i++)
+   	   {
+   		   System.out.println("\tInterface ID: " + i);
+   		   Port p = switchInterface.get(i);
+   		   System.out.print("\t\tPort Role: ");
+   		   switch (p.getRole())
+   		   {
+      		   case Port.ROOT: 
+      			   System.out.println("Root");
+      			   System.out.println("\t\tCost: " + p.getPathCost());
+      			   break;
+      		   case Port.DESIGNATED: 
+      			   System.out.println("Designated");
+      			   break;
+      		   default:
+      			   System.out.println("Nondesignated");
+   		   }
+   		   System.out.print("\t\tPort State: ");
+   		   switch (p.getState())
+   		   {
+   		      case Port.BLOCKING:
+   		         System.out.println("Blocking");
+   		         break;
+   		      case Port.LEARNING:
+   	            System.out.println("Learning");
+   	            break;
+   	         case Port.LISTENING:
+   	            System.out.println("Listening");
+   	            break;
+      		   case Port.FORWARDING:
+      			   System.out.println("Forwarding");
+      			   break;
+      		   default:
+      			   System.out.println("Disabled - error.");
+   		   }
+   	   }
+   	   System.out.println("MAC Address Table");
+   	   for (int i = 0; i < macAddressTable.size(); i++)
+   	   {
+   		   if (macAddressTable.get(i) != "")
+   			   System.out.println("\t\t" + i + " " + macAddressTable.get(i));
+   	   }
 	   }
    }
 }
