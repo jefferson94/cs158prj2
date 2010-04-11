@@ -1,0 +1,8866 @@
+b1ce.28e6.edfc cc7b.126f.1411
+b1ce.28e6.edfc dd80.2483.4876
+1ae1.f12f.0472 7a3e.9bd7.08d9
+7a3e.9bd7.08d9 b1ce.28e6.edfc
+cd4b.72cb.4748 b1ce.28e6.edfc
+cd4b.72cb.4748 cc7b.126f.1411
+7a3e.9bd7.08d9 d780.25a5.c24e
+dd80.2483.4876 cc7b.126f.1411
+7a3e.9bd7.08d9 dd80.2483.4876
+1ae1.f12f.0472 dd80.2483.4876
+Links in the topology (sorted by switch MAC)
+1. 7a3e.9bd7.08d9 and 1ae1.f12f.0472
+2. b1ce.28e6.edfc and 7a3e.9bd7.08d9
+3. b1ce.28e6.edfc and cd4b.72cb.4748
+4. cc7b.126f.1411 and b1ce.28e6.edfc
+5. cc7b.126f.1411 and cd4b.72cb.4748
+6. cc7b.126f.1411 and dd80.2483.4876
+7. d780.25a5.c24e and 7a3e.9bd7.08d9
+8. dd80.2483.4876 and b1ce.28e6.edfc
+9. dd80.2483.4876 and 7a3e.9bd7.08d9
+10. dd80.2483.4876 and 1ae1.f12f.0472
+Done with topology construction
+Bridge ID: cd4b.72cb.4748
+I am the Root Bridge
+	Time: 0
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+I am the Root Bridge
+	Time: 0
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+I am the Root Bridge
+	Time: 0
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 2
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+I am the Root Bridge
+	Time: 0
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 2
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 3
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: dd80.2483.4876
+I am the Root Bridge
+	Time: 0
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 2
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 3
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 0
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+I am the Root Bridge
+	Time: 0
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 2
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 3
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+I am the Root Bridge
+	Time: 1
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+I am the Root Bridge
+	Time: 1
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+I am the Root Bridge
+	Time: 1
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 2
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+I am the Root Bridge
+	Time: 1
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 2
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 3
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: dd80.2483.4876
+I am the Root Bridge
+	Time: 1
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 2
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 3
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 1
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+I am the Root Bridge
+	Time: 1
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 2
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 3
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+I am the Root Bridge
+	Time: 2
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+I am the Root Bridge
+	Time: 2
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+I am the Root Bridge
+	Time: 2
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+I am the Root Bridge
+	Time: 2
+	Interface ID: 0
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Root
+		Cost: 0
+		Port State: Blocking
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 2
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Blocking
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 2
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 2
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 3
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+	Time: 3
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+	Time: 3
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 3
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 3
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 3
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 3
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 4
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+	Time: 4
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+	Time: 4
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 4
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 4
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 4
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 4
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 5
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+	Time: 5
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+	Time: 5
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 5
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 5
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 5
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 5
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 6
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+	Time: 6
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+	Time: 6
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 6
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 6
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 6
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 6
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 7
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+	Time: 7
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+	Time: 7
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 7
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 7
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 7
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 7
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 8
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+	Time: 8
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+	Time: 8
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 8
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 8
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 8
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 8
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 9
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+	Time: 9
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+	Time: 9
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 9
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 9
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 9
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 9
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 10
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+	Time: 10
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+	Time: 10
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 10
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 10
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 10
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 10
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 11
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+	Time: 11
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+	Time: 11
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 11
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 11
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 11
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 11
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 12
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+	Time: 12
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+	Time: 12
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 12
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 12
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 12
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 12
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 13
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+	Time: 13
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+	Time: 13
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 13
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 13
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 13
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 13
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 14
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+	Time: 14
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+	Time: 14
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 14
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 14
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 14
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 14
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 15
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: d780.25a5.c24e
+	Time: 15
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+Bridge ID: cc7b.126f.1411
+	Time: 15
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 15
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: dd80.2483.4876
+	Time: 15
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 15
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: b1ce.28e6.edfc
+	Time: 15
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+Bridge ID: cd4b.72cb.4748
+	Time: 16
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 16
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 16
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 16
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 16
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 16
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 16
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 17
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 17
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 17
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 17
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 17
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 17
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 17
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 18
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 18
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 18
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 18
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 18
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 18
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 18
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 19
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 19
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 19
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 19
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 19
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 19
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 19
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 20
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 20
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 20
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 20
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 20
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 20
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 20
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 21
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 21
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 21
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 21
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 21
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 21
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 21
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 22
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 22
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 22
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 22
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 22
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 22
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 22
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 23
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 23
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 23
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 23
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 23
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 23
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 23
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 24
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 24
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 24
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 24
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 24
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 24
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 24
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 25
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 25
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 25
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 25
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 25
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 25
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 25
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 26
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 26
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 26
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 26
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 26
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 26
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 26
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 27
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 27
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 27
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 27
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 27
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 27
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 27
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 28
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 28
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 28
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 28
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 28
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 28
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 28
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 29
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Port state = 0
+Port state = 1
+I think im converged = false
+Bridge ID: d780.25a5.c24e
+	Time: 29
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Port state = 0
+I think im converged = true
+Bridge ID: cc7b.126f.1411
+	Time: 29
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Port state = 0
+Port state = 1
+Port state = 1
+I think im converged = false
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 29
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Port state = 3
+Port state = 1
+Port state = 1
+Port state = 1
+I think im converged = false
+Bridge ID: dd80.2483.4876
+	Time: 29
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Port state = 0
+Port state = 1
+Port state = 1
+Port state = 1
+I think im converged = false
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 29
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Port state = 3
+Port state = 1
+I think im converged = false
+Bridge ID: b1ce.28e6.edfc
+	Time: 29
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Port state = 3
+Port state = 1
+Port state = 1
+Port state = 1
+I think im converged = false
+Bridge ID: cd4b.72cb.4748
+	Time: 30
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: d780.25a5.c24e
+	Time: 30
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 30
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 30
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+Bridge ID: dd80.2483.4876
+	Time: 30
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 30
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: b1ce.28e6.edfc
+	Time: 30
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+Bridge ID: cd4b.72cb.4748
+	Time: 31
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 31
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 31
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 31
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 31
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 31
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 31
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 32
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 32
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 32
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 32
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 32
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 32
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 32
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 33
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 33
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 33
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 33
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 33
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 33
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 33
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 34
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 34
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 34
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 34
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 34
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 34
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 34
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 35
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 35
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 35
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 35
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 35
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 35
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 35
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 36
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 36
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 36
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 36
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 36
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 36
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 36
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 37
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 37
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 37
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 37
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 37
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 37
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 37
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 38
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 38
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 38
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 38
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 38
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 38
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 38
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 39
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 39
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 39
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 39
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 39
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 39
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 39
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 40
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 40
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 40
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 40
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 40
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 40
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 40
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 41
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 41
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 41
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 41
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 41
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 41
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 41
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 42
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 42
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 42
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 42
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 42
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 42
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 42
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 43
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 43
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 43
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 43
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 43
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 43
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 43
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 44
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 44
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 44
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 44
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Port state = 3
+Port state = 3
+Port state = 1
+Port state = 1
+I think im converged = false
+Bridge ID: dd80.2483.4876
+	Time: 44
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 44
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Port state = 3
+Port state = 3
+I think im converged = true
+Bridge ID: b1ce.28e6.edfc
+	Time: 44
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Port state = 3
+Port state = 3
+Port state = 1
+Port state = 1
+I think im converged = false
+Bridge ID: cd4b.72cb.4748
+	Time: 45
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 45
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Port state = 0
+I think im converged = true
+Bridge ID: cc7b.126f.1411
+	Time: 45
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 45
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+Bridge ID: dd80.2483.4876
+	Time: 45
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 45
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 45
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+Bridge ID: cd4b.72cb.4748
+	Time: 46
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 46
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 46
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 46
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 46
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 46
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 46
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 47
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 47
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 47
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 47
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 47
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 47
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 47
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 48
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 48
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 48
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 48
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 48
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 48
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 48
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 49
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 49
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 49
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 49
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 49
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 49
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 49
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 50
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 50
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 50
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 50
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 50
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 50
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 50
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 51
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 51
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 51
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 51
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 51
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 51
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 51
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 52
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 52
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 52
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 52
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 52
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 52
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 52
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 53
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 53
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 53
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 53
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 53
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 53
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 53
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 54
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 54
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 54
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 54
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 54
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 54
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 54
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 55
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 55
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 55
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 55
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 55
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 55
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 55
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 56
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 56
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 56
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 56
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 56
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 56
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 56
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 57
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 57
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 57
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 57
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 57
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 57
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 57
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 58
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 58
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 58
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 58
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 58
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 58
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 58
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 59
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Port state = 0
+Port state = 2
+I think im converged = false
+Port state = 0
+Port state = 0
+I think im converged = true
+Bridge ID: d780.25a5.c24e
+	Time: 59
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 59
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Port state = 0
+Port state = 2
+Port state = 1
+I think im converged = false
+Port state = 0
+Port state = 3
+Port state = 1
+I think im converged = false
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 59
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Port state = 3
+Port state = 3
+Port state = 3
+Port state = 1
+I think im converged = false
+Bridge ID: dd80.2483.4876
+	Time: 59
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Port state = 0
+Port state = 2
+Port state = 1
+Port state = 1
+I think im converged = false
+Port state = 0
+Port state = 3
+Port state = 1
+Port state = 1
+I think im converged = false
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 59
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 59
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Listening
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Port state = 3
+Port state = 3
+Port state = 0
+Port state = 1
+I think im converged = false
+Bridge ID: cd4b.72cb.4748
+	Time: 60
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Blocking
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 60
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 60
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 60
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+Bridge ID: dd80.2483.4876
+	Time: 60
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 60
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 60
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Blocking
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+Bridge ID: cd4b.72cb.4748
+	Time: 61
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 61
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Port state = 0
+I think im converged = true
+Bridge ID: cc7b.126f.1411
+	Time: 61
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 61
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 61
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 61
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 61
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 62
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 62
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 62
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 62
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 62
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 62
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 62
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 63
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 63
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 63
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 63
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 63
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 63
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 63
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 64
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 64
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 64
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 64
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 64
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 64
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 64
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 65
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 65
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 65
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 65
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 65
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 65
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 65
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 66
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 66
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 66
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 66
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 66
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 66
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 66
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 67
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 67
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 67
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 67
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 67
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 67
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 67
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 68
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 68
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 68
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 68
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 68
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 68
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 68
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 69
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 69
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 69
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 69
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 69
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 69
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 69
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 70
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 70
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 70
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 70
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 70
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 70
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 70
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 71
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 71
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 71
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 71
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 71
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 71
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 71
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 72
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 72
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 72
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 72
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 72
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 72
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 72
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 73
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 73
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 73
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 73
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 73
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 73
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 73
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 74
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 74
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 74
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 74
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Port state = 3
+Port state = 3
+Port state = 3
+Port state = 0
+I think im converged = true
+Bridge ID: dd80.2483.4876
+	Time: 74
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 74
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 74
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 75
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Port state = 0
+Port state = 1
+I think im converged = false
+Bridge ID: d780.25a5.c24e
+	Time: 75
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 75
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 75
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Blocking
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 75
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 75
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 75
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 76
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 76
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 76
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 76
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 76
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 76
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 76
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 77
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 77
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Port state = 0
+I think im converged = true
+Bridge ID: cc7b.126f.1411
+	Time: 77
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 77
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 77
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 77
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 77
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 78
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 78
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 78
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 78
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 78
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 78
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 78
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 79
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 79
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 79
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 79
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 79
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 79
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 79
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 80
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 80
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 80
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 80
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 80
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 80
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 80
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 81
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 81
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 81
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 81
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 81
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 81
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 81
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 82
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 82
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 82
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 82
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 82
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 82
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 82
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 83
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 83
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 83
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 83
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 83
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 83
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 83
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 84
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 84
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 84
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 84
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 84
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 84
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 84
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 85
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 85
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 85
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 85
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 85
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 85
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 85
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 86
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 86
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 86
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 86
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 86
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 86
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 86
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 87
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 87
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 87
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 87
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 87
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 87
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 87
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 88
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 88
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 88
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 88
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 88
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 88
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 88
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 89
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 89
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 89
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Port state = 0
+Port state = 3
+Port state = 2
+I think im converged = false
+Port state = 0
+Port state = 3
+Port state = 0
+I think im converged = true
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 89
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Bridge ID: dd80.2483.4876
+	Time: 89
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Listening
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Port state = 0
+Port state = 3
+Port state = 2
+Port state = 1
+I think im converged = false
+Port state = 0
+Port state = 3
+Port state = 3
+Port state = 1
+I think im converged = false
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 89
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 89
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Learning
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Port state = 3
+Port state = 3
+Port state = 0
+Port state = 2
+I think im converged = false
+Port state = 3
+Port state = 3
+Port state = 0
+Port state = 3
+I think im converged = true
+Bridge ID: cd4b.72cb.4748
+	Time: 90
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Listening
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+Bridge ID: d780.25a5.c24e
+	Time: 90
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 7a3e.9bd7.08d9
+Bridge ID: cc7b.126f.1411
+	Time: 90
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Blocking
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cd4b.72cb.4748
+		2 dd80.2483.4876
+Bridge ID: 7a3e.9bd7.08d9
+	Time: 90
+	Interface ID: 0
+		Port Role: Root
+		Cost: 19
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 1ae1.f12f.0472
+		1 b1ce.28e6.edfc
+		2 d780.25a5.c24e
+		3 dd80.2483.4876
+Port state = 3
+Port state = 3
+Port state = 3
+Port state = 0
+I think im converged = true
+Bridge ID: dd80.2483.4876
+	Time: 90
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Blocking
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 3
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
+		2 7a3e.9bd7.08d9
+Bridge ID: 1ae1.f12f.0472
+I am the Root Bridge
+	Time: 90
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 7a3e.9bd7.08d9
+		1 dd80.2483.4876
+Bridge ID: b1ce.28e6.edfc
+	Time: 90
+	Interface ID: 0
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 1
+		Port Role: Designated
+		Port State: Forwarding
+	Interface ID: 2
+		Port Role: Nondesignated
+		Port State: Blocking
+	Interface ID: 3
+		Port Role: Designated
+		Port State: Forwarding
+MAC Address Table
+		0 cc7b.126f.1411
+		1 dd80.2483.4876
+		2 7a3e.9bd7.08d9
+		3 cd4b.72cb.4748
+Bridge ID: cd4b.72cb.4748
+	Time: 91
+	Interface ID: 0
+		Port Role: Nondesignated
+		Port State: Learning
+	Interface ID: 1
+		Port Role: Nondesignated
+		Port State: Learning
+MAC Address Table
+		0 b1ce.28e6.edfc
+		1 cc7b.126f.1411
