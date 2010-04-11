@@ -204,7 +204,7 @@ public class Simulator
          }     
 		}
 
-		displayTopologyLink();
+		//displayTopologyLink();
 	}
 	
 	/**
@@ -248,21 +248,33 @@ public class Simulator
 		   System.exit(0);
 	   }
 	   
-	   while (!demo.isConverged())
+	   for (int i = 0; i < 15; i++)
 	   {
+		   while (!demo.isConverged())
+		   {
+			   for (Switch s : demo.getSwitches())
+			   {
+				   //s.printState();
+				   s.incrementClock();
+			   }
+		   }
+		   //System.out.println("CONVERGED!@!@!@!");
 		   for (Switch s : demo.getSwitches())
 		   {
-            s.printState();
-		      s.incrementClock();
+			   s.printState();
 		   }
-		   
-	   }
-	   
-	   System.out.println("CONVERGED!@!@!@!");
-	   
-	   for (Switch s : demo.getSwitches())
-	   {
-		   s.printState();
+		   // randomly break link
+		   int broken;
+		   Switch b;
+		   //do
+		   //{
+			   //b = demo.nodes.get(new Random().nextInt(demo.nodes.size()));
+			   //broken = b.breakLink();
+		   //} while (broken == -1);
+		   //System.out.println("Interface " + broken + " on Switch " + b.getMac() + " is disabled.");
+		   for (int j = 0; j < Switch.AGE_TIMER; j++)
+			   for (Switch s : demo.getSwitches())
+				   s.incrementClock();
 	   }
 	}
 }

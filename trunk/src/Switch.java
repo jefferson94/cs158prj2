@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * A representation of a Layer 2 switch. When multiple instances of this class 
@@ -18,7 +19,7 @@ public class Switch
 {
    private final static int HELLO_TIMER = 2;
    private final static int FORWARDING_TIMER = 15;
-   private final static int AGE_TIMER = 20;
+   public final static int AGE_TIMER = 20;
    
    private ArrayList<Port> switchInterface;
    private int clock;
@@ -35,7 +36,6 @@ public class Switch
    
    private int helloTime = clock;
    private int forwardTime = clock;
-   //private int ageTime = clock;
 
    private boolean converged = false;
    
@@ -199,46 +199,87 @@ public class Switch
 	   String root = priority + "." + rootID;
 	   for (Port p : switchInterface)
 	   {
-		   BPDU frame = p.getFrame();
-		   if (frame != null)
+		   if (p.getState() != Port.DISABLED && p.getConnected() != null)
 		   {
-			   if (p.getState() == Port.BLOCKING && (macID == rootID || root != frame.getRootID()))
+			   BPDU frame = p.getFrame();
+			   if (frame != null)
 			   {
-				   p.setState(Port.LISTENING);
-				   //System.out.println("At time " + clock + " Switch " + macID + " Port " + p + " is LISTENING");
-			   }
-			   if (p.getState() == Port.LISTENING)
+				   p.setAge(frame.getMessageAge());
+				   if (frame.getType() == 128) // TCN
+				   {
+					   p.sendBPDU(new BPDU(0, 0, topologyChange, 
+			        		 true, root, cost, macID, 
+			        		 switchInterface.indexOf(p), clock,
+			        		 AGE_TIMER, helloTime, FORWARDING_TIMER));
+					   p.setState(Port.LISTENING);
+					   p.setRole(Port.NONDESIGNATED);
+					   System.out.println("Network reconverging...");
+					   // flood TCNs
+					   for (Port other : switchInterface)
+					   {
+						   if (other != p) // split horizon
+						   {
+							   other.sendBPDU(new BPDU(0, 128));
+							   other.setState(Port.LISTENING);
+							   other.setRole(Port.NONDESIGNATED);
+						   }
+					   }
+					   converged = false;
+				   } else
+				   {
+					   if (p.getState() == Port.BLOCKING && (macID == rootID || root != frame.getRootID()))
+					   {
+						   p.setState(Port.LISTENING);
+						   //System.out.println("At time " + clock + " Switch " + macID + " Port " + p + " is LISTENING");
+					   }
+					   if (p.getState() == Port.LISTENING)
+					   {
+						   if (!root.equals(frame.getRootID()))
+							   electRootBridge(p, frame);
+						   if (!haveRootPort())
+							   electRootPort();
+						   if (rootID == macID || (p.getRole() != Port.DESIGNATED && p.getConnected().getRole() != Port.DESIGNATED))
+							   electDesignatedPort(p, frame);
+						   if ((clock - forwardTime) >= FORWARDING_TIMER)
+						   {
+							   p.setState(Port.LEARNING);
+							   //	forwardTime = clock;
+						   }
+					   }
+					   else if (p.getState() == Port.LEARNING)
+					   {
+						   int index = switchInterface.indexOf(p);
+						   if (index >= macAddressTable.size())
+						   {
+							   for (int i = 0; i <= index; i++)
+								   macAddressTable.add("");
+						   }
+						   macAddressTable.set(index, frame.getSenderID().substring(5));
+						   if ((clock - forwardTime) >= FORWARDING_TIMER)
+						   {
+							   int role = p.getRole();
+							   if (role == Port.ROOT || role == Port.DESIGNATED)
+								   p.setState(Port.FORWARDING);
+							   else
+								   p.setState(Port.BLOCKING);
+							   checkConverged(); // CHANGE: Checking should be done at the very end.
+						   }
+					   }
+				   }
+			   } else if ((clock - p.getAge()) >= AGE_TIMER)
 			   {
-				   if (!root.equals(frame.getRootID()))
-					   electRootBridge(p, frame);
-				   else if (!haveRootPort())
-					   electRootPort();
-				   if (rootID == macID || (p.getRole() != Port.DESIGNATED && p.getConnected().getRole() != Port.DESIGNATED))
-					   electDesignatedPort(p, frame);
-				   if ((clock - forwardTime) >= FORWARDING_TIMER)
+				   // If this port hasn't heard from its neighbor in AGE_TIMER
+				   // send a Topology Change Notification
+				   for (Port other : switchInterface)
 				   {
-					   p.setState(Port.LEARNING);
-					   //	forwardTime = clock;
+					   if (other != p)
+					   {
+						   other.sendBPDU((new BPDU(0, 128)));
+					   }
 				   }
-			   } 
-			   else if (p.getState() == Port.LEARNING)
-			   {
-				   int index = switchInterface.indexOf(p);
-				   if (index >= macAddressTable.size())
-				   {
-					   for (int i = 0; i <= index; i++)
-						   macAddressTable.add("");
-				   }
-				   macAddressTable.set(index, frame.getSenderID().substring(5));
-				   if ((clock - forwardTime) >= FORWARDING_TIMER)
-				   {
-					   int role = p.getRole();
-					   if (role == Port.ROOT || role == Port.DESIGNATED)
-						   p.setState(Port.FORWARDING);
-					   else
-						   p.setState(Port.BLOCKING);
-					   checkConverged(); // CHANGE: Checking should be done at the very end. 
-				   }
+				   System.out.println("Issuing topology change notification");
+				   p.setState(Port.DISABLED);
+				   converged = false;
 			   }
 		   }
 	   }
@@ -325,7 +366,7 @@ public class Switch
 			   maybe = false;
 	   }
 	   converged = maybe;
-	   System.out.println("I think im converged = " + converged);
+	   //System.out.println("I think I'm converged = " + converged);
    }
    
    /**
@@ -412,5 +453,19 @@ public class Switch
    			   System.out.println("\t\t" + i + " " + macAddressTable.get(i));
    	   }
 	   }
+   }
+   
+   public int breakLink()
+   {
+	   int port = new Random().nextInt(switchInterface.size());
+	   Port p = switchInterface.get(port);
+	   if (p.getState() == Port.FORWARDING)
+	   {
+		   p.connectTo(null);
+		   p.setState(Port.DISABLED);
+		   converged = false;
+		   return port;
+	   } else
+		   return -1;
    }
 }

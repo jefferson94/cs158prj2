@@ -41,6 +41,8 @@ public class Port
    private int role;
    private BPDU receivedFrame;
    
+   private int ageTime;
+   
    /**
     * Initial state of the port is set to BLOCKING (the value of 0).
     */
@@ -76,7 +78,8 @@ public class Port
    public void connectTo(Port ingress)
    {
 	   this.connected = ingress;
-	   ingress.connected = this;
+	   if (ingress != null)
+		   ingress.connected = this;
    }
    
    /**
@@ -104,7 +107,8 @@ public class Port
     */
    public void sendBPDU(BPDU sent)
    {
-      connected.receivedFrame = sent;
+	   if (connected != null)
+		   connected.receivedFrame = sent;
    }
    
    public int getPathCost()
@@ -165,5 +169,15 @@ public class Port
 	   BPDU frame = receivedFrame;
 	   receivedFrame = null;
 	   return frame;
+   }
+   
+   public void setAge(int age)
+   {
+	   ageTime = age;
+   }
+   
+   public int getAge()
+   {
+	   return ageTime;
    }
 }
