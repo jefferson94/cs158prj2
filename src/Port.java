@@ -67,6 +67,7 @@ public class Port
     	  connectTo(otherSwitchPort);
       receivedFrame = null;
       pathCost = cost;
+      role = NONDESIGNATED;
    }
    
    /**

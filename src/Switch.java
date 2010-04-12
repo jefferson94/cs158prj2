@@ -209,7 +209,7 @@ public class Switch
 				   p.setAge(frame.getMessageAge());
 				   if (frame.getType() == 0) // STP
 				   {
-					   if (p.getState() == Port.BLOCKING && (macID == rootID || root != frame.getRootID()))
+					   if (p.getState() == Port.BLOCKING && (macID == rootID || !root.equals(frame.getRootID())))
 					   {
 						   p.setState(Port.LISTENING);
 						   //System.out.println("At time " + clock + " Switch " + macID + " Port " + p + " is LISTENING");
@@ -245,7 +245,7 @@ public class Switch
 								   p.setState(Port.FORWARDING);
 							   else
 								   p.setState(Port.BLOCKING);
-							   checkConverged(); // CHANGE: Checking should be done at the very end.
+							   //checkConverged(); // CHANGE: Checking should be done at the very end.
 						   }
 					   }
 				   } else if (frame.getType() == 128) // TCN
@@ -269,8 +269,10 @@ public class Switch
 								   other.setRole(Port.NONDESIGNATED);
 							   }
 						   }
-						   converged = false;
-					   }
+						   //converged = false;
+						   rootPort = null;
+					   } else
+						   sendBPDU();
 				   }
 			   } else if ((clock - p.getAge()) >= AGE_TIMER)
 			   {
@@ -285,10 +287,11 @@ public class Switch
 				   }
 				   System.out.println("Issuing topology change notification");
 				   p.setState(Port.DISABLED);
-				   converged = false;
+				   //converged = false;
 			   }
 		   }
 	   }
+	   checkConverged();
    }
    
    /**
@@ -375,7 +378,7 @@ public class Switch
 			   maybe = false;
 	   }
 	   converged = maybe;
-	   //System.out.println("I think I'm converged = " + converged);
+	   System.out.println("I think I'm converged = " + converged);
    }
    
    /**
