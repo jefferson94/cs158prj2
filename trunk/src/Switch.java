@@ -185,8 +185,10 @@ public class Switch
    public boolean haveRootPort()
    {
 	   for (Port p : switchInterface)
+	   {
 		   if (p.getRole() == Port.ROOT)
 			   return true;
+	   }
 	   return false;
    }
 
@@ -205,27 +207,7 @@ public class Switch
 			   if (frame != null)
 			   {
 				   p.setAge(frame.getMessageAge());
-				   if (frame.getType() == 128) // TCN
-				   {
-					   p.sendBPDU(new BPDU(0, 0, topologyChange, 
-			        		 true, root, cost, macID, 
-			        		 switchInterface.indexOf(p), clock,
-			        		 AGE_TIMER, helloTime, FORWARDING_TIMER));
-					   p.setState(Port.LISTENING);
-					   p.setRole(Port.NONDESIGNATED);
-					   System.out.println("Network reconverging...");
-					   // flood TCNs
-					   for (Port other : switchInterface)
-					   {
-						   if (other != p) // split horizon
-						   {
-							   other.sendBPDU(new BPDU(0, 128));
-							   other.setState(Port.LISTENING);
-							   other.setRole(Port.NONDESIGNATED);
-						   }
-					   }
-					   converged = false;
-				   } else
+				   if (frame.getType() == 0) // STP
 				   {
 					   if (p.getState() == Port.BLOCKING && (macID == rootID || root != frame.getRootID()))
 					   {
@@ -254,7 +236,8 @@ public class Switch
 							   for (int i = 0; i <= index; i++)
 								   macAddressTable.add("");
 						   }
-						   macAddressTable.set(index, frame.getSenderID().substring(5));
+						   if (frame.getSenderID() != null)
+							   macAddressTable.set(index, frame.getSenderID().substring(5));
 						   if ((clock - forwardTime) >= FORWARDING_TIMER)
 						   {
 							   int role = p.getRole();
@@ -264,6 +247,29 @@ public class Switch
 								   p.setState(Port.BLOCKING);
 							   checkConverged(); // CHANGE: Checking should be done at the very end.
 						   }
+					   }
+				   } else if (frame.getType() == 128) // TCN
+				   {
+					   if (converged)
+					   {
+						   p.sendBPDU(new BPDU(0, 0, topologyChange, 
+			        		 true, root, cost, macID, 
+			        		 switchInterface.indexOf(p), clock,
+			        		 AGE_TIMER, helloTime, FORWARDING_TIMER));
+						   p.setState(Port.LISTENING);
+						   p.setRole(Port.NONDESIGNATED);
+						   System.out.println("Network reconverging...");
+						   // flood TCNs
+						   for (Port other : switchInterface)
+						   {
+							   if (other != p) // split horizon
+							   {
+								   other.sendBPDU(new BPDU(0, 128));
+								   other.setState(Port.LISTENING);
+								   other.setRole(Port.NONDESIGNATED);
+							   }
+						   }
+						   converged = false;
 					   }
 				   }
 			   } else if ((clock - p.getAge()) >= AGE_TIMER)
@@ -291,16 +297,19 @@ public class Switch
    public void electRootBridge(Port p, BPDU frame)
    {
 	   String root = priority + "." + rootID;
-      if(root.compareTo(frame.getRootID()) > 0)
-      {
-         this.rootID = frame.getRootID().substring(5);
-         p.setPathCost(frame.getCost() + 19); // Assuming all interfaces are FastEthernet
-   	   for (Port switchport : switchInterface)
-   	   {
-   		   if (switchport.getRole() == Port.ROOT || switchport.getRole() == Port.DESIGNATED)
-   			   switchport.setRole(Port.NONDESIGNATED);
-   	   }
-      }
+	   if (frame.getRootID() != null)
+	   {
+		   if(root.compareTo(frame.getRootID()) > 0)
+		   {
+			   this.rootID = frame.getRootID().substring(5);
+			   p.setPathCost(frame.getCost() + 19); // Assuming all interfaces are FastEthernet
+			   for (Port switchport : switchInterface)
+			   {
+				   if (switchport.getRole() == Port.ROOT || switchport.getRole() == Port.DESIGNATED)
+					   switchport.setRole(Port.NONDESIGNATED);
+			   }
+		   }
+	   }
    }
    
    /**
