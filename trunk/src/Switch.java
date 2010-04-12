@@ -13,7 +13,8 @@ import java.util.Random;
  * 
  *  @author Christopher Trinh
  *  @author John Le Mieux
- *  @version 0.1 April 5, 2010
+ *  @author Peter Le
+ *  @version 0.2 April 12, 2010
  */
 public class Switch 
 {
@@ -250,19 +251,19 @@ public class Switch
 					   }
 				   } else if (frame.getType() == 128) // TCN
 				   {
+					   p.sendBPDU(new BPDU(0, 0, topologyChange, 
+				        		 true, root, cost, priority + "." + macID, 
+				        		 switchInterface.indexOf(p), clock,
+				        		 AGE_TIMER, helloTime, FORWARDING_TIMER));
 					   if (converged)
 					   {
-						   p.sendBPDU(new BPDU(0, 0, topologyChange, 
-			        		 true, root, cost, macID, 
-			        		 switchInterface.indexOf(p), clock,
-			        		 AGE_TIMER, helloTime, FORWARDING_TIMER));
 						   p.setState(Port.LISTENING);
 						   p.setRole(Port.NONDESIGNATED);
 						   System.out.println("Network reconverging...");
 						   // flood TCNs
 						   for (Port other : switchInterface)
 						   {
-							   if (other != p) // split horizon
+							   if (other != p && other.getState() != Port.DISABLED) // split horizon
 							   {
 								   other.sendBPDU(new BPDU(0, 128));
 								   other.setState(Port.LISTENING);
@@ -378,7 +379,7 @@ public class Switch
 			   maybe = false;
 	   }
 	   converged = maybe;
-	   System.out.println("I think I'm converged = " + converged);
+	   //System.out.println("I think I'm converged = " + converged);
    }
    
    /**
