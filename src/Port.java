@@ -18,7 +18,8 @@
  * 
  * @author Christopher Trinh
  * @author John Le Mieux
- * @version 0.1 April 5, 2010
+ * @author Peter Le
+ * @version 0.2 April 12, 2010
  */
 public class Port 
 {

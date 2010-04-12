@@ -15,7 +15,8 @@ import java.util.Collections;
  * 
  * @author John Le Mieux
  * @author Christopher Trinh
- * @version 0.1 April 5, 2010
+ * @author Peter Le
+ * @version 0.2 April 12, 2010
  *
  */
 public class Simulator 
@@ -248,13 +249,13 @@ public class Simulator
 		   System.exit(0);
 	   }
 	   
-	   for (int i = 0; i < 2; i++)
+	   for (int i = 0; i < 15; i++)
 	   {
 		   while (!demo.isConverged())
 		   {
 			   for (Switch s : demo.getSwitches())
 			   {
-				   s.printState();
+				   //s.printState();
 				   s.incrementClock();
 			   }
 		   }

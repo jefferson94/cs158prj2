@@ -7,7 +7,8 @@
  * 
  * @author John Le Mieux
  * @author Christopher Trinh
- * @version 0.1 April 5, 2010
+ * @author Peter Le
+ * @version 0.2 April 12, 2010
  */
 public class BPDU 
 {
