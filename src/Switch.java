@@ -37,6 +37,12 @@ public class Switch
    
    private int helloTime = clock;
    private int forwardTime = clock;
+   
+   // RSTP flags
+   private boolean proposal;
+   private boolean learning = false;
+   private boolean forwarding = false;
+   private boolean agreement = false;
 
    private boolean converged = false;
    
@@ -67,6 +73,16 @@ public class Switch
       priority = "8000";
       this.macID = macID;
       rootID = macID;
+   }
+   
+   /**
+    * Resets the clock to 0 and converged to false. Call this when resetting 
+    * the topology.
+    */
+   public void reset()
+   {
+	   clock = 0;
+	   converged = false;
    }
    
    /**
@@ -106,7 +122,7 @@ public class Switch
    }
    
    /**
-    * Increment the clock value.
+    * Increment the clock value for STP.
     */
    public void incrementClock()
    {
@@ -120,6 +136,25 @@ public class Switch
       if (clock - helloTime >= HELLO_TIMER)
       {
     	  sendBPDU();
+    	  processReceivedBPDU();
+      }
+   }
+   
+   /**
+    * Increment the clock value for RSTP.
+    */
+   public void rstpIncrementClock()
+   {
+      clock++;
+
+      /**
+       * NOTE
+       * Ports are set to Port.BLOCKING after initialization and only changed after 
+       * STP tells them to (which is when BDPUs are received on that port).
+       */
+      if (clock - helloTime >= HELLO_TIMER)
+      {
+    	  sendRSTP();
     	  processReceivedBPDU();
       }
    }
@@ -146,7 +181,7 @@ public class Switch
    }
 
    /**
-    * Send a BPDU to all non-blocking ports.
+    * Send a STP Configuration BPDU to all non-blocking ports.
     */
    private void sendBPDU()
    {
@@ -158,6 +193,41 @@ public class Switch
          // BPDU for STP.
          BPDU dataFrame = new BPDU(0, 0, topologyChange, 
         		 topologyChangeAck, root, cost, mac, i, timestampSec,
+        		 AGE_TIMER, helloTime, FORWARDING_TIMER);
+         Port p = switchInterface.get(i);
+         /**
+          * NOTE
+          * My understanding is that BDPUs are always sent regardless of the ports state. 
+          * Reasoning: BLOCKING ports are still able to receive BPDUs and all ports are set to
+          * BLOCKING after initialization.
+          * Sidenote: If we implement disable then we can just replace that with != Port.DISABLED
+          */
+         /* NOTE
+          * An interface in BLOCKING state receives BPDUs but does not forward 
+          * them. When it receives a TCN (next implementation), it sends a 
+          * TCN ACK out that interface, transitions to LISTENING state, and 
+          * floods TCNs until the FORWARDING_TIMER expires.
+          */
+//         if(p.getState() != Port.BLOCKING)
+//           p.getConnected().receiveBPDU(p.getConnected(), dataFrame);
+         p.sendBPDU(dataFrame);
+      }
+   }
+   
+   /**
+    * Send a RSTP BPDU to all non-blocking ports.
+    */
+   private void sendRSTP()
+   {
+      int timestampSec = clock;
+      String root = priority + "." + rootID;
+      String mac = priority + "." + macID;
+      for(int i = 0; i < switchInterface.size(); i++)
+      {
+         // BPDU for STP.
+         BPDU dataFrame = new BPDU(2, 2, topologyChange, proposal, 
+        		 switchInterface.get(i).getRole(), learning, forwarding, 
+        		 agreement, topologyChangeAck, root, cost, mac, i, timestampSec,
         		 AGE_TIMER, helloTime, FORWARDING_TIMER);
          Port p = switchInterface.get(i);
          /**
@@ -259,7 +329,7 @@ public class Switch
 					   {
 						   p.setState(Port.LISTENING);
 						   p.setRole(Port.NONDESIGNATED);
-						   System.out.println("Network reconverging...");
+						   //System.out.println("Network reconverging...");
 						   // flood TCNs
 						   for (Port other : switchInterface)
 						   {
@@ -286,7 +356,7 @@ public class Switch
 						   other.sendBPDU((new BPDU(0, 128)));
 					   }
 				   }
-				   System.out.println("Issuing topology change notification");
+				   //System.out.println("Issuing topology change notification");
 				   p.setState(Port.DISABLED);
 				   //converged = false;
 			   }
@@ -468,17 +538,38 @@ public class Switch
 	   }
    }
    
+   /**
+    * Disables a random interface on this Switch
+    * 
+    * @return the number of the disabled interface or -1 if there is an error
+    */
    public int breakLink()
    {
-	   int port = new Random().nextInt(switchInterface.size());
-	   Port p = switchInterface.get(port);
-	   if (p.getState() == Port.FORWARDING)
+	   if (switchInterface.size() > 0)
 	   {
-		   p.connectTo(null);
-		   p.setState(Port.DISABLED);
-		   converged = false;
-		   return port;
-	   } else
-		   return -1;
+		   int port = new Random().nextInt(switchInterface.size());
+		   Port p = switchInterface.get(port);
+		   if (p.getState() == Port.FORWARDING)
+		   {
+			   p.connectTo(null);
+			   p.setState(Port.DISABLED);
+			   converged = false;
+			   return port;
+		   }
+	   }
+	   return -1;
+   }
+   
+   /**
+    * Disables a particular interface on this Switch
+    * 
+    * @param link the number of the interface to be disabled
+    */
+   public void breakLink(int link)
+   {
+	   Port p = switchInterface.get(link);
+	   p.connectTo(null);
+	   p.setState(Port.DISABLED);
+	   converged = false;
    }
 }
