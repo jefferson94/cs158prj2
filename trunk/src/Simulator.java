@@ -248,12 +248,16 @@ public class Simulator
 		   System.out.println("       simulator switches links");
 		   System.exit(0);
 	   }
-	   
-	   for (int i = 0; i < 15; i++)
+	   Simulator stp = new Simulator();
+	   stp.nodes = demo.nodes;
+	   stp.edges = demo.edges;
+	   ArrayList<Disabled> down = new ArrayList<Disabled>();
+	   final int LOOP = 15;
+	   for (int i = 0; i < LOOP; i++)
 	   {
-		   while (!demo.isConverged())
+		   while (!stp.isConverged())
 		   {
-			   for (Switch s : demo.getSwitches())
+			   for (Switch s : stp.getSwitches())
 			   {
 				   //s.printState();
 				   s.incrementClock();
@@ -264,18 +268,54 @@ public class Simulator
 		   {
 			   s.printState();
 		   }
-		   // randomly break link
-		   int broken;
-		   Switch b;
-		   do
+		   // If this isn't the last time, randomly break link
+		   if (i != LOOP -1)
 		   {
-			   b = demo.nodes.get(new Random().nextInt(demo.nodes.size()));
-			   broken = b.breakLink();
-		   } while (broken == -1);
-		   System.out.println("Interface " + broken + " on Switch " + b.getMac() + " is disabled.");
+			   int broken;
+			   Switch b;
+			   do
+			   {
+				   b = stp.nodes.get(new Random().nextInt(stp.nodes.size()));
+				   broken = b.breakLink();
+			   } while (broken == -1);
+			   down.add(new Disabled(b, broken));
+			   System.out.println("Interface " + broken + " on Switch " + b.getMac() + " is disabled.");
+			   for (int j = 0; j < Switch.AGE_TIMER; j++)
+				   for (Switch s : stp.getSwitches())
+					   s.incrementClock();
+		   }
+	   }
+	   Simulator rstp = new Simulator();
+	   rstp.nodes = demo.nodes;
+	   for (Switch s : rstp.nodes)
+	   {
+		   s.reset();
+	   }
+	   rstp.edges = demo.edges;
+	   System.out.println("Topology reloaded for Rapid Spanning Tree");
+	   for (int i = 0; i < LOOP; i++)
+	   {
+		   while (!rstp.isConverged())
+		   {
+			   for (Switch s : rstp.getSwitches())
+			   {
+				   s.rstpIncrementClock();
+			   }
+		   }
+		   for (Switch s : rstp.getSwitches())
+		   {
+			   s.printState();
+		   }
+		   if (i < down.size())
+		   {
+			   Switch b = down.get(i).getSwitch();
+			   int broken = down.get(i).getPort();
+			   b.breakLink(broken);
+			   System.out.println("Interface " + broken + " on Switch " + b.getMac() + " is disabled.");
+		   }
 		   for (int j = 0; j < Switch.AGE_TIMER; j++)
-			   for (Switch s : demo.getSwitches())
-				   s.incrementClock();
+			   for (Switch s : rstp.getSwitches())
+				   s.rstpIncrementClock();
 	   }
 	}
 }
