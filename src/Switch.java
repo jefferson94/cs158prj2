@@ -43,6 +43,10 @@ public class Switch
    private boolean learning = false;
    private boolean forwarding = false;
    private boolean agreement = false;
+   
+   // RSTP variables
+   private int[] rootTimes; // (messageAge, maxAge, forwardDelay, helloTime)
+   private int[] bridgeTimes = {0, 20, 15, 2}; // (messageAge, bridgeMaxAge, bridgeForwardDelay, bridgeHelloTime)
 
    private boolean converged = false;
    
@@ -571,5 +575,209 @@ public class Switch
 	   p.connectTo(null);
 	   p.setState(Port.DISABLED);
 	   converged = false;
+   }
+   
+   // RSTP methods
+   
+   /**
+    * Checks to see if the new info is at least as good as the old
+    * 
+    * @param newInfoIs the state of the new info, RECIEVED, AGED, MINE, or 
+    * DISABLED
+    * 
+    * @return true of the new info is at least as good as the old, false 
+    * otherwise
+    */
+   public boolean betterOrSameInfo(int newInfoIs, Port p, BPDU frame)
+   {
+	   return (newInfoIs == Port.RECEIVED && p.getInfoIs() == Port.RECEIVED && 
+			   (frame.getRootID().compareTo(rootID) < 0 || 
+					   (frame.getRootID().equals(rootID) && frame.getCost() < cost) || 
+					   (frame.getRootID().equals(rootID) && 
+							   frame.getCost() == cost && 
+							   frame.getPortID() < switchInterface.indexOf(p)) || 
+					   p.getRole() == Port.DESIGNATED)) || 
+	          (newInfoIs == Port.MINE && p.getInfoIs() == Port.MINE && 
+	        		  frame.getSenderID().compareTo(priority + macID) <= 0) ? 
+			   true : false;
+   }
+   
+   /**
+    * Sets the reselect variable of all interfaces to false.
+    */
+   public void clearReselectTree()
+   {
+	   for (Port p : switchInterface)
+		   p.setReselect(false);
+   }
+   
+   /**
+    * Decodes the message priority and timer values from the received BPDU 
+    * storing them in the msgPriority and msgTimes variables.
+    * 
+    * @param frame received frame
+    * @return
+    */
+   public int rcvInfo(BPDU frame, Port p)
+   {
+	   if (frame.getRootID().compareTo(rootID) < 0 || 
+			   (frame.getRootID().equals(rootID) && frame.getCost() < cost) || 
+			   (frame.getRootID().equals(rootID) && 
+					   frame.getCost() == cost && 
+					   frame.getPortID() < switchInterface.indexOf(p)) || 
+			   p.getRole() == Port.DESIGNATED)
+		   return Port.SUPERIOR_DESIGNATED_INFO;
+	   if (frame.getRootID().equals(rootID) && 
+			   frame.getCost() == cost && 
+			   frame.getPortID() == switchInterface.indexOf(p))
+	   {
+		   int portTimes[] = p.getPortTimes();
+		   int msgTimes[] = {frame.getMessageAge(), frame.getMaxAge(), frame.getForwardDelay(), frame.getHelloTime()};
+		   for (int i = 0; i < portTimes.length; i++)
+		   {
+			   if (portTimes[i] != msgTimes[i])
+				   return Port.SUPERIOR_DESIGNATED_INFO;
+		   }
+	   }
+	   int times[] = p.getPortTimes();
+	   int role = frame.getPortRole();
+	   if (role == Port.DESIGNATED &&
+			   frame.getRootID().equals(rootID) && 
+			   frame.getCost() == cost && 
+			   frame.getPortID() == switchInterface.indexOf(p) &&
+			   frame.getMessageAge() == times[0] &&
+			   frame.getMaxAge() == times[1] &&
+			   frame.getForwardDelay() == times[2] &&
+			   frame.getHelloTime() == times[3])
+		   return Port.REPEATED_DESIGNATED_INFO;
+	   if (role == Port.DESIGNATED &&
+			   frame.getRootID().compareTo(rootID) > 0 || 
+			   (frame.getRootID().equals(rootID) && frame.getCost() > cost) || 
+			   (frame.getRootID().equals(rootID) && 
+					   frame.getCost() == cost && 
+					   frame.getPortID() > switchInterface.indexOf(p)))
+		   return Port.INFERIOR_DESIGNATED_INFO;
+	   if ((role == Port.ROOT || 
+			   role == Port.ALTERNATE || 
+			   role == Port.BACKUP) && 
+			   frame.getRootID().compareTo(rootID) >= 0 || 
+			   (frame.getRootID().equals(rootID) && frame.getCost() >= cost) || 
+			   (frame.getRootID().equals(rootID) && 
+					   frame.getCost() == cost && 
+					   frame.getPortID() >= switchInterface.indexOf(p)))
+		   return Port.INFERIOR_ROOT_ALTERNATE_INFO;
+	   return Port.OTHER_INFO;
+   }
+   
+   /**
+    * Sets local Port Priority Vector variables based on incoming BPDU.
+    * 
+    * @param p the interface receiving the BPDU
+    * @param frame the incoming BPDU
+    */
+   public void recordPriority(Port p, BPDU frame)
+   {
+	   rootID = frame.getRootID();
+	   cost = frame.getCost() + 19;
+   }
+   
+   /**
+    * Sets sync variable on all Ports to true.
+    */
+   public void setSyncTree()
+   {
+	   for (Port p : switchInterface)
+		   p.setSync(true);
+   }
+   
+   /**
+    * Sets reRoot variable on all Ports to true.
+    */
+   public void setReRootTree()
+   {
+	   for (Port p : switchInterface)
+		   p.setReRoot(true);
+   }
+   
+   /**
+    * If reselct variable is false for all Ports, sets select variable on all 
+    * Ports to true.
+    */
+   public void setSelectTree()
+   {
+	   for (Port p : switchInterface)
+	   {
+		   if (p.getReselect())
+			   return;
+	   }
+	   for (Port p : switchInterface)
+		   p.setSelect(true);
+   }
+   
+   /**
+    * Sets tcprop variable for all Ports except the calling Port to true.
+    * 
+    * @param caller the Port which called this method.
+    */
+   public void setTcPropTree(Port caller)
+   {
+	   for (Port p : switchInterface)
+	   {
+		   if (p != caller)
+			   p.setTcProp(true);
+	   }
+   }
+   
+   /**
+    * Floods an STP Configuration BPDU.
+    */
+   public void txConfig()
+   {
+	   for (Port p : switchInterface)
+	   {
+		   p.sendBPDU(new BPDU(0, 0, (p.getTcWhile() != 0), p.getReceivedTcn(), rootID, cost, 
+			   macID, switchInterface.indexOf(p), clock, rootTimes[1], 
+			   rootTimes[3], rootTimes[2]));
+	   }
+   }
+   
+   /**
+    * Floods an RSTP BPDU.
+    */
+   public void txRstp()
+   {
+	   for (Port p : switchInterface)
+	   {
+		   p.sendBPDU(new BPDU(2, 2, (p.getTcWhile() != 0), p.getProposing(), 
+				   p.getRole(), p.getLearning(), p.getForwarding(), 
+				   p.getAgreed(), p.getRcvdTc(), rootID, cost, macID, 
+				   switchInterface.indexOf(p), clock, rootTimes[1], 
+				   rootTimes[3], rootTimes[2]));
+	   }
+   }
+   
+   /**
+    * Floods a TCN.
+    */
+   public void txTcn()
+   {
+	   for (Port p : switchInterface)
+	   {
+		   p.sendBPDU(new BPDU(0, 128));
+	   }
+   }
+   
+   /**
+    * Sets all Port Roles to DISABLED.
+    */
+   public void updtRoleDisabledTree()
+   {
+	   for (Port p : switchInterface)
+		   p.setRole(Port.DISABLED);
+   }
+   
+   public void updtRolesTree()
+   {
+	   
    }
 }

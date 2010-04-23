@@ -306,7 +306,7 @@ public class Simulator
 		   {
 			   s.printState();
 		   }
-		   if (i < down.size())
+		   /*if (i < down.size())
 		   {
 			   Switch b = down.get(i).getSwitch();
 			   int broken = down.get(i).getPort();
@@ -315,7 +315,7 @@ public class Simulator
 		   }
 		   for (int j = 0; j < Switch.AGE_TIMER; j++)
 			   for (Switch s : rstp.getSwitches())
-				   s.rstpIncrementClock();
+				   s.rstpIncrementClock();*/
 	   }
 	}
 }
