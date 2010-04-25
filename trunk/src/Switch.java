@@ -45,8 +45,14 @@ public class Switch
    private boolean agreement = false;
    
    // RSTP variables
-   private int[] rootTimes; // (messageAge, maxAge, forwardDelay, helloTime)
+   private boolean BEGIN;
+   private String bridgeIdentifier;
+   private long[] bridgePriority = {hexToLong(bridgeIdentifier), 0, 
+		   hexToLong(bridgeIdentifier), 0, 0};
    private int[] bridgeTimes = {0, 20, 15, 2}; // (messageAge, bridgeMaxAge, bridgeForwardDelay, bridgeHelloTime)
+   private int rootPortId;
+   private long[] rootPriority;
+   private int[] rootTimes; // (messageAge, maxAge, forwardDelay, helloTime)
 
    private boolean converged = false;
    
@@ -577,6 +583,58 @@ public class Switch
 	   converged = false;
    }
    
+   /**
+    * Converts a hexidecimal address to a long.
+    * 
+    * @param addr a MAC address in hexidecimal
+    * 
+    * @return a long int representation of the hexidecimal parameter
+    */
+   public long hexToLong(String addr)
+   {
+	   long result = 0;
+	   int power = 0;
+	   if (addr != null)
+	   {
+		   for (int i = addr.length() - 1; i >= 0; i--)
+		   {
+			   int base = Character.getNumericValue(addr.charAt(i));
+			   if (base != -1)
+			   {
+				   result += Math.pow(base, power);
+				   power++;
+			   }
+		   }
+	   }
+	   return result;
+   }
+
+   /**
+    * Compares two priority vectors.
+    * 
+    * @param v1 a priority vector
+    * @param v2 another priority vector
+    * 
+    * @return 0 if they are equal, 1 if v1 is superior to v2, -1 if v2 is superior to v1
+    */
+   public int compareVector(long[] v1, long[] v2)
+   {
+	   int result = 0;
+	   if (v1[0] < v2[0] ||
+			(v1[0] == v2[0] && v1[1] < v2[1]) ||
+			(v1[0] == v2[0] && v1[1] == v2[1] && v1[2] < v2[2]) ||
+			(v1[0] == v2[0] && v1[1] == v2[1] && v1[2] == v2[2] && v1[3] < v2[3]) ||
+			(v1[2] == v2[2] && v1[3] == v2[3]))
+		   result = 1;
+	   if (v2[0] < v1[0] ||
+					(v2[0] == v1[0] && v2[1] < v1[1]) ||
+					(v2[0] == v1[0] && v2[1] == v1[1] && v2[2] < v1[2]) ||
+					(v2[0] == v1[0] && v2[1] == v1[1] && v2[2] == v1[2] && v2[3] < v1[3]) ||
+					(v2[2] == v1[2] && v2[3] == v1[3]))
+				   result = -1;
+	  return result; 
+   }
+   
    // RSTP methods
    
    /**
@@ -590,15 +648,32 @@ public class Switch
     */
    public boolean betterOrSameInfo(int newInfoIs, Port p, BPDU frame)
    {
+	   long[] portPriorityVector = {hexToLong(rootID), cost, 
+               hexToLong(frame.getSenderID()), 
+               frame.getPortID()};
+	   p.setPortPriority(portPriorityVector);
+	   portPriorityVector[4] = switchInterface.indexOf(p);
+	   p.setPortID((int)portPriorityVector[4]);
+	   long[] msgPriorityVector = {hexToLong(frame.getRootID()), 
+			                       frame.getCost(), 
+			                       hexToLong(frame.getSenderID()), 
+			                       frame.getPortID()};
+	   p.setMsgPriority(msgPriorityVector);
+	   msgPriorityVector[4] = p.getPortID();
+	   long[] designatedPriorityVector = {hexToLong(bridgeIdentifier), 0, 
+			                              hexToLong(bridgeIdentifier), 
+			                              p.getPortID()};
+	   if (designatedPriorityVector[0] > msgPriorityVector[0])
+	   {
+		   designatedPriorityVector[0] = msgPriorityVector[0];
+		   designatedPriorityVector[1] = msgPriorityVector[1] + 19;
+	   }
+	   p.setDesignatedPriority(designatedPriorityVector);
+	   designatedPriorityVector[4] = p.getPortID();
 	   return (newInfoIs == Port.RECEIVED && p.getInfoIs() == Port.RECEIVED && 
-			   (frame.getRootID().compareTo(rootID) < 0 || 
-					   (frame.getRootID().equals(rootID) && frame.getCost() < cost) || 
-					   (frame.getRootID().equals(rootID) && 
-							   frame.getCost() == cost && 
-							   frame.getPortID() < switchInterface.indexOf(p)) || 
-					   p.getRole() == Port.DESIGNATED)) || 
+			   compareVector(msgPriorityVector, portPriorityVector) != -1) || 
 	          (newInfoIs == Port.MINE && p.getInfoIs() == Port.MINE && 
-	        		  frame.getSenderID().compareTo(priority + macID) <= 0) ? 
+	        		  compareVector(designatedPriorityVector, portPriorityVector) != -1) ? 
 			   true : false;
    }
    
@@ -620,51 +695,37 @@ public class Switch
     */
    public int rcvInfo(BPDU frame, Port p)
    {
-	   if (frame.getRootID().compareTo(rootID) < 0 || 
-			   (frame.getRootID().equals(rootID) && frame.getCost() < cost) || 
-			   (frame.getRootID().equals(rootID) && 
-					   frame.getCost() == cost && 
-					   frame.getPortID() < switchInterface.indexOf(p)) || 
-			   p.getRole() == Port.DESIGNATED)
+	   long[] portPriorityVector = {hexToLong(rootID), cost, 
+               hexToLong(frame.getSenderID()), 
+               frame.getPortID(),
+               switchInterface.indexOf(p)};
+	   long[] msgPriorityVector = {hexToLong(frame.getRootID()), 
+              frame.getCost(), 
+              hexToLong(frame.getSenderID()), 
+              frame.getPortID(), 
+              switchInterface.indexOf(p)};
+	   int[] msgTimes = {frame.getMessageAge(), frame.getMaxAge(), 
+			   frame.getForwardDelay(), frame.getHelloTime()};
+	   int[] portTimes = p.getPortTimes();
+	   if (compareVector(msgPriorityVector, portPriorityVector) == 1 || 
+			   (compareVector(msgPriorityVector, portPriorityVector) == 0 && 
+					   (msgTimes[0] != portTimes[0] || 
+							   msgTimes[1] != portTimes[1] || 
+							   msgTimes[2] != portTimes[2] || 
+							   msgTimes[3] != portTimes[3])))
 		   return Port.SUPERIOR_DESIGNATED_INFO;
-	   if (frame.getRootID().equals(rootID) && 
-			   frame.getCost() == cost && 
-			   frame.getPortID() == switchInterface.indexOf(p))
-	   {
-		   int portTimes[] = p.getPortTimes();
-		   int msgTimes[] = {frame.getMessageAge(), frame.getMaxAge(), frame.getForwardDelay(), frame.getHelloTime()};
-		   for (int i = 0; i < portTimes.length; i++)
-		   {
-			   if (portTimes[i] != msgTimes[i])
-				   return Port.SUPERIOR_DESIGNATED_INFO;
-		   }
-	   }
-	   int times[] = p.getPortTimes();
 	   int role = frame.getPortRole();
-	   if (role == Port.DESIGNATED &&
-			   frame.getRootID().equals(rootID) && 
-			   frame.getCost() == cost && 
-			   frame.getPortID() == switchInterface.indexOf(p) &&
-			   frame.getMessageAge() == times[0] &&
-			   frame.getMaxAge() == times[1] &&
-			   frame.getForwardDelay() == times[2] &&
-			   frame.getHelloTime() == times[3])
+	   if (compareVector(msgPriorityVector, portPriorityVector) == 0 && 
+			   msgTimes[0] == portTimes[0] && msgTimes[1] == portTimes[1] && 
+			   msgTimes[2] == portTimes[2] && msgTimes[3] == portTimes[3])
 		   return Port.REPEATED_DESIGNATED_INFO;
 	   if (role == Port.DESIGNATED &&
-			   frame.getRootID().compareTo(rootID) > 0 || 
-			   (frame.getRootID().equals(rootID) && frame.getCost() > cost) || 
-			   (frame.getRootID().equals(rootID) && 
-					   frame.getCost() == cost && 
-					   frame.getPortID() > switchInterface.indexOf(p)))
+			   compareVector(msgPriorityVector, portPriorityVector) == -1)
 		   return Port.INFERIOR_DESIGNATED_INFO;
 	   if ((role == Port.ROOT || 
 			   role == Port.ALTERNATE || 
 			   role == Port.BACKUP) && 
-			   frame.getRootID().compareTo(rootID) >= 0 || 
-			   (frame.getRootID().equals(rootID) && frame.getCost() >= cost) || 
-			   (frame.getRootID().equals(rootID) && 
-					   frame.getCost() == cost && 
-					   frame.getPortID() >= switchInterface.indexOf(p)))
+			   compareVector(msgPriorityVector, portPriorityVector) != 1)
 		   return Port.INFERIOR_ROOT_ALTERNATE_INFO;
 	   return Port.OTHER_INFO;
    }
@@ -703,7 +764,7 @@ public class Switch
     * If reselct variable is false for all Ports, sets select variable on all 
     * Ports to true.
     */
-   public void setSelectTree()
+   public void setSelectedTree()
    {
 	   for (Port p : switchInterface)
 	   {
@@ -711,7 +772,7 @@ public class Switch
 			   return;
 	   }
 	   for (Port p : switchInterface)
-		   p.setSelect(true);
+		   p.setSelected(true);
    }
    
    /**
@@ -778,6 +839,84 @@ public class Switch
    
    public void updtRolesTree()
    {
-	   
+	   rootTimes = bridgeTimes;
+	   for (Port p : switchInterface)
+	   {
+		   long[] rootPathPriorityVector = {};
+		   if (p.getPortPriority() != null && p.getInfoIs() == Port.RECEIVED)
+		   {
+			   rootPathPriorityVector = p.getMsgPriority();
+			   rootPathPriorityVector[1] += 19;
+			   rootPathPriorityVector[4] = p.getPortID();
+		   }
+		   if (rootPathPriorityVector != null && 
+				   compareVector(bridgePriority, rootPathPriorityVector) == -1)
+		   {
+			   bridgePriority = rootPathPriorityVector;
+			   rootTimes = p.getPortTimes();
+			   rootTimes[0]++;
+		   }
+		   long b = hexToLong(bridgeIdentifier);
+		   long[] designatedPriority = {b, 0, b, p.getPortID()};
+		   long[] msgPriority = p.getMsgPriority();
+		   if (b > msgPriority[0])
+		   {
+			   designatedPriority[0] = msgPriority[0];
+			   designatedPriority[1] = msgPriority[1] + 19;
+		   }
+		   p.setDesignatedPriority(designatedPriority);
+		   int[] designatedTimes = rootTimes;
+		   designatedTimes[3] = bridgeTimes[3];
+		   p.setDesignatedTimes(designatedTimes);
+		   if (p.getInfoIs() == Port.DISABLED)
+			   p.setSelectedRole(Port.DISABLED);
+		   else
+		   {
+			   if (p.getInfoIs() == p.AGED)
+			   {
+				   p.setUpdtInfo(true);
+				   p.setSelectedRole(Port.DESIGNATED);
+			   }
+			   if (p.getInfoIs() == p.MINE)
+			   {
+				   p.setSelectedRole(p.DESIGNATED);
+				   int[] portTimes = p.getPortTimes();
+				   if (compareVector(p.getPortPriority(), p.getDesignatedPriority()) != 0 || 
+						   (portTimes[0] != rootTimes[0] || 
+								   portTimes[1] != rootTimes[1] || 
+								   portTimes[2] != rootTimes[2] || 
+								   portTimes[3] != rootTimes[3]))
+				   {
+					   p.setUpdtInfo(true);
+				   }
+			   }
+			   if (p.getInfoIs() == Port.RECEIVED)
+			   {
+				   if (compareVector(rootPriority, p.getPortPriority()) == 0)
+				   {
+					   p.setSelectedRole(Port.ROOT);
+					   p.setUpdtInfo(false);
+				   } else 
+				   {
+					   if (compareVector(p.getDesignatedPriority(), p.getPortPriority()) != 1)
+					   {
+						   if (p.getPortPriority()[2] != hexToLong(bridgeIdentifier))
+						   {
+							   p.setSelectedRole(p.ALTERNATE);
+							   p.setUpdtInfo(false);
+						   } else
+						   {
+							   p.setSelectedRole(Port.BACKUP);
+							   p.setUpdtInfo(false);
+						   }
+					   } else
+					   {
+						   p.setSelectedRole(Port.DESIGNATED);
+						   p.setUpdtInfo(true);
+					   }
+				   }
+			   }
+		   }
+	   }
    }
 }

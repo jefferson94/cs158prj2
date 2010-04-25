@@ -45,28 +45,54 @@ public class Port
    private int ageTime;
    
    // RSTP variables
-   private int infoIs;
-   private boolean reselect;
-   private boolean forwarding;
-   private boolean learning;
-   private int[] portTimes; // (messageAge, maxAge, forwardDelay, helloTime)
-   private boolean sendRstp;
-   private int tcWhile; // topology change timer
-   private boolean newInfo; // should a BPDU be sent?
-   private int[] rootTimes; // (messageAge, maxAge, forwardDelay, helloTime)
+   private int ageingTime;
+   private boolean agree;
    private boolean agreed;
+   private long[] designatedPriority;
+   private int[] designatedTimes; // messageAge, maxAge, forwardDelay, helloTime
+   private boolean disputed;
+   private boolean fdbFlush;
+   private boolean forward;
+   private boolean forwarding;
+   private int infoIs;
+   private boolean learn;
+   private boolean learning;
+   private boolean mcheck;
+   private long[] msgPriority;
+   private int[] msgTimes;
+   private boolean newInfo; // should a BPDU be sent?
+   private boolean operEdge;
+   private boolean portEnabled;
+   private int portID;
+   private int portPathCost;
+   private long[] portPriority;
+   private int[] portTimes; // (messageAge, maxAge, forwardDelay, helloTime)
+   private boolean proposed;
    private boolean proposing;
-   private boolean rstpVersion;
-   private boolean operPointToPointMAC = true; // these are all point-to-point links, yes?
-   private boolean sync;
-   private boolean reRoot;
-   private boolean select;
+   private int tcWhile; // topology change timer
+   private int[] rootTimes; // (messageAge, maxAge, forwardDelay, helloTime)
+   private boolean rcvdBPDU;
+   private int rcvdInfo;
+   private boolean rcvdMsg;
+   private boolean rcvdRSTP;
+   private boolean rcvdSTP;
    private boolean rcvdTc;
    private boolean rcvdTcAck;
    private boolean rcvdTcn;
-   private boolean tcprop;
-   private boolean rcvdSTP;
-   private boolean rcvdRSTP;
+   private boolean reRoot;
+   private boolean reselect;
+   private boolean selected;
+   private int selectedRole;
+   private boolean sendRstp;
+   private boolean sync;
+   private boolean synced;
+   private boolean tcAck;
+   private boolean tcProp;
+   private boolean tick;
+   private int txCount;
+   private boolean updtInfo;
+   private boolean rstpVersion;
+   private boolean operPointToPointMAC = true; // these are all point-to-point links, yes?
    private int rcvdInfoWhile;
    
    // Port's Spanning Tree Information States
@@ -232,6 +258,56 @@ public class Port
 	   return infoIs;
    }
    
+   public long[] getDesignatedPriority()
+   {
+	   return designatedPriority;
+   }
+   
+   public void setDesignatedPriority(long[] dp)
+   {
+	   designatedPriority = dp;
+   }
+   
+   public int[] getDesignatedTimes()
+   {
+	   return designatedTimes;
+   }
+   
+   public void setDesignatedTimes(int[] dt)
+   {
+	   designatedTimes = dt;
+   }
+   
+   public long[] getMsgPriority()
+   {
+	   return msgPriority;
+   }
+   
+   public void setMsgPriority(long[] mp)
+   {
+	   msgPriority = mp;
+   }
+   
+   public long[] getPortPriority()
+   {
+	   return portPriority;
+   }
+   
+   public void setPortPriority(long[] pp)
+   {
+	   portPriority = pp;
+   }
+   
+   public int getPortID()
+   {
+	   return portID;
+   }
+   
+   public void setPortID(int id)
+   {
+	   portID = id;
+   }
+   
    /**
     * Sets the reselect parameter.
     * 
@@ -240,6 +316,26 @@ public class Port
    public void setReselect(boolean reselect)
    {
 	   this.reselect = reselect;
+   }
+   
+   public int getSelectedRole()
+   {
+	   return selectedRole;
+   }
+   
+   public void setSelectedRole(int sr)
+   {
+	   selectedRole = sr;
+   }
+   
+   public boolean getUpdtInfo()
+   {
+	   return updtInfo;
+   }
+   
+   public void setUpdtInfo(boolean ui)
+   {
+	   updtInfo = ui;
    }
    
    /**
@@ -356,9 +452,9 @@ public class Port
 	   return reselect;
    }
    
-   public void setSelect(boolean select)
+   public void setSelected(boolean selected)
    {
-	   this.select = select;
+	   this.selected = selected;
    }
    
    public void setTcFlags()
@@ -371,9 +467,9 @@ public class Port
 		   rcvdTcn = true;
    }
    
-   public void setTcProp(boolean tcprop)
+   public void setTcProp(boolean tcProp)
    {
-	   this.tcprop = tcprop;
+	   this.tcProp = tcProp;
    }
    
    public boolean getReceivedTcn()
