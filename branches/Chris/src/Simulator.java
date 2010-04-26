@@ -253,12 +253,14 @@ public class Simulator
          for (Switch s : demo.getSwitches())
          {
             s.incrementClock();
-            s.printState();
+//            s.printState();
          }
          
       }while (!demo.isConverged());
-
-
+      
+      for (Switch s : demo.getSwitches())
+         s.printState();
+      
       int broken;
       Switch b;
       do {
@@ -283,14 +285,7 @@ public class Simulator
 
       }while (!demo.isConverged());
       
-//      do
-//      {
-//         for (Switch s : demo.getSwitches())
-//         {
-//            s.incrementClock();
-//            s.printState();
-//         }
-//         
-//      }while (!demo.isConverged());
+      for (Switch s : demo.getSwitches())
+         s.printState();
 	}
 }

@@ -140,6 +140,7 @@ public class Switch
             p.setState(Port.LISTENING);
       }
       
+      System.out.println("***");
       topologyChange = false;
       topologyChangeAck = false;
    }
@@ -209,7 +210,7 @@ public class Switch
          
          if(dataUnit != null)
          {
-            if (dataUnit.getType() == 0) // STP
+            if ((dataUnit.getType() == 0) && (p.getState() != Port.DISABLED)) // STP
             {
                if((p.getState() == Port.LISTENING) && (p.getRole() == Port.NONDESIGNATED))
                {
@@ -285,7 +286,7 @@ public class Switch
       int rootPortIndex = -1;
       for(int i = 0; i < switchInterface.size(); i++)
       {
-         if((switchInterface.get(i).getState() != Port.DISABLED) && (switchInterface.get(i).getSenderID() != null))
+         if((switchInterface.get(i).getConnected() != null) && (switchInterface.get(i).getConnected().getState() != Port.DISABLED))
          {
             if(switchInterface.get(i).getRootPathCost() < bestRootCost)
             {
@@ -414,12 +415,13 @@ public class Switch
    	   {
    		   System.out.println("\tInterface ID: " + i);
    		   Port p = switchInterface.get(i);
+   		   System.out.println("\tCost to root: " + this.cost);
    		   System.out.print("\t\tPort Role: ");
    		   switch (p.getRole())
    		   {
       		   case Port.ROOT: 
       			   System.out.println("Root");
-      			   System.out.println("\t\tCost: " + this.getCost());
+      			   System.out.println("\t\tCost: " + p.getRootPathCost());
       			   break;
       		   case Port.DESIGNATED: 
       			   System.out.println("Designated");
@@ -459,24 +461,29 @@ public class Switch
    {
 	   int port = new Random().nextInt(switchInterface.size());
 	   Port p = switchInterface.get(port);
-//	   if (p.getState() == Port.FORWARDING)
-//	   {
-//		   p.connectTo(null);
-//		   p.setState(Port.DISABLED);
-//		   converged = false;
-//		   topologyChange = true;
-//		   return port;
-//	   } else
-//		   return -1;
+	   if (p.getState() == Port.FORWARDING)
+	   {
+		   p.connectTo(null);
+		   p.setState(Port.DISABLED);
+		   converged = false;
+		   topologyChange = true;
+		   return port;
+	   } else
+		   return -1;
 	   
-      p.connectTo(null);
-      p.setState(Port.DISABLED);
-      converged = false;
-      topologyChange = true;
-      return port;
+//      p.connectTo(null);
+//      p.setState(Port.DISABLED);
+//      converged = false;
+//      topologyChange = true;
+//      return port;
    }
    public void resetClock() {
        clock = 0;
+       cost = 0;
+       macAddressTable = new ArrayList<String>();
+       converged = false;
+       rootPort = null;
+       rootID = macID;
        //System.out.println(macID + " clock reset to " + clock);
    }
 }
