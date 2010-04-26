@@ -180,15 +180,14 @@ public class Switch
     */
    private void processReceivedBPDU()
    {
-      for (Port p : switchInterface)
+      for( int x = 0; x < switchInterface.size(); x++)
       {
+         Port p = switchInterface.get(x);
          BPDU dataUnit = p.getFrame();
          
          if(dataUnit != null)
          {
-            if(p.getState() == Port.BLOCKING)
-               return;  // Do absolutely nothing with the BPDU, just be glad it got it.
-            else if((p.getState() == Port.LISTENING) && (p.getRole() == Port.NONDESIGNATED))
+            if((p.getState() == Port.LISTENING) && (p.getRole() == Port.NONDESIGNATED))
             {
                if (this.rootID.compareTo(dataUnit.getRootID()) != 0)
                   electRootBridge(p, dataUnit);
@@ -200,21 +199,20 @@ public class Switch
             else if (p.getState() == Port.LEARNING)
             {
                int index = switchInterface.indexOf(p);
-               
-               if (dataUnit.getSenderID() != null)
+               if (index >= macAddressTable.size())
                {
-                  if(index >= macAddressTable.size())
-                     macAddressTable.add(dataUnit.getSenderID());
-                  else
-                     macAddressTable.add(index, dataUnit.getSenderID());
+                  for (int i = 0; i <= index; i++)
+                       macAddressTable.add("");
                }
+               if (dataUnit.getSenderID() != null)
+                   macAddressTable.set(index, dataUnit.getSenderID());
 
                int role = p.getRole();
                if ((role == Port.ROOT) || (role == Port.DESIGNATED))
                   p.setState(Port.FORWARDING);
             }
          }
-         else if(p.getRole() != Port.DESIGNATED) // Possible link breakage, all non- dignated ports should still be receiving CBPDUs.
+         else if(p.getRole() != Port.DESIGNATED) // Possible link breakage, all non-DESIGNATED ports should still be receiving CBPDUs.
          {
             System.out.println("FUBAR occured!");
          }
@@ -229,8 +227,7 @@ public class Switch
 	   if(this.rootID.compareTo(frame.getRootID()) > 0)
 	   {
 		   this.rootID = frame.getRootID();
-		   this.cost = frame.getCost() + FIX_PATH_COST;
-		    
+		   this.cost = frame.getCost() + FIX_PATH_COST;    
 	   }
    }
    
@@ -240,24 +237,26 @@ public class Switch
    public void electRootPort()
    {
       int bestRootCost = Integer.MAX_VALUE;
+      int rootPortIndex = -1;
       for(int i = 0; i < switchInterface.size(); i++)
       {
          if(switchInterface.get(i).getRootPathCost() < bestRootCost)
          {
             bestRootCost = switchInterface.get(i).getRootPathCost();
-            this.rootPort = switchInterface.get(i);
+            rootPortIndex = i;
          }
          else if(switchInterface.get(i).getRootPathCost() == bestRootCost)
          {
-            if(this.rootPort.getSenderID().compareTo(switchInterface.get(i).getSenderID()) > 0)
-               this.rootPort = switchInterface.get(i);
+            if(switchInterface.get(rootPortIndex).getSenderID().compareTo(switchInterface.get(i).getSenderID()) > 0)
+               rootPortIndex = i;
          }
       }
       
-      if(this.rootPort.getConnected().getState() == Port.FORWARDING)
+      if(switchInterface.get(rootPortIndex).getConnected().getState() == Port.FORWARDING)
       {
-         this.rootPort.setRole(Port.ROOT);
-         this.rootPort.setState(Port.LEARNING);
+         switchInterface.get(rootPortIndex).setRole(Port.ROOT);
+         switchInterface.get(rootPortIndex).setState(Port.LEARNING);
+         this.rootPort = switchInterface.get(rootPortIndex);
       }
    }
    

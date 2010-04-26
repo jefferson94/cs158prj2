@@ -253,13 +253,13 @@ public class Simulator
          for (Switch s : demo.getSwitches())
          {
             s.incrementClock();
-//            s.printState();
+            s.printState();
          }
       }while (!demo.isConverged());
 
-      for (Switch s : demo.getSwitches())
-      {
-         s.printState();
-      }
+//      for (Switch s : demo.getSwitches())
+//      {
+//         s.printState();
+//      }
 	}
 }
