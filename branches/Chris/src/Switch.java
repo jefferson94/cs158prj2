@@ -169,7 +169,7 @@ public class Switch
          
          Port p = switchInterface.get(i);
          
-         if((p.getState() != Port.BLOCKING) )
+         if((p.getState() != Port.BLOCKING) && (p.getRole() != Port.ROOT))
             p.sendBPDU(configBPDU);
       }
    }
@@ -184,26 +184,18 @@ public class Switch
       {
          BPDU dataUnit = p.getFrame();
          
-         if(dataUnit != null) 
+         if(dataUnit != null)
          {
             if(p.getState() == Port.BLOCKING)
                return;  // Do absolutely nothing with the BPDU, just be glad it got it.
             else if((p.getState() == Port.LISTENING) && (p.getRole() == Port.NONDESIGNATED))
             {
-
                if (this.rootID.compareTo(dataUnit.getRootID()) != 0)
-               {
                   electRootBridge(p, dataUnit);
-               }
                else if (!haveRootPort() && !isRootBridge())
-               {
-                  electRootPort(p, dataUnit);
-               }
+                  electRootPort();
                else
-               {
-                  
                   electDesignatedPort(p, dataUnit);
-               }
             }
             else if (p.getState() == Port.LEARNING)
             {
@@ -222,7 +214,7 @@ public class Switch
                   p.setState(Port.FORWARDING);
             }
          }
-         else // Possible link breakage, all ports should still be receiving CBPDUs.
+         else if(p.getRole() != Port.DESIGNATED) // Possible link breakage, all non- dignated ports should still be receiving CBPDUs.
          {
             System.out.println("FUBAR occured!");
          }
@@ -245,7 +237,7 @@ public class Switch
    /**
     * Assign a root port.
     */
-   public void electRootPort(Port p, BPDU frame)
+   public void electRootPort()
    {
       int bestRootCost = Integer.MAX_VALUE;
       for(int i = 0; i < switchInterface.size(); i++)
@@ -262,8 +254,11 @@ public class Switch
          }
       }
       
-      this.rootPort.setRole(Port.ROOT);
-      this.rootPort.setState(Port.LEARNING);
+      if(this.rootPort.getConnected().getState() == Port.FORWARDING)
+      {
+         this.rootPort.setRole(Port.ROOT);
+         this.rootPort.setState(Port.LEARNING);
+      }
    }
    
    public void electDesignatedPort(Port p, BPDU frame)
@@ -322,7 +317,6 @@ public class Switch
 			   maybe = false;
 	   }
 	   converged = maybe;
-	   //System.out.println("I think I'm converged = " + converged);
    }
    
    /**
