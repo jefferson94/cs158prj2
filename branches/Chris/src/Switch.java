@@ -30,6 +30,7 @@ public class Switch
    private String rootID;
    private String priority;
    private Port rootPort;
+//   private boolean broken;
    
    private ArrayList<String> macAddressTable = new ArrayList<String>();
    
@@ -75,7 +76,7 @@ public class Switch
     */
    public String toString()
    {
-      return "MAC ID: " + getMac();
+      return "MAC ID: " + getMac();      
    }
    
    /**
@@ -133,7 +134,14 @@ public class Switch
    public void rootWar()
    {
       for(Port p : switchInterface)
-         p.setState(Port.LISTENING);
+      {
+         p.setRole(Port.NONDESIGNATED);
+         if(p.getState() != Port.DISABLED)
+            p.setState(Port.LISTENING);
+      }
+      
+      topologyChange = false;
+      topologyChangeAck = false;
    }
    
    /**
@@ -160,17 +168,30 @@ public class Switch
 //      String mac = priority + "." + macID;
       String root = rootID;
       String mac =  macID;
+      int version = 0;
       
-      for(int i = 0; i < switchInterface.size(); i++)
+      if(topologyChange)
+         version = 128;
+      
+      if(topologyChange && !topologyChangeAck)
       {
-         BPDU configBPDU = new BPDU(0, 0, topologyChange, 
-               topologyChangeAck, root, cost, mac, i, timestampSec,
-               AGE_TIMER, helloTime, FORWARDING_TIMER);
-         
-         Port p = switchInterface.get(i);
-         
-         if((p.getState() != Port.BLOCKING) && (p.getRole() != Port.ROOT))
-            p.sendBPDU(configBPDU);
+         BPDU changeBPDU = new BPDU(0, version);
+         if(!isRootBridge())
+            this.rootPort.sendBPDU(changeBPDU);
+      }
+      else 
+      {
+         for(int i = 0; i < switchInterface.size(); i++)
+         {
+            BPDU configBPDU = new BPDU(version, 0, topologyChange, 
+                  topologyChangeAck, root, cost, mac, i, timestampSec,
+                  AGE_TIMER, helloTime, FORWARDING_TIMER);
+            
+            Port p = switchInterface.get(i);
+            
+            if((p.getState() != Port.BLOCKING) && (p.getRole() != Port.ROOT))
+               p.sendBPDU(configBPDU);
+         }
       }
    }
    
@@ -187,29 +208,47 @@ public class Switch
          
          if(dataUnit != null)
          {
-            if((p.getState() == Port.LISTENING) && (p.getRole() == Port.NONDESIGNATED))
+            if (dataUnit.getType() == 0) // STP
             {
-               if (this.rootID.compareTo(dataUnit.getRootID()) != 0)
-                  electRootBridge(p, dataUnit);
-               else if (!haveRootPort() && !isRootBridge())
-                  electRootPort();
-               else
-                  electDesignatedPort(p, dataUnit);
-            }
-            else if (p.getState() == Port.LEARNING)
-            {
-               int index = switchInterface.indexOf(p);
-               if (index >= macAddressTable.size())
+               if((p.getState() == Port.LISTENING) && (p.getRole() == Port.NONDESIGNATED))
                {
-                  for (int i = 0; i <= index; i++)
-                       macAddressTable.add("");
+                  if (this.rootID.compareTo(dataUnit.getRootID()) != 0)
+                     electRootBridge(p, dataUnit);
+                  else if (!haveRootPort() && !isRootBridge())
+                     electRootPort();
+                  else
+                     electDesignatedPort(p, dataUnit);
                }
-               if (dataUnit.getSenderID() != null)
-                   macAddressTable.set(index, dataUnit.getSenderID());
-
-               int role = p.getRole();
-               if ((role == Port.ROOT) || (role == Port.DESIGNATED))
-                  p.setState(Port.FORWARDING);
+               else if (p.getState() == Port.LEARNING)
+               {
+                  int index = switchInterface.indexOf(p);
+                  if (index >= macAddressTable.size())
+                  {
+                     for (int i = 0; i <= index; i++)
+                          macAddressTable.add("");
+                  }
+                  if (dataUnit.getSenderID() != null)
+                      macAddressTable.set(index, dataUnit.getSenderID());
+   
+                  int role = p.getRole();
+                  if ((role == Port.ROOT) || (role == Port.DESIGNATED))
+                     p.setState(Port.FORWARDING);
+               }
+            }
+            else if(dataUnit.getType() == 128) // TCN
+            {
+               if(!isRootBridge())
+                  topologyChange = true;
+               else if(topologyChangeAck) // ACK flush out tables.
+               {
+                  cost = 0;
+                  macAddressTable = new ArrayList<String>();
+                  rootWar(); // Initial to start up rootWar
+               }              
+               else // Flood TCA and TCs in order age out tables.
+               {
+                  topologyChangeAck = true;
+               }
             }
          }
          else if(p.getRole() != Port.DESIGNATED) // Possible link breakage, all non-DESIGNATED ports should still be receiving CBPDUs.
@@ -330,6 +369,8 @@ public class Switch
       if(hasPorts())
       {
          checkConverged();
+         if(converged)
+            topologyChange = false;
          return converged;
       }
       else
@@ -416,6 +457,7 @@ public class Switch
 		   p.connectTo(null);
 		   p.setState(Port.DISABLED);
 		   converged = false;
+		   topologyChange = true;
 		   return port;
 	   } else
 		   return -1;
