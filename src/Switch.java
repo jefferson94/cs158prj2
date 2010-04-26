@@ -170,28 +170,29 @@ public class Switch
       String mac =  macID;
       int version = 0;
       
-      if(topologyChange)
-         version = 128;
-      
-      if(topologyChange && !topologyChangeAck)
+//      if(topologyChange)
+//         version = 128;
+//      
+//      if(topologyChange && !topologyChangeAck)
+//      {
+//         BPDU changeBPDU = new BPDU(0, version);
+//         if(!isRootBridge())
+//            this.rootPort.sendBPDU(changeBPDU);
+//      }
+//      else 
+//      {
+//
+//      }
+      for(int i = 0; i < switchInterface.size(); i++)
       {
-         BPDU changeBPDU = new BPDU(0, version);
-         if(!isRootBridge())
-            this.rootPort.sendBPDU(changeBPDU);
-      }
-      else 
-      {
-         for(int i = 0; i < switchInterface.size(); i++)
-         {
-            BPDU configBPDU = new BPDU(version, 0, topologyChange, 
-                  topologyChangeAck, root, cost, mac, i, timestampSec,
-                  AGE_TIMER, helloTime, FORWARDING_TIMER);
-            
-            Port p = switchInterface.get(i);
-            
-            if((p.getState() != Port.BLOCKING) && (p.getRole() != Port.ROOT))
-               p.sendBPDU(configBPDU);
-         }
+         BPDU configBPDU = new BPDU(version, 0, topologyChange, 
+               topologyChangeAck, root, cost, mac, i, timestampSec,
+               AGE_TIMER, helloTime, FORWARDING_TIMER);
+         
+         Port p = switchInterface.get(i);
+         
+         if((p.getState() != Port.BLOCKING) && (p.getRole() != Port.ROOT) && (p.getState() != Port.DISABLED))
+            p.sendBPDU(configBPDU);
       }
    }
    
@@ -235,24 +236,29 @@ public class Switch
                      p.setState(Port.FORWARDING);
                }
             }
-            else if(dataUnit.getType() == 128) // TCN
-            {
-               if(!isRootBridge())
-                  topologyChange = true;
-               else if(topologyChangeAck) // ACK flush out tables.
-               {
-                  cost = 0;
-                  macAddressTable = new ArrayList<String>();
-                  rootWar(); // Initial to start up rootWar
-               }              
-               else // Flood TCA and TCs in order age out tables.
-               {
-                  topologyChangeAck = true;
-               }
-            }
+//            else if(dataUnit.getType() == 128) // TCN
+//            {
+//               if(!isRootBridge())
+//                  topologyChange = true;
+//               else if(topologyChangeAck) // ACK flush out tables.
+//               {
+//                  cost = 0;
+//                  macAddressTable = new ArrayList<String>();
+//                  rootWar(); // Initial to start up rootWar
+//               }              
+//               else // Flood TCA and TCs in order age out tables.
+//               {
+//                  topologyChangeAck = true;
+//               }
+//            }
          }
          else if(p.getRole() != Port.DESIGNATED) // Possible link breakage, all non-DESIGNATED ports should still be receiving CBPDUs.
          {
+            if(p.getConnected().getState() == Port.DISABLED)
+            {
+               p.setRole(Port.DESIGNATED);
+               p.setState(Port.FORWARDING);
+            }
             System.out.println("FUBAR occured!");
          }
       }
@@ -279,15 +285,18 @@ public class Switch
       int rootPortIndex = -1;
       for(int i = 0; i < switchInterface.size(); i++)
       {
-         if(switchInterface.get(i).getRootPathCost() < bestRootCost)
+         if((switchInterface.get(i).getState() != Port.DISABLED) && (switchInterface.get(i).getSenderID() != null))
          {
-            bestRootCost = switchInterface.get(i).getRootPathCost();
-            rootPortIndex = i;
-         }
-         else if(switchInterface.get(i).getRootPathCost() == bestRootCost)
-         {
-            if(switchInterface.get(rootPortIndex).getSenderID().compareTo(switchInterface.get(i).getSenderID()) > 0)
+            if(switchInterface.get(i).getRootPathCost() < bestRootCost)
+            {
+               bestRootCost = switchInterface.get(i).getRootPathCost();
                rootPortIndex = i;
+            }
+            else if(switchInterface.get(i).getRootPathCost() == bestRootCost)
+            {
+               if(switchInterface.get(rootPortIndex).getSenderID().compareTo(switchInterface.get(i).getSenderID()) > 0)
+                  rootPortIndex = i;
+            }
          }
       }
       
@@ -369,9 +378,7 @@ public class Switch
       if(hasPorts())
       {
          checkConverged();
-         if(converged)
-            topologyChange = false;
-         return converged;
+         return converged && !topologyChange;
       }
       else
          return true;
@@ -452,14 +459,20 @@ public class Switch
    {
 	   int port = new Random().nextInt(switchInterface.size());
 	   Port p = switchInterface.get(port);
-	   if (p.getState() == Port.FORWARDING)
-	   {
-		   p.connectTo(null);
-		   p.setState(Port.DISABLED);
-		   converged = false;
-		   topologyChange = true;
-		   return port;
-	   } else
-		   return -1;
+//	   if (p.getState() == Port.FORWARDING)
+//	   {
+//		   p.connectTo(null);
+//		   p.setState(Port.DISABLED);
+//		   converged = false;
+//		   topologyChange = true;
+//		   return port;
+//	   } else
+//		   return -1;
+	   
+      p.connectTo(null);
+      p.setState(Port.DISABLED);
+      converged = false;
+      topologyChange = true;
+      return port;
    }
 }

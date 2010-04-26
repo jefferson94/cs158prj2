@@ -51,7 +51,7 @@ public class Port
     */
    public Port()
    {
-      this(BLOCKING, null, 0);
+      this(BLOCKING, null, Integer.MAX_VALUE);
    }
    
    /**
