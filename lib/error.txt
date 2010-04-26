@@ -1,6 +1,3 @@
-2bf 5d5 fd9 fdc
-42f fdc
-5d5 c2f fd9
-c2f fd9 
-fd9 fdc 
-fdc 5d5 c2f
+s1 s2 s3
+s2 s3 s1
+s3 s1 s2
