@@ -219,7 +219,6 @@ public class Simulator
 	{
 		for (Switch s : nodes)
 		{
-                    // sometimes never gets out of this loop
 			if (!s.isConverged())
 				return false;
 		}
@@ -249,33 +248,18 @@ public class Simulator
 		   System.exit(0);
 	   }
 	   
-	   for (int i = 0; i < 15; i++)
-	   {
-		   while (!demo.isConverged())
-		   {
-			   for (Switch s : demo.getSwitches())
-			   {
-				   //s.printState();
-				   s.incrementClock();
-			   }
-		   }
-		   //System.out.println("CONVERGED!@!@!@!");
-		   for (Switch s : demo.getSwitches())
-		   {
-			   s.printState();
-		   }
-		   // randomly break link
-		   int broken;
-		   Switch b;
-		   do
-		   {
-			   b = demo.nodes.get(new Random().nextInt(demo.nodes.size()));
-			   broken = b.breakLink();
-		   } while (broken == -1);
-		   System.out.println("Interface " + broken + " on Switch " + b.getMac() + " is disabled.");
-		   for (int j = 0; j < Switch.AGE_TIMER; j++)
-			   for (Switch s : demo.getSwitches())
-				   s.incrementClock();
-	   }
+      do
+      {
+         for (Switch s : demo.getSwitches())
+         {
+            s.incrementClock();
+//            s.printState();
+         }
+      }while (!demo.isConverged());
+
+      for (Switch s : demo.getSwitches())
+      {
+         s.printState();
+      }
 	}
 }

@@ -39,6 +39,8 @@ public class Port
    private Port connected;
    private int portState;
    private int pathCost;
+   private int rootPathCost;
+   private String senderID;
    private int role;
    private BPDU receivedFrame;
    
@@ -68,6 +70,8 @@ public class Port
     	  connectTo(otherSwitchPort);
       receivedFrame = null;
       pathCost = cost;
+      rootPathCost = 0;
+      senderID = null;
       role = NONDESIGNATED;
    }
    
@@ -110,7 +114,21 @@ public class Port
    public void sendBPDU(BPDU sent)
    {
 	   if (connected != null)
+	   {
 		   connected.receivedFrame = sent;
+		   connected.rootPathCost = sent.getCost();
+		   connected.senderID = sent.getSenderID();
+	   }
+   }
+   
+   public String getSenderID()
+   {
+      return this.senderID;
+   }
+   
+   public int getRootPathCost()
+   {
+      return rootPathCost;
    }
    
    public int getPathCost()
