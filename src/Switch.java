@@ -475,4 +475,8 @@ public class Switch
       topologyChange = true;
       return port;
    }
+   public void resetClock() {
+       clock = 0;
+       //System.out.println(macID + " clock reset to " + clock);
+   }
 }
