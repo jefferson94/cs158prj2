@@ -1,14 +1,15 @@
+
 public class Edge implements Comparable<Edge>
 {
-   private Bridge target;
-   private Bridge origin;
+   private Switch target;
+   private Switch origin;
    
    public Edge()
    {
       this(null, null);
    }
    
-   public Edge(Bridge o, Bridge t)
+   public Edge(Switch o, Switch t)
    {
       origin = o;
       target = t;
@@ -31,10 +32,10 @@ public class Edge implements Comparable<Edge>
    
    public String toString()
    {
-      return origin.getMacID() + " connected to " + target.getMacID();
+      return target.getMac() + " and " + origin.getMac();
    }
 
    public int compareTo(Edge e) {
-       return (this.target.getMacID()).compareTo(e.target.getMacID());
+       return (this.target.getMac()).compareTo(e.target.getMac());
    }
 }

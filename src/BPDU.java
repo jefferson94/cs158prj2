@@ -12,6 +12,12 @@
  */
 public class BPDU 
 {
+   
+   public BPDU(String root, String mac, int cost,int port)
+   {
+      this(0, 0, false, false, root, cost, mac, port, 0, 20, 2, 15);
+   }
+   
 	/**
 	 * Constructor for a STP Configuration BPDU. These constructors have 
 	 * parameters for all of the 802.1 fields except the Protocol Identifier 
@@ -139,6 +145,12 @@ public class BPDU
 	public int getHelloTime() {return helloTime;}
 	
 	public int getForwardDelay() {return forwardDelay;}
+	
+	
+	public void setMessageAge(int value) 
+	{
+	   messageAge = value;
+	}
 	
 	public String toString()
 	{

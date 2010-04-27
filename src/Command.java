@@ -10,8 +10,10 @@ import java.util.StringTokenizer;
  */
 public class Command
 {  
-   private String switchMAC;
-   private ArrayList<String> connectedSwitch;
+   private String bridgeMAC;
+   private String connectedMAC;
+   private int bridgePortNumber;
+   private int connectedPortNumber;
 
    /**
     * Construct a command object containing the Switch MAC id and its connected 
@@ -19,8 +21,10 @@ public class Command
     */
    public Command()
    {
-      switchMAC = "";
-      connectedSwitch = new ArrayList<String>();
+      bridgeMAC = "";
+      connectedMAC = "";
+      bridgePortNumber = -1;
+      connectedPortNumber = -1;
    }
 
    /**
@@ -29,7 +33,7 @@ public class Command
     */
    public String getMacID()
    {
-      return switchMAC;
+      return bridgeMAC;
    }
 
    /**
@@ -37,11 +41,22 @@ public class Command
     * @return ArrayList of the MAC ids of other switches that are connected 
     * to the switch.
     */
-   public ArrayList<String> getConnectedSwitches()
+   public String getConnectedSwitches()
    {
-      return connectedSwitch;
+      return connectedMAC;
    }
 
+   
+   public int getOrignPortNumber()
+   {
+      return bridgePortNumber;
+   }
+   
+   public int getTargetPortNumber()
+   {
+      return connectedPortNumber;
+   }
+   
    /**
     * Parse a String a determine the switch MAC id and their associated 
     * connected switches' MAC id. Used to create the network topology from a string.
@@ -49,19 +64,22 @@ public class Command
     */
    public void parse(String input)
    {
-      int i = 0;      
       StringTokenizer st = new StringTokenizer(input);
       
-      switchMAC = st.nextToken();
-      //System.out.println("MACID: " + switchMAC);
-      
-      while (st.hasMoreTokens()) {
-         connectedSwitch.add(st.nextToken());
-         //System.out.println("Connected to #" + (i+1) + ": " + connectedSwitch.get(i));
-         i++;
+      int i = 0;
+      while (st.hasMoreTokens()) 
+      {
+         if(i == 0)
+            bridgeMAC = st.nextToken();
+         else if(i == 1)
+            bridgePortNumber = Integer.parseInt(st.nextToken());
+         else if(i == 2)
+            connectedMAC  = st.nextToken();
+         else
+            connectedPortNumber = Integer.parseInt(st.nextToken());      
       }
       
-      //System.out.println("parse: done");
+      System.out.println("parse: done");
    }
 }
 

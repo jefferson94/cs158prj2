@@ -1,3 +1,6 @@
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Class to hold ports. 
  * 
@@ -35,85 +38,16 @@ public class Port
    public final static int BACKUP = 3;
    public final static int NONDESIGNATED = 4;
   
-//   private Switch neighbor;
+   private int number;
    private Port connected;
    private int portState;
-   private int pathCost;
+   private int rootPathCost;
+   private String senderID;
    private int role;
-   private BPDU receivedFrame;
+   private BPDU storedBPDU;
    
    private int ageTime;
-   
-   // RSTP variables
-   private int ageingTime;
-   private boolean agree;
-   private boolean agreed;
-   private long[] designatedPriority;
-   private int[] designatedTimes; // messageAge, maxAge, forwardDelay, helloTime
-   private boolean disputed;
-   private boolean fdbFlush;
-   private boolean forward;
-   private boolean forwarding;
-   private int infoIs;
-   private boolean learn;
-   private boolean learning;
-   private boolean mcheck;
-   private long[] msgPriority;
-   private int[] msgTimes;
-   private boolean newInfo; // should a BPDU be sent?
-   private boolean operEdge;
-   private boolean portEnabled;
-   private int portID;
-   private int portPathCost;
-   private long[] portPriority;
-   private int[] portTimes; // (messageAge, maxAge, forwardDelay, helloTime)
-   private boolean proposed;
-   private boolean proposing;
-   private int tcWhile; // topology change timer
-   private int[] rootTimes; // (messageAge, maxAge, forwardDelay, helloTime)
-   private boolean rcvdBPDU;
-   private int rcvdInfo;
-   private boolean rcvdMsg;
-   private boolean rcvdRSTP;
-   private boolean rcvdSTP;
-   private boolean rcvdTc;
-   private boolean rcvdTcAck;
-   private boolean rcvdTcn;
-   private boolean reRoot;
-   private boolean reselect;
-   private boolean selected;
-   private int selectedRole;
-   private boolean sendRstp;
-   private boolean sync;
-   private boolean synced;
-   private boolean tcAck;
-   private boolean tcProp;
-   private boolean tick;
-   private int txCount;
-   private boolean updtInfo;
-   private boolean rstpVersion;
-   private boolean operPointToPointMAC = true; // these are all point-to-point links, yes?
-   private int rcvdInfoWhile;
-   
-   // Port's Spanning Tree Information States
-   public final static int MINE = 0;
-   public final static int AGED = 1;
-   public final static int RECEIVED = 2;
-   
-   // Port Information States
-   public final static int SUPERIOR_DESIGNATED_INFO = 0;
-   public final static int REPEATED_DESIGNATED_INFO = 1;
-   public final static int INFERIOR_DESIGNATED_INFO = 2;
-   public final static int INFERIOR_ROOT_ALTERNATE_INFO = 3;
-   public final static int OTHER_INFO = 4;
-   
-   /**
-    * Initial state of the port is set to BLOCKING (the value of 0).
-    */
-   public Port()
-   {
-      this(BLOCKING, null, 0);
-   }
+   private Timer max;
    
    /**
     * Set the initial state of the port.
@@ -124,14 +58,128 @@ public class Port
     * fast-ethernet this value would be 19.
     * 
     */
-   public Port(int initialState, Port otherSwitchPort, int cost)
+   public Port(int interfaceNumber)
    {
-      portState = initialState;
-      if (otherSwitchPort != null)
-    	  connectTo(otherSwitchPort);
-      receivedFrame = null;
-      pathCost = cost;
+      portState = Port.BLOCKING;
+      connected =  null;
+      storedBPDU = null;
+      rootPathCost = 0;
+      senderID = null;
       role = NONDESIGNATED;
+      number = interfaceNumber;
+      max = new Timer();
+     
+   }
+     
+   /**
+    * The max age timer controls the maximum length of time that passes before a bridge port saves its configuration BPDU information. 
+    * This time is 20 seconds by default.
+    * 
+    * When a new configuration BPDU is received that is equal to or better than the recorded information on the port, all the BPDU information is stored.
+    * The age timer begins to run. The age timer starts at the message age that is received in that configuration BPDU. 
+    * If this age timer reaches max age before another BPDU is received that refreshes the timer, the information is aged out for that port.
+    */
+   private void maxAgeTimer()
+   {
+      max.scheduleAtFixedRate(new TimerTask(){
+         public void run()
+         {
+            if(storedBPDU != null)
+            {   
+               int currentAge = storedBPDU.getMessageAge();
+               if(currentAge == storedBPDU.getMaxAge())
+               {
+                  storedBPDU = null; // Age out this information; possible break in the link.
+                  cancel();
+               }        
+               storedBPDU.setMessageAge(currentAge + 1);
+            }
+         }
+      }, 0, 1000); // No delay when called, runs every 1 second.
+   }
+   
+   /** 
+    * Set the port to blocking state.
+    */
+   public void toBlocking()
+   {
+      portState = Port.BLOCKING;
+   }
+   
+   /**
+    * Set port state to listening. Goes back to blocking state if timer exceeds forwarding delay and 
+    * port state is still set to listening, meaning it wasn't elected as a designated port or root port. 
+    */
+   public void toListening()
+   {
+      portState = Port.LISTENING;
+      final Timer listen = new Timer();
+      listen.scheduleAtFixedRate(new TimerTask(){
+         private int seconds = 0;
+         public void run()
+         {
+            if((storedBPDU.getForwardDelay() <= seconds) && (portState == Port.LISTENING))
+            {   
+               portState = Port.BLOCKING; // Was not elected as a Designated Port.
+               listen.cancel();
+            }
+            seconds++;
+         }
+      }, 0, 1000); 
+   }
+   
+   /**
+    * Imitates the learning phase of the port where it listens for MAC from frames which 
+    * it receives. In this simulator it just waits for 15secs before it moves on to the fowarding state. 
+    */
+   public void toLearning()
+   {
+      portState = Port.LEARNING;
+      final Timer learn = new Timer();
+      learn.scheduleAtFixedRate(new TimerTask(){
+         private int seconds = 0;
+         public void run()
+         {
+            seconds++;
+         }
+      }, 0, 1000);
+   }
+   
+   /**
+    * Sets the state of the port to Forwarding.
+    */
+   public void toFowarding()
+   {
+      portState = Port.FORWARDING;
+   }
+   
+   /**
+    * Send a BDPU to the port(target) that this port is connect to. 
+    * Start age timer for that BDPU on the port that receives the BDPU.
+    * @param sent packet to send to the connect port(target)
+    */
+   public void sendBPDU(BPDU sent)
+   {
+      if (connected != null)
+      {
+         connected.storedBPDU = sent;
+         connected.maxAgeTimer();
+      }
+   }
+   
+   public BPDU getStoredBPDU()
+   {
+      return storedBPDU;
+   }
+   
+   public void setInterfaceNumber(int value)
+   {
+      number = value; 
+   }
+   
+   public int getInterfaceNumber()
+   {
+      return number;
    }
    
    /**
@@ -155,36 +203,21 @@ public class Port
    {
 	   return connected;
    }
+
    
-   /**
-    * Get the received packet that was sent to this port.
-    * 
-    * @return packet data that was sent to this port.
-    */
-   public BPDU receivedBPDU()
+   public String getSenderID()
    {
-      return receivedFrame;
+      return this.senderID;
    }
    
-   /**
-    * Send a packet to the port(target) that this port is connect to.
-    * @param sent packet to send to the connect port(target)
-    */
-   public void sendBPDU(BPDU sent)
+   public int getRootPathCost()
    {
-	   if (connected != null)
-		   connected.receivedFrame = sent;
+      return rootPathCost;
    }
    
    public int getPathCost()
    {
-      return pathCost;
-   }
-   
-   
-   public void setPathCost(int cost)
-   {
-      pathCost = cost;
+      return storedBPDU.getCost();
    }
    
    /**
@@ -194,15 +227,6 @@ public class Port
    public int getState()
    {
       return portState;
-   }
-   
-   /**
-    * Set the current state of the port.
-    * @param stateValue the value to set the port to. 
-    */
-   public void setState(int stateValue)
-   {
-      portState = stateValue;
    }
    
    /**
@@ -224,309 +248,4 @@ public class Port
 	   return role;
    }
    
-   /**
-    * Takes the current BPDU out of the queue and gives it to the calling Switch.
-    * 
-    * @return the current BPDU on this interface
-    */
-   public BPDU getFrame()
-   {
-	   BPDU frame = receivedFrame;
-	   receivedFrame = null;
-	   return frame;
-   }
-   
-   public void setAge(int age)
-   {
-	   ageTime = age;
-   }
-   
-   public int getAge()
-   {
-	   return ageTime;
-   }
-   
-   // RSTP methods
-   
-   /**
-    * Accessor for infoIs, the state of the Port's STP information.
-    * 
-    * @return infoIs
-    */
-   public int getInfoIs()
-   {
-	   return infoIs;
-   }
-   
-   public long[] getDesignatedPriority()
-   {
-	   return designatedPriority;
-   }
-   
-   public void setDesignatedPriority(long[] dp)
-   {
-	   designatedPriority = dp;
-   }
-   
-   public int[] getDesignatedTimes()
-   {
-	   return designatedTimes;
-   }
-   
-   public void setDesignatedTimes(int[] dt)
-   {
-	   designatedTimes = dt;
-   }
-   
-   public long[] getMsgPriority()
-   {
-	   return msgPriority;
-   }
-   
-   public void setMsgPriority(long[] mp)
-   {
-	   msgPriority = mp;
-   }
-   
-   public long[] getPortPriority()
-   {
-	   return portPriority;
-   }
-   
-   public void setPortPriority(long[] pp)
-   {
-	   portPriority = pp;
-   }
-   
-   public int getPortID()
-   {
-	   return portID;
-   }
-   
-   public void setPortID(int id)
-   {
-	   portID = id;
-   }
-   
-   /**
-    * Sets the reselect parameter.
-    * 
-    * @param reselect the new value of reselect
-    */
-   public void setReselect(boolean reselect)
-   {
-	   this.reselect = reselect;
-   }
-   
-   public int getSelectedRole()
-   {
-	   return selectedRole;
-   }
-   
-   public void setSelectedRole(int sr)
-   {
-	   selectedRole = sr;
-   }
-   
-   public boolean getUpdtInfo()
-   {
-	   return updtInfo;
-   }
-   
-   public void setUpdtInfo(boolean ui)
-   {
-	   updtInfo = ui;
-   }
-   
-   /**
-    * Sets forwarding to false. Use this when forwarding has stopped and port 
-    * is DISCARDING.
-    */
-   public void disableForwarding()
-   {
-	   forwarding = false;
-   }
-   
-   /**
-    * Sets forwarding to true. Use this when transitioning to FORWARDING.
-    */
-   public void enableForwarding()
-   {
-	   forwarding = true;
-   }
-   
-   /**
-    * Sets learning to false. Use this when learning has stopped and port
-    * is DISCARDING.
-    */
-   public void disableLearning()
-   {
-	   learning = false;
-   }
-   
-   /**
-    * Sets learning to true. Use this when transitioning to LEARNING.
-    */
-   public void enableLearning()
-   {
-	   learning = true;
-   }
-   
-   public void newTcWhile()
-   {
-	   if (tcWhile == 0 && sendRstp == true)
-	   {
-		   tcWhile = portTimes[3] + 1;
-		   newInfo = true;
-	   }
-	   if (tcWhile == 0 && sendRstp == false)
-		   tcWhile = rootTimes[1] + rootTimes[2];
-   }
-   
-   public int[] getPortTimes()
-   {
-	   return portTimes;
-   }
-   
-   /**
-    * Clears either the proposed flag or agreed flag accordingly.
-    */
-   public void recordArgeement()
-   {
-	   if (rstpVersion && operPointToPointMAC && receivedFrame.getAgreement())
-	   {
-		   agreed = true;
-		   proposing = false;
-	   } else
-		   agreed = false;
-   }
-   
-   /**
-    * Sets agreed flag if the received BPDU has its Learning flag set.
-    */
-   public void recordDispute()
-   {
-	   if (receivedFrame.getLearning())
-	   {
-		   agreed = true;
-		   proposing = false;
-	   }
-   }
-   
-   /**
-    * Sets proposing flag if it receives a proposal.
-    */
-   public void recordProposal()
-   {
-	   if (receivedFrame.getPortRole() == DESIGNATED && receivedFrame.getProposal())
-	   {
-		   proposing = true;
-	   }
-   }
-   
-   /**
-    * Sets times according to received BPDU.
-    */
-   public void recordTimes()
-   {
-	   rootTimes[0] = receivedFrame.getMessageAge();
-	   rootTimes[1] = receivedFrame.getMaxAge();
-	   rootTimes[2] = receivedFrame.getForwardDelay();
-	   rootTimes[3] = receivedFrame.getHelloTime();
-	   if (rootTimes[3] < 1)
-		   rootTimes[3] = 1;
-   }
-   
-   public void setSync(boolean sync)
-   {
-	   this.sync = sync;
-   }
-   
-   public void setReRoot(boolean reRoot)
-   {
-	   this.reRoot = reRoot;
-   }
-   
-   public boolean getReselect()
-   {
-	   return reselect;
-   }
-   
-   public void setSelected(boolean selected)
-   {
-	   this.selected = selected;
-   }
-   
-   public void setTcFlags()
-   {
-	   if (receivedFrame.getTopologyChange())
-		   rcvdTc = true;
-	   if (receivedFrame.getTopologyChangeAck())
-		   rcvdTcAck = true;
-	   if (receivedFrame.getType() == 128)
-		   rcvdTcn = true;
-   }
-   
-   public void setTcProp(boolean tcProp)
-   {
-	   this.tcProp = tcProp;
-   }
-   
-   public boolean getReceivedTcn()
-   {
-	   return rcvdTcn;
-   }
-   
-   public int getTcWhile()
-   {
-	   return tcWhile;
-   }
-   
-   public boolean getAgreed()
-   {
-	   return agreed;
-   }
-   
-   public boolean getProposing()
-   {
-	   return proposing;
-   }
-   
-   public boolean getForwarding()
-   {
-	   return forwarding;
-   }
-   
-   public boolean getLearning()
-   {
-	   return learning;
-   }
-   
-   public boolean getRcvdTc()
-   {
-	   return rcvdTc;
-   }
-   
-   /**
-    * Determines if the received BPDU is STP or RSTP.
-    */
-   public void updtBPDUVersion()
-   {
-	   int version = receivedFrame.getVersion();
-	   if (version == 0 || version == 1)
-		   rcvdSTP = true;
-	   else
-		   rcvdRSTP = true;
-   }
-   
-   /**
-    * Updates the rcvdInfoWhile timer.
-    */
-   public void updtRcvdInfoWhile()
-   {
-	   if (receivedFrame.getMessageAge() + 1 <= rootTimes[1])
-		   rcvdInfoWhile = rootTimes[3] * 3;
-	   else
-		   rcvdInfoWhile = 0;
-   }
 }
