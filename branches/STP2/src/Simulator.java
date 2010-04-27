@@ -25,6 +25,12 @@ public class Simulator
    private ArrayList<Edge> edges;
    
    
+   public Simulator()
+   {
+      nodes = new ArrayList<Bridge>();
+      edges = new ArrayList<Edge>();
+   }
+   
    /**
     * Display the all links(edges in terms of graphs) in the current topology.
     */
@@ -37,7 +43,7 @@ public class Simulator
       for (int i = 0; i < edges.size() ; i++) 
          System.out.println((i + 1) + ". " + (edges.get(i)).toString());
 
-      System.out.println("Done with topology construction");
+      System.out.println("Done with topology construction.\n");
    }
 
    
@@ -75,17 +81,17 @@ public class Simulator
             cmd.parse(in.nextLine());
             
             
-            Bridge source = findSwitch(cmd.getMacID());
+            Bridge source = findSwitch(cmd.getOriginMAC());
             if(source == null)
             {
-               source = new Bridge(cmd.getMacID());
+               source = new Bridge(cmd.getOriginMAC());
                nodes.add(source);
             }
             
-            Bridge target = findSwitch(cmd.getMacID());
+            Bridge target = findSwitch(cmd.getTargetMAC());
             if (target == null)
             {
-                target = new Bridge(cmd.getMacID());
+                target = new Bridge(cmd.getTargetMAC());
                 nodes.add(target);
             }
             
@@ -94,7 +100,7 @@ public class Simulator
 
             // make sure the two random switches are not the same switch (loop to self).
             // make sure there's not already an edge between switches
-            if((source.equals(target)) && (!edges.contains(temp)))
+            if((!source.equals(target)) && (!edges.contains(temp)))
             {
                // add to array list
                edges.add(temp);
@@ -103,8 +109,8 @@ public class Simulator
                // destination, then destination to the origin.
                Port sourcePort = new Port(cmd.getOrignPortNumber());
                Port targetPort = new Port(cmd.getTargetPortNumber());
-               source.addPort(sourcePort, cmd.getOrignPortNumber());
-               target.addPort(targetPort, cmd.getTargetPortNumber());
+               source.addPort(sourcePort);
+               target.addPort(targetPort);
                sourcePort.connectTo(targetPort);
             }
          }
@@ -114,12 +120,44 @@ public class Simulator
          System.out.println("Reader/parser error, file probably not found");
       }
    }
+   
+   public boolean allConverge()
+   {
+      for(Bridge b : nodes)
+      {
+         if(!b.isConverged())
+            return false;
+      }
+      return true;
+   }
+   
 
+   public void run()
+   {
+      for(Bridge b : nodes)
+         b.run();
+      
+      while(allConverge())
+      {
+         display();
+      }
+    
+//      for(Bridge b : nodes)
+//         b.stopAllTimers();
+   }
+   
+   public void display()
+   {
+      for(Bridge b : nodes)
+         System.out.println(b);
+   }
    
 	public static void main(String[] args)
 	{
 	   Simulator demo = new Simulator();
 	   demo.processFile(args[0]);
 	   demo.displayTopologyLink();
+
+	   demo.run();
 	}
 }
