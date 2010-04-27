@@ -31,7 +31,7 @@ public class Command
     * Get the MAC id of Switch from the string being parsed. 
     * @return the switch MAC id
     */
-   public String getMacID()
+   public String getOriginMAC()
    {
       return bridgeMAC;
    }
@@ -41,7 +41,7 @@ public class Command
     * @return ArrayList of the MAC ids of other switches that are connected 
     * to the switch.
     */
-   public String getConnectedSwitches()
+   public String getTargetMAC()
    {
       return connectedMAC;
    }
@@ -74,12 +74,11 @@ public class Command
          else if(i == 1)
             bridgePortNumber = Integer.parseInt(st.nextToken());
          else if(i == 2)
-            connectedMAC  = st.nextToken();
+            connectedMAC = st.nextToken();
          else
-            connectedPortNumber = Integer.parseInt(st.nextToken());      
+            connectedPortNumber = Integer.parseInt(st.nextToken());    
+         i++;
       }
-      
-      System.out.println("parse: done");
    }
 }
 

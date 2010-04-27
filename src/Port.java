@@ -46,8 +46,8 @@ public class Port
    private int role;
    private BPDU storedBPDU;
    
-   private int ageTime;
-   private Timer max;
+//   private int ageTime;
+//   private Timer max;
    
    /**
     * Set the initial state of the port.
@@ -67,7 +67,7 @@ public class Port
       senderID = null;
       role = NONDESIGNATED;
       number = interfaceNumber;
-      max = new Timer();
+      
      
    }
      
@@ -81,6 +81,7 @@ public class Port
     */
    private void maxAgeTimer()
    {
+      final Timer max = new Timer();
       max.scheduleAtFixedRate(new TimerTask(){
          public void run()
          {
@@ -90,9 +91,10 @@ public class Port
                if(currentAge == storedBPDU.getMaxAge())
                {
                   storedBPDU = null; // Age out this information; possible break in the link.
-                  cancel();
-               }        
-               storedBPDU.setMessageAge(currentAge + 1);
+                  max.cancel();
+               } 
+               else
+                  storedBPDU.setMessageAge(currentAge + 1);
             }
          }
       }, 0, 1000); // No delay when called, runs every 1 second.
@@ -118,10 +120,13 @@ public class Port
          private int seconds = 0;
          public void run()
          {
-            if((storedBPDU.getForwardDelay() <= seconds) && (portState == Port.LISTENING))
-            {   
-               portState = Port.BLOCKING; // Was not elected as a Designated Port.
-               listen.cancel();
+            if(storedBPDU != null)
+            {
+               if((storedBPDU.getForwardDelay() <= seconds) && (portState == Port.LISTENING))
+               {   
+                  portState = Port.BLOCKING; // Was not elected as a Designated Port.
+                  listen.cancel();
+               }
             }
             seconds++;
          }
@@ -140,6 +145,13 @@ public class Port
          private int seconds = 0;
          public void run()
          {
+            if((storedBPDU != null) && (seconds >= storedBPDU.getForwardDelay()))
+            {
+               toFowarding();
+               learn.cancel();
+            }
+            else
+               learn.cancel();
             seconds++;
          }
       }, 0, 1000);
@@ -211,11 +223,6 @@ public class Port
    }
    
    public int getRootPathCost()
-   {
-      return rootPathCost;
-   }
-   
-   public int getPathCost()
    {
       return storedBPDU.getCost();
    }

@@ -35,6 +35,6 @@ public class Edge implements Comparable<Edge>
    }
 
    public int compareTo(Edge e) {
-       return (this.target.getMacID()).compareTo(e.target.getMacID());
+       return (this.origin.getMacID()).compareTo(e.origin.getMacID());
    }
 }
