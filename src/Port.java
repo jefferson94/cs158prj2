@@ -164,9 +164,9 @@ public class Port
    
    /**
     * Imitates the learning phase of the port where it listens for MAC from frames which 
-    * it receives. In this simulator it just waits for 15secs before it moves on to the fowarding state. 
+    * it receives. In this simulator it just waits for 15secs before it moves on to the forwarding state. 
     */
-   public synchronized void toLearning(final int delay)
+   public synchronized void toLearning(final int delay, final boolean isRootPort)
    {
       portState = Port.LEARNING;
       if(learn != null)
@@ -178,6 +178,8 @@ public class Port
          {
                if(seconds >= delay)
                {
+                  if(isRootPort)
+                     role = Port.ROOT;
                   toFowarding();
                   learn.cancel();
                }
