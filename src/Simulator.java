@@ -111,7 +111,7 @@ public class Simulator
       
       while(!allConverge())
       {
-         ;
+         display();
       }
 
       display();

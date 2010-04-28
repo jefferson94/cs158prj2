@@ -248,6 +248,8 @@ public class Bridge
       }
       
       rootPort = portList.get(rootPortIndex);
+      if(rootPort.getStoredBPDU() != null)
+      {
       sentMessageAge = rootPort.getStoredBPDU().getMessageAge() + 1;
 //      portList.get(rootPortIndex).setRole(Port.ROOT);
       portList.get(rootPortIndex).toLearning(rootPort.getStoredBPDU().getForwardDelay(), true);
@@ -256,6 +258,7 @@ public class Bridge
 //      System.out.println("best cost: " +bestRootCost  + " best index: " + rootPortIndex);
 //      System.out.println("ROOT PORT!");
 //      System.out.println(this);
+      }
    }
 
    
@@ -326,10 +329,11 @@ public class Bridge
                            electDesignatedPort(p);
                            
                         }
-   //                   System.out.println(macID);
-   //                   System.out.println("Port # " + p.getInterfaceNumber() + " cost to root: " + p.getRootPathCost());
                      }
+
+                        
                   }
+
                }
             }
          }
