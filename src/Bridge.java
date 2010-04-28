@@ -48,7 +48,10 @@ public class Bridge
       rootCost = 0;
       sentMessageAge = 0; // Root bridge always sends this value as 0. Sort of like TTL.
       for(Port p : portList)
-         p.refresh();
+      {
+         if(p.getState() != Port.DISABLED)
+            p.refresh();
+      }
    }
    
    /**
@@ -73,6 +76,11 @@ public class Bridge
          portList.add(p);
    }
    
+   public int numberOfPorts()
+   {
+      return portList.size();
+   }
+   
    /**
     * Should be called when the all switches converged.
     */
@@ -94,14 +102,32 @@ public class Bridge
       return macID;
    }
    
+   public Port getPort(int index)
+   {
+      return portList.get(index);
+   }
+   
    public void run()
    {
       //Starting root war.
       for(Port p : portList)
-         p.toListening(FORWARD_DELAY);
+      {
+         if(p.getState() != Port.DISABLED)
+            p.toListening(FORWARD_DELAY);
+      }
       
       helloTimer(); 
       monitorTimer();
+   }
+   
+   public void disablePort(int index)
+   {
+      Port temp = portList.get(index);
+      temp.setState(Port.DISABLED);
+      temp.setRole(Port.NONDESIGNATED);
+      portList.set(index, temp);
+      System.out.println("state: " + portList.get(index).getState());
+      
    }
    
    public synchronized boolean isConverged()
@@ -119,7 +145,7 @@ public class Bridge
    {
       String temp = "Bridge MAC ID:\t" + macID + "\n";
       temp += "Root MAC ID:\t" + rootID + "\n";
-      temp += "Cost to Root Bridge:\t " + rootCost + "\n";
+      //      temp += "Cost to Root Bridge:\t " + rootCost + "\n";
       temp += "Port ID \t" + "Role \t\t" + "State\n";
       
       for(int i = 0; i < portList.size(); i++)
@@ -271,26 +297,29 @@ public class Bridge
             {
                for(Port p : portList)
                {
-                  BPDU dataUnit = p.getStoredBPDU();
-                  
-                  if((dataUnit != null) && (p.getState() == Port.LISTENING))
+                  if(p.getState() != Port.DISABLED)
                   {
-                     if(rootID.compareTo(dataUnit.getRootID()) != 0)
+                     BPDU dataUnit = p.getStoredBPDU();
+                     
+                     if((dataUnit != null) && (p.getState() == Port.LISTENING))
                      {
-                        electRootBridge(p);
-
+                        if(rootID.compareTo(dataUnit.getRootID()) != 0)
+                        {
+                           electRootBridge(p);
+   
+                        }
+                        else if((rootPort == null) && (!isRootBridge()))
+                        {
+                           electRootPort();
+                        }
+                        else
+                        {
+                           electDesignatedPort(p);
+                           
+                        }
+   //                   System.out.println(macID);
+   //                   System.out.println("Port # " + p.getInterfaceNumber() + " cost to root: " + p.getRootPathCost());
                      }
-                     else if((rootPort == null) && (!isRootBridge()))
-                     {
-                        electRootPort();
-                     }
-                     else
-                     {
-                        electDesignatedPort(p);
-                        
-                     }
-//                   System.out.println(macID);
-//                   System.out.println("Port # " + p.getInterfaceNumber() + " cost to root: " + p.getRootPathCost());
                   }
                }
             }
@@ -310,7 +339,8 @@ public class Bridge
          {     
             for(Port p : portList)
             {
-               if((p.getState() != Port.DISABLED) && (p.getState() != Port.BLOCKING) && (p.getRole() != Port.ROOT))
+               if((p.getState() != Port.DISABLED) && (p.getState() != Port.BLOCKING) && (p.getRole() != Port.ROOT) &&
+                     (p.getConnected().getState() != Port.DISABLED))
                {
                   BPDU configBPDU = new BPDU(0, 0, false, 
                      false, rootID, rootCost, macID, p.getInterfaceNumber(), sentMessageAge,

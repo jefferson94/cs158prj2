@@ -112,25 +112,28 @@ public class Port
     */
    private synchronized void maxAgeTimer()
    {
-      if(max != null)
-         max.cancel();
-      max = new Timer();
-      max.scheduleAtFixedRate(new TimerTask(){
-         public void run()
-         {
-            if(storedBPDU != null)
-            {   
-               int currentAge = storedBPDU.getMessageAge();
-               if(currentAge == storedBPDU.getMaxAge())
-               {
-                  storedBPDU = null; // Age out this information; possible break in the link.
-                  max.cancel();
-               } 
-               else
-                  storedBPDU.setMessageAge(currentAge + 1);
+      if(portState != Port.DISABLED)
+      { 
+         if(max != null)
+            max.cancel();
+         max = new Timer();
+         max.scheduleAtFixedRate(new TimerTask(){
+            public void run()
+            {
+               if(storedBPDU != null)
+               {   
+                  int currentAge = storedBPDU.getMessageAge();
+                  if(currentAge == storedBPDU.getMaxAge())
+                  {
+                     storedBPDU = null; // Age out this information; possible break in the link.
+                     max.cancel();
+                  } 
+                  else
+                     storedBPDU.setMessageAge(currentAge + 1);
+               }
             }
-         }
-      }, 0, 1000); // No delay when called, runs every 1 second.
+         }, 0, 1000); // No delay when called, runs every 1 second.
+      }
    }
    
    /** 
@@ -147,25 +150,28 @@ public class Port
     */
    public synchronized void toListening(final int delay)
    {
-      portState = Port.LISTENING;
-      if(listen != null)
-         listen.cancel();
-      listen = new Timer();
-      listen.scheduleAtFixedRate(new TimerTask(){
-         private int seconds = 0;
-         public void run()
-         {
-            if(storedBPDU != null)
+      if(portState != Port.DISABLED)
+      { 
+         portState = Port.LISTENING;
+         if(listen != null)
+            listen.cancel();
+         listen = new Timer();
+         listen.scheduleAtFixedRate(new TimerTask(){
+            private int seconds = 0;
+            public void run()
             {
-               if((delay < seconds) && (portState == Port.LISTENING))
-               {   
-                  toBlocking(); // Was not elected as a Designated Port.
-                  listen.cancel();
+               if(storedBPDU != null)
+               {
+                  if((delay < seconds) && (portState == Port.LISTENING))
+                  {   
+                     toBlocking(); // Was not elected as a Designated Port.
+                     listen.cancel();
+                  }
                }
+               seconds++;
             }
-            seconds++;
-         }
-      }, 0, 1000); 
+         }, 0, 1000); 
+      }
    }
    
    /**
@@ -173,25 +179,28 @@ public class Port
     * it receives. In this simulator it just waits for 15secs before it moves on to the forwarding state. 
     */
    public synchronized void toLearning(final int delay, final boolean isRootPort)
-   {
-      portState = Port.LEARNING;
-      if(learn != null)
-         learn.cancel();
-      learn = new Timer();
-      learn.scheduleAtFixedRate(new TimerTask(){
-         private int seconds = 0;
-         public void run()
-         {
-               if(seconds >= delay)
-               {
-                  if(isRootPort)
-                     role = Port.ROOT;
-                  toFowarding();
-                  learn.cancel();
-               }
-               seconds++;
-         }
-      }, 0, 1000);
+   { 
+     if(portState != Port.DISABLED)
+     { 
+        portState = Port.LEARNING;
+         if(learn != null)
+            learn.cancel();
+         learn = new Timer();
+         learn.scheduleAtFixedRate(new TimerTask(){
+            private int seconds = 0;
+            public void run()
+            {
+                  if(seconds >= delay)
+                  {
+                     if(isRootPort)
+                        role = Port.ROOT;
+                     toFowarding();
+                     learn.cancel();
+                  }
+                  seconds++;
+            }
+         }, 0, 1000);
+      }
    }
    
    /**
@@ -209,7 +218,7 @@ public class Port
     */
    public synchronized void sendBPDU(BPDU sent)
    {
-      if (connected != null)
+      if ((connected != null) && (connected.getState() != Port.BLOCKING))
       {
          connected.storedBPDU = sent;
          if(connected.getState() != Port.DESIGNATED)
@@ -298,6 +307,12 @@ public class Port
    public int getRole()
    {
 	   return role;
+   }
+   
+
+   public void setState(int disabled2)
+   {
+      portState = disabled2;
    }
    
 }
