@@ -33,7 +33,7 @@ public class Bridge
     */
    public Bridge(String macID)
    {
-      this.portList = new ArrayList<Port>();
+      portList = new ArrayList<Port>();
       rootPort = null;
       rootID = macID;
       rootCost = 0;
@@ -90,7 +90,7 @@ public class Bridge
    {
       //Starting root war.
       for(Port p : portList)
-         p.toListening();
+         p.toListening(FORWARD_DELAY);
       
       helloTimer(); 
       monitorTimer();
@@ -214,7 +214,7 @@ public class Bridge
       rootPort = portList.get(rootPortIndex);
       sentMessageAge = rootPort.getStoredBPDU().getMessageAge() + 1;
       portList.get(rootPortIndex).setRole(Port.ROOT);
-      portList.get(rootPortIndex).toLearning();
+      portList.get(rootPortIndex).toLearning(rootPort.getStoredBPDU().getForwardDelay());
 //      System.out.println("Mac: " + macID);
 //      System.out.println("port root cost: " + rootPort.getRootPathCost());
 //      System.out.println("best cost: " +bestRootCost  + " best index: " + rootPortIndex);
@@ -246,10 +246,10 @@ public class Bridge
       if(isDesignated)
       {
          p.setRole(Port.DESIGNATED);
-         p.toLearning();
+         p.toLearning(p.getStoredBPDU().getForwardDelay());
       }
-      else 
-         p.toBlocking();
+//      else 
+//         p.toBlocking();
 //      System.out.println(this);
    }
 

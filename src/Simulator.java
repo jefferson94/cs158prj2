@@ -121,7 +121,7 @@ public class Simulator
       }
    }
    
-   public synchronized boolean allConverge()
+   public boolean allConverge()
    {
       for(Bridge b : nodes)
       {
@@ -132,8 +132,9 @@ public class Simulator
    }
    
 
-   public synchronized void run()
+   public void run()
    {
+      long currentTime = System.currentTimeMillis();
       for(Bridge b : nodes)
          b.run();
       
@@ -141,6 +142,8 @@ public class Simulator
       {
          display();
       }
+      
+      System.out.println("Convergence Time: " + ((System.currentTimeMillis() - currentTime)  / 1000));
       
       for(Bridge b : nodes)
          b.stopTimers();
@@ -157,7 +160,7 @@ public class Simulator
 	   Simulator demo = new Simulator();
 	   demo.processFile(args[0]);
 	   demo.displayTopologyLink();
-
 	   demo.run();
+//	   System.exit(0);
 	}
 }

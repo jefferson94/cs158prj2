@@ -137,7 +137,7 @@ public class Port
     * Set port state to listening. Goes back to blocking state if timer exceeds forwarding delay and 
     * port state is still set to listening, meaning it wasn't elected as a designated port or root port. 
     */
-   public synchronized void toListening()
+   public synchronized void toListening(final int delay)
    {
       portState = Port.LISTENING;
       listen = new Timer();
@@ -147,7 +147,7 @@ public class Port
          {
             if(storedBPDU != null)
             {
-               if((storedBPDU.getForwardDelay() < seconds) && (portState == Port.LISTENING))
+               if((delay < seconds) && (portState == Port.LISTENING))
                {   
                   toBlocking(); // Was not elected as a Designated Port.
                   listen.cancel();
@@ -162,7 +162,7 @@ public class Port
     * Imitates the learning phase of the port where it listens for MAC from frames which 
     * it receives. In this simulator it just waits for 15secs before it moves on to the fowarding state. 
     */
-   public synchronized void toLearning()
+   public synchronized void toLearning(final int delay)
    {
       portState = Port.LEARNING;
       learn = new Timer();
@@ -170,7 +170,7 @@ public class Port
          private int seconds = 0;
          public void run()
          {
-               if(seconds >= storedBPDU.getForwardDelay())
+               if(seconds >= delay)
                {
                   toFowarding();
                   learn.cancel();
