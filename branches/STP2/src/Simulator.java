@@ -18,7 +18,6 @@ import java.util.*;
 public class Simulator 
 {
    private ArrayList<Bridge> nodes;
-   private ArrayList<Bridge> temp;
    private ArrayList<Edge> edges;
 
    private static final int ADDLINK = 1;
@@ -30,7 +29,6 @@ public class Simulator
    public Simulator()
    {
       nodes = new ArrayList<Bridge>();
-      temp = new ArrayList<Bridge>();
       edges = new ArrayList<Edge>();
    }
    
@@ -91,14 +89,6 @@ public class Simulator
       }
    }
    
-   public void copyArray()
-   {
-      for(Bridge x : nodes)
-      {
-         temp.add(x);
-      }
-   }
-   
    public boolean allConverge()
    {
       for(Bridge b : nodes)
@@ -121,10 +111,10 @@ public class Simulator
       
       while(!allConverge())
       {
-         display();
+         ;
       }
 
-//      display();
+      display();
       long elapseTime = (System.currentTimeMillis() - currentTime);
 
       for(Bridge b : nodes)
@@ -178,8 +168,11 @@ public class Simulator
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String input = "";
         try {
-            if (action == DELNODE) {
-                System.out.println("   Format: bridge");
+            if(action == DELLINK){
+                System.out.println("   Format: bridge port1");
+            }else if (action == DELNODE) {
+                System.out.println("   Bridge to delete: ");
+                input = br.readLine();
             } else {
                 System.out.println("   Format: bridge1 port1 bridge2 port2");
             }
@@ -195,16 +188,32 @@ public class Simulator
             Command cmd = new Command();
             cmd.parse(input);
 
-            if (action == ADDLINK || action == ADDNODE) {
+            if ((action == ADDLINK) ||(action == ADDNODE)) {
                addToTopology(cmd);
-//               for(Bridge x : nodes)
-//                  x.refresh();
             } else {
-                // delete link
+               // delete link
+               Bridge origin = findSwitch(cmd.getOriginMAC());
+               if (origin == null) {
+                  System.out.println("Can not find bridge with Id: " + cmd.getOriginMAC());
+               } else {
+                  int index = nodes.indexOf(origin);
+                  nodes.get(index).disablePort(cmd.getOrignPortNumber());
+
+               }
             }
 
         } else {
             // delete node
+           Bridge origin = findSwitch(input);
+           if (origin == null) {
+              System.out.println("Can not find bridge with Id: " + input);
+           } else {
+              int index = nodes.indexOf(origin);
+
+              for(int i = 0; i < nodes.get(index).numberOfPorts(); i++)
+                 nodes.get(index).disablePort(i);
+
+           }
         }
     }
 
