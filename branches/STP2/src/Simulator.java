@@ -102,6 +102,9 @@ public class Simulator
 
    public void run()
    {
+      for(Bridge b : nodes)
+         b.refresh();
+      
       long currentTime = System.currentTimeMillis();
       for(Bridge b : nodes)
          b.run();
@@ -112,7 +115,7 @@ public class Simulator
       }
 
       display();
-      System.out.println("Convergence Time: " + ((System.currentTimeMillis() - currentTime)  / 1000) + " seconds");
+      System.out.println("Convergence Time: " + ((System.currentTimeMillis() - currentTime)) + " ms");
       
 
       for(Bridge b : nodes)

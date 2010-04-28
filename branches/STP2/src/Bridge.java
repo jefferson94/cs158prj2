@@ -39,8 +39,16 @@ public class Bridge
       rootCost = 0;
       sentMessageAge = 0; // Root bridge always sends this value as 0. Sort of like TTL.
       this.macID = macID;
-      hello = new Timer();
-      monitor = new Timer();
+   }
+   
+   public void refresh()
+   {
+      rootPort = null;
+      rootID = macID;
+      rootCost = 0;
+      sentMessageAge = 0; // Root bridge always sends this value as 0. Sort of like TTL.
+      for(Port p : portList)
+         p.refresh();
    }
    
    /**
