@@ -175,7 +175,7 @@ public class Bridge
     */
    private void electRootPort()
    {
-      int bestRootCost = Integer.MAX_VALUE;
+      /*int bestRootCost = Integer.MAX_VALUE;
       int rootPortIndex = -1;
       for(int i = 0; i < portList.size(); i++)
       {
@@ -194,14 +194,41 @@ public class Bridge
             }
             else if(p.getRootPathCost() == bestRootCost)
             {
-               if(portList.get(rootPortIndex).getSenderID().compareTo(p.getSenderID()) > 0)
-                  rootPortIndex = i;
+            	if (rootPortIndex != -1)
+            	{
+            		String id = portList.get(rootPortIndex).getSenderID();
+            		if (id != null)
+            		{
+            			if(id.compareTo(p.getSenderID()) > 0)
+            				rootPortIndex = i;
+            		}
+            	}
             }
          }
       }
-      
-      rootPort = portList.get(rootPortIndex);
-      portList.get(rootPortIndex).setRole(Port.ROOT);
+/*************************************************************************/
+	   int rootPortIndex = portList.size();
+	   int bestRootCost = Integer.MAX_VALUE;
+	   for (int i = portList.size() - 1; i >= 0; i--)
+	   {
+		   Port p = portList.get(i);
+		   if (p.getRootPathCost() != 0 && p.getRootPathCost() < bestRootCost)
+		   {
+			   bestRootCost = p.getRootPathCost();
+			   rootPortIndex = i;
+		   }
+	         System.out.println(macID);
+	         System.out.println("Port # " + p.getInterfaceNumber() + " cost to root: " + p.getRootPathCost());
+	         System.out.println("Best cost: " + bestRootCost);
+	   }
+	   if (rootPortIndex == portList.size())
+		   System.out.println("This is the Root Bridge");
+	   else
+	   {
+		   System.out.println("Root Port is #" + rootPortIndex);
+		   rootPort = portList.get(rootPortIndex);
+		   portList.get(rootPortIndex).setRole(Port.ROOT);
+	   }
       portList.get(rootPortIndex).toLearning();
    }
 
@@ -220,8 +247,12 @@ public class Bridge
             isDesignated = true;
          else if (rootCost == p.getRootPathCost())
          {
-            if (macID.compareTo(p.getSenderID()) < 0)
-               isDesignated = true;
+        	 String id = p.getSenderID();
+        	 if (id != null)
+        	 {
+        		 if (macID.compareTo(id) < 0)
+        			 isDesignated = true;
+        	 }
          }
       }
      
@@ -251,7 +282,10 @@ public class Bridge
                   if((dataUnit != null) && (p.getState() == Port.LISTENING))
                   {
                      if(rootID.compareTo(dataUnit.getRootID()) != 0)
+                     {
+                    	 p.setRootPathCost(dataUnit.getCost() + 1);
                         electRootBridge(p);
+                     }
                      else if((rootPort == null) && (!isRootBridge()))
                         electRootPort();
                      else
