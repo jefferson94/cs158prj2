@@ -18,6 +18,7 @@ import java.util.*;
 public class Simulator 
 {
    private ArrayList<Bridge> nodes;
+   private ArrayList<Bridge> temp;
    private ArrayList<Edge> edges;
 
    private static final int ADDLINK = 1;
@@ -29,6 +30,7 @@ public class Simulator
    public Simulator()
    {
       nodes = new ArrayList<Bridge>();
+      temp = new ArrayList<Bridge>();
       edges = new ArrayList<Edge>();
    }
    
@@ -89,6 +91,14 @@ public class Simulator
       }
    }
    
+   public void copyArray()
+   {
+      for(Bridge x : nodes)
+      {
+         temp.add(x);
+      }
+   }
+   
    public boolean allConverge()
    {
       for(Bridge b : nodes)
@@ -102,8 +112,8 @@ public class Simulator
 
    public void run()
    {
-      for(Bridge b : nodes)
-         b.refresh();
+      for(Bridge x : nodes)
+         x.refresh();
       
       long currentTime = System.currentTimeMillis();
       for(Bridge b : nodes)
@@ -111,15 +121,16 @@ public class Simulator
       
       while(!allConverge())
       {
-         ;
+         display();
       }
 
-      display();
-      System.out.println("Convergence Time: " + ((System.currentTimeMillis() - currentTime)) + " ms");
-      
+//      display();
+      long elapseTime = (System.currentTimeMillis() - currentTime);
 
       for(Bridge b : nodes)
          b.stopTimers();
+      
+      System.out.println("Convergence Time: " + elapseTime + " ms");
    }
    
    public void display()
@@ -185,7 +196,9 @@ public class Simulator
             cmd.parse(input);
 
             if (action == ADDLINK || action == ADDNODE) {
-                addToTopology(cmd);
+               addToTopology(cmd);
+//               for(Bridge x : nodes)
+//                  x.refresh();
             } else {
                 // delete link
             }

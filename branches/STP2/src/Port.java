@@ -42,7 +42,6 @@ public class Port
    private Port connected;
    private int portState;
    private int rootPathCost;
-   private String senderID;
    private int role;
    private BPDU storedBPDU;
    private Timer max;
@@ -67,7 +66,6 @@ public class Port
       connected =  null;
       storedBPDU = null;
       rootPathCost = 0;
-      senderID = null;
       role = NONDESIGNATED;
       number = interfaceNumber; 
    }
@@ -86,12 +84,11 @@ public class Port
       }
    }
    
-   public void refresh()
+   public synchronized void refresh()
    {
       portState = Port.BLOCKING;
       storedBPDU = null;
       rootPathCost = 0;
-      senderID = null;
       role = NONDESIGNATED;
    }
    
