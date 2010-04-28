@@ -213,8 +213,8 @@ public class Bridge
       
       rootPort = portList.get(rootPortIndex);
       sentMessageAge = rootPort.getStoredBPDU().getMessageAge() + 1;
-      portList.get(rootPortIndex).setRole(Port.ROOT);
-      portList.get(rootPortIndex).toLearning(rootPort.getStoredBPDU().getForwardDelay());
+//      portList.get(rootPortIndex).setRole(Port.ROOT);
+      portList.get(rootPortIndex).toLearning(rootPort.getStoredBPDU().getForwardDelay(), true);
 //      System.out.println("Mac: " + macID);
 //      System.out.println("port root cost: " + rootPort.getRootPathCost());
 //      System.out.println("best cost: " +bestRootCost  + " best index: " + rootPortIndex);
@@ -246,7 +246,7 @@ public class Bridge
       if(isDesignated)
       {
          p.setRole(Port.DESIGNATED);
-         p.toLearning(p.getStoredBPDU().getForwardDelay());
+         p.toLearning(p.getStoredBPDU().getForwardDelay(), false);
       }
 //      else 
 //         p.toBlocking();
@@ -272,7 +272,7 @@ public class Bridge
                      if(rootID.compareTo(dataUnit.getRootID()) != 0)
                      {
                         electRootBridge(p);
-                     
+
                      }
                      else if((rootPort == null) && (!isRootBridge()))
                      {
