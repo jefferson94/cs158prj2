@@ -106,6 +106,8 @@ public class Port
     */
    private synchronized void maxAgeTimer()
    {
+      if(max != null)
+         max.cancel();
       max = new Timer();
       max.scheduleAtFixedRate(new TimerTask(){
          public void run()
@@ -140,6 +142,8 @@ public class Port
    public synchronized void toListening(final int delay)
    {
       portState = Port.LISTENING;
+      if(listen != null)
+         listen.cancel();
       listen = new Timer();
       listen.scheduleAtFixedRate(new TimerTask(){
          private int seconds = 0;
@@ -165,6 +169,8 @@ public class Port
    public synchronized void toLearning(final int delay)
    {
       portState = Port.LEARNING;
+      if(learn != null)
+         learn.cancel();
       learn = new Timer();
       learn.scheduleAtFixedRate(new TimerTask(){
          private int seconds = 0;
