@@ -330,7 +330,11 @@ public class Bridge
                            
                         }
                      }
-
+                     else if((p.getConnected().getState() == Port.DISABLED))
+                     {
+                        p.setRole(Port.DESIGNATED);
+                        p.toLearning(FORWARD_DELAY, false);
+                     }
                         
                   }
 

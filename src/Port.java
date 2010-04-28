@@ -183,8 +183,8 @@ public class Port
      if(portState != Port.DISABLED)
      { 
         portState = Port.LEARNING;
-         if(learn != null)
-            learn.cancel();
+//         if(learn != null) && ()
+//            learn.cancel();
          learn = new Timer();
          learn.scheduleAtFixedRate(new TimerTask(){
             private int seconds = 0;
