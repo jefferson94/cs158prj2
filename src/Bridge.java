@@ -111,7 +111,7 @@ public class Bridge
    {
       String temp = "Bridge MAC ID:\t" + macID + "\n";
       temp += "Root MAC ID:\t" + rootID + "\n";
-      temp += "Port count:\t " + portList.size() + "\n";
+      temp += "Cost to Root Bridge:\t " + rootCost + "\n";
       temp += "Port ID \t" + "Role \t\t" + "State\n";
       
       for(int i = 0; i < portList.size(); i++)
@@ -195,7 +195,6 @@ public class Bridge
       {
 //         Port p = portList.get(i);
          
-         
          if(portList.get(i).getState() != Port.DISABLED)
          {
             if(portList.get(i).getRootPathCost() < bestRootCost)
@@ -256,6 +255,7 @@ public class Bridge
    
    private synchronized void monitorTimer()
    {
+      monitor = new Timer();
       monitor.scheduleAtFixedRate(new TimerTask(){
          public void run()
          {
@@ -298,6 +298,7 @@ public class Bridge
     */
    private synchronized void helloTimer()
    {      
+      hello = new Timer();
       hello.scheduleAtFixedRate(new TimerTask(){
          public void run()
          {     
