@@ -214,27 +214,23 @@ public class Simulator
             switch (opt) {
                 case 1:
                     demo.editTopology(ADDLINK);
-                    demo.displayTopologyLink();
-                    demo.run();
                     break;
                 case 2:
                     demo.editTopology(ADDNODE);
-                    demo.displayTopologyLink();
-                    demo.run();
                     break;
                 case 3:
                     demo.editTopology(DELLINK);
-                    demo.displayTopologyLink();
-                    demo.run();
                     break;
                 case 4:
                     demo.editTopology(DELNODE);
-                    demo.displayTopologyLink();
-                    demo.run();
                     break;
                 default:
                     //System.out.println("Goodbye");
                     break;
+            }
+            if (opt != EXIT_PROG) {
+                demo.displayTopologyLink();
+                demo.run();
             }
         }
     }
