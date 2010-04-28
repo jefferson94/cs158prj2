@@ -125,9 +125,7 @@ public class Bridge
       Port temp = portList.get(index);
       temp.setState(Port.DISABLED);
       temp.setRole(Port.NONDESIGNATED);
-      portList.set(index, temp);
-      System.out.println("state: " + portList.get(index).getState());
-      
+      portList.set(index, temp);      
    }
    
    public synchronized boolean isConverged()
@@ -227,6 +225,7 @@ public class Bridge
       {
 //         Port p = portList.get(i);
          
+         
          if(portList.get(i).getState() != Port.DISABLED)
          {
             if(portList.get(i).getRootPathCost() < bestRootCost)
@@ -236,10 +235,13 @@ public class Bridge
             }
             else if(portList.get(i).getRootPathCost() == bestRootCost)
             {
-               if((portList.get(rootPortIndex).getSenderID() != null) && (portList.get(i).getSenderID() != null))
+               if((portList.get(rootPortIndex).getStoredBPDU() != null) && (portList.get(i).getStoredBPDU() != null))
                {
-                  if(portList.get(rootPortIndex).getSenderID().compareTo(portList.get(i).getSenderID()) > 0)
-                  rootPortIndex = i;
+                  if((portList.get(rootPortIndex).getSenderID() != null) && (portList.get(i).getSenderID() != null))
+                  {
+                     if(portList.get(rootPortIndex).getSenderID().compareTo(portList.get(i).getSenderID()) > 0)
+                     rootPortIndex = i;
+                  }
                }
             }
          }
