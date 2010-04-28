@@ -224,7 +224,14 @@ public class Port
    
    public int getRootPathCost()
    {
-      return storedBPDU.getCost();
+	   if (storedBPDU != null)
+		   return storedBPDU.getCost();
+	   return rootPathCost;
+   }
+   
+   public void setRootPathCost(int cost)
+   {
+	   rootPathCost = cost;
    }
    
    /**
