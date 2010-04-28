@@ -68,10 +68,12 @@ public class Bridge
    /**
     * Should be called when the all switches converged.
     */
-   public void stopAllTimers()
+   public synchronized void stopTimers()
    {
       hello.cancel();
       monitor.cancel();
+      for(Port p : portList)
+         p.stopAgeTimer();
    }
    
    public void setMacID(String input)
@@ -94,15 +96,13 @@ public class Bridge
       monitorTimer();
    }
    
-   public boolean isConverged()
+   public synchronized boolean isConverged()
    {
       for(Port p : portList)
       {
-         if((p.getState() != Port.FORWARDING) || (p.getState() != Port.BLOCKING) || 
-               (p.getState() != Port.BLOCKING))
-         {
+         if(!((p.getState() == Port.FORWARDING) || (p.getState() == Port.BLOCKING) || 
+               (p.getState() == Port.DISABLED)))
             return false;
-         }
       }
       return true;
    }
@@ -156,84 +156,74 @@ public class Bridge
       return temp + "\n";
    }
    
-   private boolean isRootBridge()
+   private synchronized boolean isRootBridge()
    {
       return rootID.compareTo(macID) == 0;
    }
    
-   private void electRootBridge(Port p)
-   {
+   private synchronized void electRootBridge(Port p)
+   {  
       if(rootID.compareTo(p.getStoredBPDU().getRootID()) > 0)
       {
          rootID = p.getStoredBPDU().getRootID();
-         rootCost = p.getStoredBPDU().getCost() + 1;    
-     }
+         rootCost = p.getStoredBPDU().getCost() + 1;
+         for(Port temp : portList)
+         {
+            if(!temp.equals(p))
+            {
+               BPDU configBPDU = new BPDU(0, 0, false, 
+                  false, rootID, rootCost, macID, p.getInterfaceNumber(), sentMessageAge,
+                  MAX_AGE, HELLO_DELAY, FORWARD_DELAY);
+               p.sendBPDU(configBPDU);
+            }
+         }     
+      }
+      
+//      System.out.println("Mac: " + macID);
+//      System.out.println(p.getInterfaceNumber() + " root cost: " + p.getRootPathCost());
+//      System.out.println(this);
    }
    
    /**
     * Assign a root port.
     */
-   private void electRootPort()
+   private synchronized void electRootPort()
    {
-      /*int bestRootCost = Integer.MAX_VALUE;
+      int bestRootCost = Integer.MAX_VALUE;
       int rootPortIndex = -1;
       for(int i = 0; i < portList.size(); i++)
       {
-         Port p = portList.get(i);
+//         Port p = portList.get(i);
          
-         System.out.println(macID);
-         System.out.println("Port # " + p.getInterfaceNumber() + " cost to root: " + p.getRootPathCost());
-         System.out.println("Best cost: " + bestRootCost);
          
-         if(p.getState() != Port.DISABLED)
+         if(portList.get(i).getState() != Port.DISABLED)
          {
-            if(p.getRootPathCost() < bestRootCost)
+            if(portList.get(i).getRootPathCost() < bestRootCost)
             {
-               bestRootCost = p.getRootPathCost();
+               bestRootCost = portList.get(i).getRootPathCost();
                rootPortIndex = i;
             }
-            else if(p.getRootPathCost() == bestRootCost)
+            else if(portList.get(i).getRootPathCost() == bestRootCost)
             {
-            	if (rootPortIndex != -1)
-            	{
-            		String id = portList.get(rootPortIndex).getSenderID();
-            		if (id != null)
-            		{
-            			if(id.compareTo(p.getSenderID()) > 0)
-            				rootPortIndex = i;
-            		}
-            	}
+               if(portList.get(rootPortIndex).getSenderID().compareTo(portList.get(i).getSenderID()) > 0)
+                  rootPortIndex = i;
             }
          }
       }
-/*************************************************************************/
-	   int rootPortIndex = portList.size();
-	   int bestRootCost = Integer.MAX_VALUE;
-	   for (int i = portList.size() - 1; i >= 0; i--)
-	   {
-		   Port p = portList.get(i);
-		   if (p.getRootPathCost() != 0 && p.getRootPathCost() < bestRootCost)
-		   {
-			   bestRootCost = p.getRootPathCost();
-			   rootPortIndex = i;
-		   }
-	         System.out.println(macID);
-	         System.out.println("Port # " + p.getInterfaceNumber() + " cost to root: " + p.getRootPathCost());
-	         System.out.println("Best cost: " + bestRootCost);
-	   }
-	   if (rootPortIndex == portList.size())
-		   System.out.println("This is the Root Bridge");
-	   else
-	   {
-		   System.out.println("Root Port is #" + rootPortIndex);
-		   rootPort = portList.get(rootPortIndex);
-		   portList.get(rootPortIndex).setRole(Port.ROOT);
-	   }
+      
+      rootPort = portList.get(rootPortIndex);
+      sentMessageAge = rootPort.getStoredBPDU().getMessageAge() + 1;
+      portList.get(rootPortIndex).setRole(Port.ROOT);
       portList.get(rootPortIndex).toLearning();
+//      System.out.println("Mac: " + macID);
+//      System.out.println("port root cost: " + rootPort.getRootPathCost());
+//      System.out.println("best cost: " +bestRootCost  + " best index: " + rootPortIndex);
+//      System.out.println("ROOT PORT!");
+//      System.out.println(this);
    }
 
    
-   private void electDesignatedPort(Port p)
+   private synchronized void electDesignatedPort(Port p)
    {
       boolean isDesignated = false;
       
@@ -241,21 +231,18 @@ public class Bridge
          isDesignated = true;
       else
       {
-         if (p.getConnected().getRole() == Port.ROOT)
-            isDesignated = true;
          if (rootCost < p.getRootPathCost())
             isDesignated = true;
          else if (rootCost == p.getRootPathCost())
          {
-        	 String id = p.getSenderID();
-        	 if (id != null)
-        	 {
-        		 if (macID.compareTo(id) < 0)
-        			 isDesignated = true;
-        	 }
+            if (macID.compareTo(p.getStoredBPDU().getSenderID()) < 0)
+               isDesignated = true;
          }
       }
-     
+//     
+//      System.out.println("Mac id: " + macID);
+//      System.out.println("Port # " + p.getInterfaceNumber());
+//      System.out.println(" isDesignated" + isDesignated);
       if(isDesignated)
       {
          p.setRole(Port.DESIGNATED);
@@ -263,10 +250,11 @@ public class Bridge
       }
       else 
          p.toBlocking();
+//      System.out.println(this);
    }
 
    
-   private void monitorTimer()
+   private synchronized void monitorTimer()
    {
       monitor.scheduleAtFixedRate(new TimerTask(){
          public void run()
@@ -283,13 +271,20 @@ public class Bridge
                   {
                      if(rootID.compareTo(dataUnit.getRootID()) != 0)
                      {
-                    	 p.setRootPathCost(dataUnit.getCost() + 1);
                         electRootBridge(p);
+                     
                      }
                      else if((rootPort == null) && (!isRootBridge()))
+                     {
                         electRootPort();
+                     }
                      else
+                     {
                         electDesignatedPort(p);
+                        
+                     }
+//                   System.out.println(macID);
+//                   System.out.println("Port # " + p.getInterfaceNumber() + " cost to root: " + p.getRootPathCost());
                   }
                }
             }
@@ -301,7 +296,7 @@ public class Bridge
     * Every 2 seconds, each port should produce a BPDU to its connected bridge.
     * Eventually only the root bridge will be sending these; the rest will forward. 
     */
-   private void helloTimer()
+   private synchronized void helloTimer()
    {      
       hello.scheduleAtFixedRate(new TimerTask(){
          public void run()

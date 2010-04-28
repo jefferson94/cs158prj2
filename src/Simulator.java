@@ -121,7 +121,7 @@ public class Simulator
       }
    }
    
-   public boolean allConverge()
+   public synchronized boolean allConverge()
    {
       for(Bridge b : nodes)
       {
@@ -132,18 +132,18 @@ public class Simulator
    }
    
 
-   public void run()
+   public synchronized void run()
    {
       for(Bridge b : nodes)
          b.run();
       
-      while(allConverge())
+      while(!allConverge())
       {
          display();
       }
-    
-//      for(Bridge b : nodes)
-//         b.stopAllTimers();
+      
+      for(Bridge b : nodes)
+         b.stopTimers();
    }
    
    public void display()

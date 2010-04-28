@@ -45,6 +45,9 @@ public class Port
    private String senderID;
    private int role;
    private BPDU storedBPDU;
+   private Timer max;
+   private Timer listen;
+   private Timer learn;
    
 //   private int ageTime;
 //   private Timer max;
@@ -55,7 +58,7 @@ public class Port
     * defined already in this class (see the 'final' constant listed values above). 
     * @param otherSwitchPort is the switch port 'this' port is connected to. 
     * @param cost is the path cost for the link this port uses; for 
-    * fast-ethernet this value would be 19.
+    * fast-Ethernet this value would be 19.
     * 
     */
    public Port(int interfaceNumber)
@@ -66,9 +69,31 @@ public class Port
       rootPathCost = 0;
       senderID = null;
       role = NONDESIGNATED;
-      number = interfaceNumber;
-      
-     
+      number = interfaceNumber; 
+   }
+   
+   public boolean equals(Object other)
+   {
+      if(!(other instanceof Edge))
+         return false;
+      else
+      {
+         Port p = (Port)other;
+         if(p.number == this.number)
+            return true;
+         else
+            return false;
+      }
+   }
+   
+   public synchronized void stopAgeTimer()
+   {
+      if(max != null)
+         max.cancel();
+      if(learn != null)
+         learn.cancel();
+      if(listen != null)
+         listen.cancel();
    }
      
    /**
@@ -79,9 +104,9 @@ public class Port
     * The age timer begins to run. The age timer starts at the message age that is received in that configuration BPDU. 
     * If this age timer reaches max age before another BPDU is received that refreshes the timer, the information is aged out for that port.
     */
-   private void maxAgeTimer()
+   private synchronized void maxAgeTimer()
    {
-      final Timer max = new Timer();
+      max = new Timer();
       max.scheduleAtFixedRate(new TimerTask(){
          public void run()
          {
@@ -103,7 +128,7 @@ public class Port
    /** 
     * Set the port to blocking state.
     */
-   public void toBlocking()
+   public synchronized void toBlocking()
    {
       portState = Port.BLOCKING;
    }
@@ -112,19 +137,19 @@ public class Port
     * Set port state to listening. Goes back to blocking state if timer exceeds forwarding delay and 
     * port state is still set to listening, meaning it wasn't elected as a designated port or root port. 
     */
-   public void toListening()
+   public synchronized void toListening()
    {
       portState = Port.LISTENING;
-      final Timer listen = new Timer();
+      listen = new Timer();
       listen.scheduleAtFixedRate(new TimerTask(){
          private int seconds = 0;
          public void run()
          {
             if(storedBPDU != null)
             {
-               if((storedBPDU.getForwardDelay() <= seconds) && (portState == Port.LISTENING))
+               if((storedBPDU.getForwardDelay() < seconds) && (portState == Port.LISTENING))
                {   
-                  portState = Port.BLOCKING; // Was not elected as a Designated Port.
+                  toBlocking(); // Was not elected as a Designated Port.
                   listen.cancel();
                }
             }
@@ -137,22 +162,20 @@ public class Port
     * Imitates the learning phase of the port where it listens for MAC from frames which 
     * it receives. In this simulator it just waits for 15secs before it moves on to the fowarding state. 
     */
-   public void toLearning()
+   public synchronized void toLearning()
    {
       portState = Port.LEARNING;
-      final Timer learn = new Timer();
+      learn = new Timer();
       learn.scheduleAtFixedRate(new TimerTask(){
          private int seconds = 0;
          public void run()
          {
-            if((storedBPDU != null) && (seconds >= storedBPDU.getForwardDelay()))
-            {
-               toFowarding();
-               learn.cancel();
-            }
-            else
-               learn.cancel();
-            seconds++;
+               if(seconds >= storedBPDU.getForwardDelay())
+               {
+                  toFowarding();
+                  learn.cancel();
+               }
+               seconds++;
          }
       }, 0, 1000);
    }
@@ -160,7 +183,7 @@ public class Port
    /**
     * Sets the state of the port to Forwarding.
     */
-   public void toFowarding()
+   public synchronized void toFowarding()
    {
       portState = Port.FORWARDING;
    }
@@ -170,12 +193,13 @@ public class Port
     * Start age timer for that BDPU on the port that receives the BDPU.
     * @param sent packet to send to the connect port(target)
     */
-   public void sendBPDU(BPDU sent)
+   public synchronized void sendBPDU(BPDU sent)
    {
       if (connected != null)
       {
          connected.storedBPDU = sent;
-         connected.maxAgeTimer();
+         if(connected.getState() != Port.DESIGNATED)
+            connected.maxAgeTimer();
       }
    }
    
@@ -219,7 +243,7 @@ public class Port
    
    public String getSenderID()
    {
-      return this.senderID;
+      return storedBPDU.getSenderID();
    }
    
    public int getRootPathCost()
