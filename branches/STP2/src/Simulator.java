@@ -119,8 +119,10 @@ public class Simulator
 
       for(Bridge b : nodes)
          b.stopTimers();
-      
-      System.out.println("Convergence Time: " + elapseTime + " ms");
+
+      System.out.println("Nodes: " + nodes.size());
+      System.out.println("Edges: " + edges.size());
+      System.out.println("Convergence Time: " + (elapseTime + 20000) + " ms");
    }
    
    public void display()
@@ -170,13 +172,13 @@ public class Simulator
         try {
             if(action == DELLINK){
                 System.out.println("   Format: bridge port1");
-            }else if (action == DELNODE) {
-                System.out.println("   Bridge to delete: ");
-                input = br.readLine();
+                System.out.print("   Bridge to edit: ");
+            } else if (action == DELNODE) {
+                System.out.print("   Bridge to delete: ");
             } else {
                 System.out.println("   Format: bridge1 port1 bridge2 port2");
+                System.out.print("   Bridge to edit: ");
             }
-            System.out.print("   Bridge to edit: ");
             input = br.readLine();
         } catch (IOException ioe) {
             System.out.println("Error reading input");
