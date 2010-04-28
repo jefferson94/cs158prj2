@@ -41,10 +41,10 @@ public class Bridge
       this.macID = macID;
    }
    
-   public void refresh()
+   public synchronized void refresh()
    {
       rootPort = null;
-      rootID = macID;
+      this.rootID = this.macID;
       rootCost = 0;
       sentMessageAge = 0; // Root bridge always sends this value as 0. Sort of like TTL.
       for(Port p : portList)
@@ -174,16 +174,14 @@ public class Bridge
       if(rootID.compareTo(p.getStoredBPDU().getRootID()) > 0)
       {
          rootID = p.getStoredBPDU().getRootID();
+         rootCost = 0;
          rootCost = p.getStoredBPDU().getCost() + 1;
          for(Port temp : portList)
          {
-            if(!temp.equals(p))
-            {
                BPDU configBPDU = new BPDU(0, 0, false, 
-                  false, rootID, rootCost, macID, p.getInterfaceNumber(), sentMessageAge,
+                  false, rootID, rootCost, macID, temp.getInterfaceNumber(), sentMessageAge,
                   MAX_AGE, HELLO_DELAY, FORWARD_DELAY);
-               p.sendBPDU(configBPDU);
-            }
+               temp.sendBPDU(configBPDU);
          }     
       }
       
