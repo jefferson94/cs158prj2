@@ -1,9 +1,5 @@
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.Collections;
+import java.io.*;
+import java.util.*;
 
 /**
  * A Spanning Tree Protocol simulator. It builds a random topology with the 
@@ -158,9 +154,44 @@ public class Simulator
 	public static void main(String[] args)
 	{
 	   Simulator demo = new Simulator();
-	   demo.processFile(args[0]);
+	   BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	   if (args.length > 0)
+		   demo.processFile(args[0]);
+	   else
+	   {
+		   System.out.println("Enter a filename");
+		   try
+		   {
+			   demo.processFile(reader.readLine());
+		   }
+		   catch (IOException ioe)
+		   {
+			   System.out.println("Could not read filename");
+			   System.exit(1);
+		   }
+	   }
 	   demo.displayTopologyLink();
-	   demo.run();
+	   boolean quit = false;
+	   do
+	   {
+		   demo.run();
+		   System.out.println("(b)reak a link or (q)uit");
+		   try
+		   {
+			   String choice = reader.readLine();
+			   if (choice.equals("q"))
+				   quit = true;
+			   else if (choice.equals("b"))
+			   {
+				   System.out.println("Choose a bridge");
+			   }
+		   }
+		   catch (IOException ioe)
+		   {
+			   System.out.println("Could not read input");
+			   System.exit(1);
+		   }
+	   } while (!quit);
 //	   System.exit(0);
 	}
 }
