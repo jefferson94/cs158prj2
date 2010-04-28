@@ -220,8 +220,8 @@ public class Bridge
    private synchronized void electRootPort()
    {
       int bestRootCost = Integer.MAX_VALUE;
-      int rootPortIndex = -1;
-      for(int i = 0; i < portList.size(); i++)
+      int rootPortIndex = portList.size();
+      for(int i = portList.size() - 1; i >= 0; i--)
       {
 //         Port p = portList.get(i);
          
@@ -274,13 +274,10 @@ public class Bridge
       }
       else
       {
-         if (rootCost < p.getRootPathCost())
-            isDesignated = true;
-         else if (rootCost == p.getRootPathCost())
-         {
-            if (macID.compareTo(p.getStoredBPDU().getSenderID()) < 0)
-               isDesignated = true;
-         }
+    	  if (p.getConnected().getRole() == Port.ROOT)
+    		  isDesignated = true;
+    	  else if (p.getRootPathCost() < p.getConnected().getRootPathCost())
+    		  isDesignated = true;
       }
 //     
 //      System.out.println("Mac id: " + macID);
