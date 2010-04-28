@@ -86,6 +86,15 @@ public class Port
       }
    }
    
+   public void refresh()
+   {
+      portState = Port.BLOCKING;
+      storedBPDU = null;
+      rootPathCost = 0;
+      senderID = null;
+      role = NONDESIGNATED;
+   }
+   
    public synchronized void stopAgeTimer()
    {
       if(max != null)
