@@ -37,22 +37,6 @@ public class Switch
    
    private int helloTime = clock;
    private int forwardTime = clock;
-   
-   // RSTP flags
-   private boolean proposal;
-   private boolean learning = false;
-   private boolean forwarding = false;
-   private boolean agreement = false;
-   
-   // RSTP variables
-   private boolean BEGIN;
-   private String bridgeIdentifier;
-   private long[] bridgePriority = {hexToLong(bridgeIdentifier), 0, 
-		   hexToLong(bridgeIdentifier), 0, 0};
-   private int[] bridgeTimes = {0, 20, 15, 2}; // (messageAge, bridgeMaxAge, bridgeForwardDelay, bridgeHelloTime)
-   private int rootPortId;
-   private long[] rootPriority;
-   private int[] rootTimes; // (messageAge, maxAge, forwardDelay, helloTime)
 
    private boolean converged = false;
    
@@ -83,16 +67,6 @@ public class Switch
       priority = "8000";
       this.macID = macID;
       rootID = macID;
-   }
-   
-   /**
-    * Resets the clock to 0 and converged to false. Call this when resetting 
-    * the topology.
-    */
-   public void reset()
-   {
-	   clock = 0;
-	   converged = false;
    }
    
    /**
@@ -132,7 +106,7 @@ public class Switch
    }
    
    /**
-    * Increment the clock value for STP.
+    * Increment the clock value.
     */
    public void incrementClock()
    {
@@ -146,25 +120,6 @@ public class Switch
       if (clock - helloTime >= HELLO_TIMER)
       {
     	  sendBPDU();
-    	  processReceivedBPDU();
-      }
-   }
-   
-   /**
-    * Increment the clock value for RSTP.
-    */
-   public void rstpIncrementClock()
-   {
-      clock++;
-
-      /**
-       * NOTE
-       * Ports are set to Port.BLOCKING after initialization and only changed after 
-       * STP tells them to (which is when BDPUs are received on that port).
-       */
-      if (clock - helloTime >= HELLO_TIMER)
-      {
-    	  sendRSTP();
     	  processReceivedBPDU();
       }
    }
@@ -191,7 +146,7 @@ public class Switch
    }
 
    /**
-    * Send a STP Configuration BPDU to all non-blocking ports.
+    * Send a BPDU to all non-blocking ports.
     */
    private void sendBPDU()
    {
@@ -203,41 +158,6 @@ public class Switch
          // BPDU for STP.
          BPDU dataFrame = new BPDU(0, 0, topologyChange, 
         		 topologyChangeAck, root, cost, mac, i, timestampSec,
-        		 AGE_TIMER, helloTime, FORWARDING_TIMER);
-         Port p = switchInterface.get(i);
-         /**
-          * NOTE
-          * My understanding is that BDPUs are always sent regardless of the ports state. 
-          * Reasoning: BLOCKING ports are still able to receive BPDUs and all ports are set to
-          * BLOCKING after initialization.
-          * Sidenote: If we implement disable then we can just replace that with != Port.DISABLED
-          */
-         /* NOTE
-          * An interface in BLOCKING state receives BPDUs but does not forward 
-          * them. When it receives a TCN (next implementation), it sends a 
-          * TCN ACK out that interface, transitions to LISTENING state, and 
-          * floods TCNs until the FORWARDING_TIMER expires.
-          */
-//         if(p.getState() != Port.BLOCKING)
-//           p.getConnected().receiveBPDU(p.getConnected(), dataFrame);
-         p.sendBPDU(dataFrame);
-      }
-   }
-   
-   /**
-    * Send a RSTP BPDU to all non-blocking ports.
-    */
-   private void sendRSTP()
-   {
-      int timestampSec = clock;
-      String root = priority + "." + rootID;
-      String mac = priority + "." + macID;
-      for(int i = 0; i < switchInterface.size(); i++)
-      {
-         // BPDU for STP.
-         BPDU dataFrame = new BPDU(2, 2, topologyChange, proposal, 
-        		 switchInterface.get(i).getRole(), learning, forwarding, 
-        		 agreement, topologyChangeAck, root, cost, mac, i, timestampSec,
         		 AGE_TIMER, helloTime, FORWARDING_TIMER);
          Port p = switchInterface.get(i);
          /**
@@ -339,7 +259,7 @@ public class Switch
 					   {
 						   p.setState(Port.LISTENING);
 						   p.setRole(Port.NONDESIGNATED);
-						   //System.out.println("Network reconverging...");
+						   System.out.println("Network reconverging...");
 						   // flood TCNs
 						   for (Port other : switchInterface)
 						   {
@@ -366,7 +286,7 @@ public class Switch
 						   other.sendBPDU((new BPDU(0, 128)));
 					   }
 				   }
-				   //System.out.println("Issuing topology change notification");
+				   System.out.println("Issuing topology change notification");
 				   p.setState(Port.DISABLED);
 				   //converged = false;
 			   }
@@ -548,375 +468,17 @@ public class Switch
 	   }
    }
    
-   /**
-    * Disables a random interface on this Switch
-    * 
-    * @return the number of the disabled interface or -1 if there is an error
-    */
    public int breakLink()
    {
-	   if (switchInterface.size() > 0)
+	   int port = new Random().nextInt(switchInterface.size());
+	   Port p = switchInterface.get(port);
+	   if (p.getState() == Port.FORWARDING)
 	   {
-		   int port = new Random().nextInt(switchInterface.size());
-		   Port p = switchInterface.get(port);
-		   if (p.getState() == Port.FORWARDING)
-		   {
-			   p.connectTo(null);
-			   p.setState(Port.DISABLED);
-			   converged = false;
-			   return port;
-		   }
-	   }
-	   return -1;
-   }
-   
-   /**
-    * Disables a particular interface on this Switch
-    * 
-    * @param link the number of the interface to be disabled
-    */
-   public void breakLink(int link)
-   {
-	   Port p = switchInterface.get(link);
-	   p.connectTo(null);
-	   p.setState(Port.DISABLED);
-	   converged = false;
-   }
-   
-   /**
-    * Converts a hexidecimal address to a long.
-    * 
-    * @param addr a MAC address in hexidecimal
-    * 
-    * @return a long int representation of the hexidecimal parameter
-    */
-   public long hexToLong(String addr)
-   {
-	   long result = 0;
-	   int power = 0;
-	   if (addr != null)
-	   {
-		   for (int i = addr.length() - 1; i >= 0; i--)
-		   {
-			   int base = Character.getNumericValue(addr.charAt(i));
-			   if (base != -1)
-			   {
-				   result += Math.pow(base, power);
-				   power++;
-			   }
-		   }
-	   }
-	   return result;
-   }
-
-   /**
-    * Compares two priority vectors.
-    * 
-    * @param v1 a priority vector
-    * @param v2 another priority vector
-    * 
-    * @return 0 if they are equal, 1 if v1 is superior to v2, -1 if v2 is superior to v1
-    */
-   public int compareVector(long[] v1, long[] v2)
-   {
-	   int result = 0;
-	   if (v1[0] < v2[0] ||
-			(v1[0] == v2[0] && v1[1] < v2[1]) ||
-			(v1[0] == v2[0] && v1[1] == v2[1] && v1[2] < v2[2]) ||
-			(v1[0] == v2[0] && v1[1] == v2[1] && v1[2] == v2[2] && v1[3] < v2[3]) ||
-			(v1[2] == v2[2] && v1[3] == v2[3]))
-		   result = 1;
-	   if (v2[0] < v1[0] ||
-					(v2[0] == v1[0] && v2[1] < v1[1]) ||
-					(v2[0] == v1[0] && v2[1] == v1[1] && v2[2] < v1[2]) ||
-					(v2[0] == v1[0] && v2[1] == v1[1] && v2[2] == v1[2] && v2[3] < v1[3]) ||
-					(v2[2] == v1[2] && v2[3] == v1[3]))
-				   result = -1;
-	  return result; 
-   }
-   
-   // RSTP methods
-   
-   /**
-    * Checks to see if the new info is at least as good as the old
-    * 
-    * @param newInfoIs the state of the new info, RECIEVED, AGED, MINE, or 
-    * DISABLED
-    * 
-    * @return true of the new info is at least as good as the old, false 
-    * otherwise
-    */
-   public boolean betterOrSameInfo(int newInfoIs, Port p, BPDU frame)
-   {
-	   long[] portPriorityVector = {hexToLong(rootID), cost, 
-               hexToLong(frame.getSenderID()), 
-               frame.getPortID()};
-	   p.setPortPriority(portPriorityVector);
-	   portPriorityVector[4] = switchInterface.indexOf(p);
-	   p.setPortID((int)portPriorityVector[4]);
-	   long[] msgPriorityVector = {hexToLong(frame.getRootID()), 
-			                       frame.getCost(), 
-			                       hexToLong(frame.getSenderID()), 
-			                       frame.getPortID()};
-	   p.setMsgPriority(msgPriorityVector);
-	   msgPriorityVector[4] = p.getPortID();
-	   long[] designatedPriorityVector = {hexToLong(bridgeIdentifier), 0, 
-			                              hexToLong(bridgeIdentifier), 
-			                              p.getPortID()};
-	   if (designatedPriorityVector[0] > msgPriorityVector[0])
-	   {
-		   designatedPriorityVector[0] = msgPriorityVector[0];
-		   designatedPriorityVector[1] = msgPriorityVector[1] + 19;
-	   }
-	   p.setDesignatedPriority(designatedPriorityVector);
-	   designatedPriorityVector[4] = p.getPortID();
-	   return (newInfoIs == Port.RECEIVED && p.getInfoIs() == Port.RECEIVED && 
-			   compareVector(msgPriorityVector, portPriorityVector) != -1) || 
-	          (newInfoIs == Port.MINE && p.getInfoIs() == Port.MINE && 
-	        		  compareVector(designatedPriorityVector, portPriorityVector) != -1) ? 
-			   true : false;
-   }
-   
-   /**
-    * Sets the reselect variable of all interfaces to false.
-    */
-   public void clearReselectTree()
-   {
-	   for (Port p : switchInterface)
-		   p.setReselect(false);
-   }
-   
-   /**
-    * Decodes the message priority and timer values from the received BPDU 
-    * storing them in the msgPriority and msgTimes variables.
-    * 
-    * @param frame received frame
-    * @return
-    */
-   public int rcvInfo(BPDU frame, Port p)
-   {
-	   long[] portPriorityVector = {hexToLong(rootID), cost, 
-               hexToLong(frame.getSenderID()), 
-               frame.getPortID(),
-               switchInterface.indexOf(p)};
-	   long[] msgPriorityVector = {hexToLong(frame.getRootID()), 
-              frame.getCost(), 
-              hexToLong(frame.getSenderID()), 
-              frame.getPortID(), 
-              switchInterface.indexOf(p)};
-	   int[] msgTimes = {frame.getMessageAge(), frame.getMaxAge(), 
-			   frame.getForwardDelay(), frame.getHelloTime()};
-	   int[] portTimes = p.getPortTimes();
-	   if (compareVector(msgPriorityVector, portPriorityVector) == 1 || 
-			   (compareVector(msgPriorityVector, portPriorityVector) == 0 && 
-					   (msgTimes[0] != portTimes[0] || 
-							   msgTimes[1] != portTimes[1] || 
-							   msgTimes[2] != portTimes[2] || 
-							   msgTimes[3] != portTimes[3])))
-		   return Port.SUPERIOR_DESIGNATED_INFO;
-	   int role = frame.getPortRole();
-	   if (compareVector(msgPriorityVector, portPriorityVector) == 0 && 
-			   msgTimes[0] == portTimes[0] && msgTimes[1] == portTimes[1] && 
-			   msgTimes[2] == portTimes[2] && msgTimes[3] == portTimes[3])
-		   return Port.REPEATED_DESIGNATED_INFO;
-	   if (role == Port.DESIGNATED &&
-			   compareVector(msgPriorityVector, portPriorityVector) == -1)
-		   return Port.INFERIOR_DESIGNATED_INFO;
-	   if ((role == Port.ROOT || 
-			   role == Port.ALTERNATE || 
-			   role == Port.BACKUP) && 
-			   compareVector(msgPriorityVector, portPriorityVector) != 1)
-		   return Port.INFERIOR_ROOT_ALTERNATE_INFO;
-	   return Port.OTHER_INFO;
-   }
-   
-   /**
-    * Sets local Port Priority Vector variables based on incoming BPDU.
-    * 
-    * @param p the interface receiving the BPDU
-    * @param frame the incoming BPDU
-    */
-   public void recordPriority(Port p, BPDU frame)
-   {
-	   rootID = frame.getRootID();
-	   cost = frame.getCost() + 19;
-   }
-   
-   /**
-    * Sets sync variable on all Ports to true.
-    */
-   public void setSyncTree()
-   {
-	   for (Port p : switchInterface)
-		   p.setSync(true);
-   }
-   
-   /**
-    * Sets reRoot variable on all Ports to true.
-    */
-   public void setReRootTree()
-   {
-	   for (Port p : switchInterface)
-		   p.setReRoot(true);
-   }
-   
-   /**
-    * If reselct variable is false for all Ports, sets select variable on all 
-    * Ports to true.
-    */
-   public void setSelectedTree()
-   {
-	   for (Port p : switchInterface)
-	   {
-		   if (p.getReselect())
-			   return;
-	   }
-	   for (Port p : switchInterface)
-		   p.setSelected(true);
-   }
-   
-   /**
-    * Sets tcprop variable for all Ports except the calling Port to true.
-    * 
-    * @param caller the Port which called this method.
-    */
-   public void setTcPropTree(Port caller)
-   {
-	   for (Port p : switchInterface)
-	   {
-		   if (p != caller)
-			   p.setTcProp(true);
-	   }
-   }
-   
-   /**
-    * Floods an STP Configuration BPDU.
-    */
-   public void txConfig()
-   {
-	   for (Port p : switchInterface)
-	   {
-		   p.sendBPDU(new BPDU(0, 0, (p.getTcWhile() != 0), p.getReceivedTcn(), rootID, cost, 
-			   macID, switchInterface.indexOf(p), clock, rootTimes[1], 
-			   rootTimes[3], rootTimes[2]));
-	   }
-   }
-   
-   /**
-    * Floods an RSTP BPDU.
-    */
-   public void txRstp()
-   {
-	   for (Port p : switchInterface)
-	   {
-		   p.sendBPDU(new BPDU(2, 2, (p.getTcWhile() != 0), p.getProposing(), 
-				   p.getRole(), p.getLearning(), p.getForwarding(), 
-				   p.getAgreed(), p.getRcvdTc(), rootID, cost, macID, 
-				   switchInterface.indexOf(p), clock, rootTimes[1], 
-				   rootTimes[3], rootTimes[2]));
-	   }
-   }
-   
-   /**
-    * Floods a TCN.
-    */
-   public void txTcn()
-   {
-	   for (Port p : switchInterface)
-	   {
-		   p.sendBPDU(new BPDU(0, 128));
-	   }
-   }
-   
-   /**
-    * Sets all Port Roles to DISABLED.
-    */
-   public void updtRoleDisabledTree()
-   {
-	   for (Port p : switchInterface)
-		   p.setRole(Port.DISABLED);
-   }
-   
-   public void updtRolesTree()
-   {
-	   rootTimes = bridgeTimes;
-	   for (Port p : switchInterface)
-	   {
-		   long[] rootPathPriorityVector = {};
-		   if (p.getPortPriority() != null && p.getInfoIs() == Port.RECEIVED)
-		   {
-			   rootPathPriorityVector = p.getMsgPriority();
-			   rootPathPriorityVector[1] += 19;
-			   rootPathPriorityVector[4] = p.getPortID();
-		   }
-		   if (rootPathPriorityVector != null && 
-				   compareVector(bridgePriority, rootPathPriorityVector) == -1)
-		   {
-			   bridgePriority = rootPathPriorityVector;
-			   rootTimes = p.getPortTimes();
-			   rootTimes[0]++;
-		   }
-		   long b = hexToLong(bridgeIdentifier);
-		   long[] designatedPriority = {b, 0, b, p.getPortID()};
-		   long[] msgPriority = p.getMsgPriority();
-		   if (b > msgPriority[0])
-		   {
-			   designatedPriority[0] = msgPriority[0];
-			   designatedPriority[1] = msgPriority[1] + 19;
-		   }
-		   p.setDesignatedPriority(designatedPriority);
-		   int[] designatedTimes = rootTimes;
-		   designatedTimes[3] = bridgeTimes[3];
-		   p.setDesignatedTimes(designatedTimes);
-		   if (p.getInfoIs() == Port.DISABLED)
-			   p.setSelectedRole(Port.DISABLED);
-		   else
-		   {
-			   if (p.getInfoIs() == p.AGED)
-			   {
-				   p.setUpdtInfo(true);
-				   p.setSelectedRole(Port.DESIGNATED);
-			   }
-			   if (p.getInfoIs() == p.MINE)
-			   {
-				   p.setSelectedRole(p.DESIGNATED);
-				   int[] portTimes = p.getPortTimes();
-				   if (compareVector(p.getPortPriority(), p.getDesignatedPriority()) != 0 || 
-						   (portTimes[0] != rootTimes[0] || 
-								   portTimes[1] != rootTimes[1] || 
-								   portTimes[2] != rootTimes[2] || 
-								   portTimes[3] != rootTimes[3]))
-				   {
-					   p.setUpdtInfo(true);
-				   }
-			   }
-			   if (p.getInfoIs() == Port.RECEIVED)
-			   {
-				   if (compareVector(rootPriority, p.getPortPriority()) == 0)
-				   {
-					   p.setSelectedRole(Port.ROOT);
-					   p.setUpdtInfo(false);
-				   } else 
-				   {
-					   if (compareVector(p.getDesignatedPriority(), p.getPortPriority()) != 1)
-					   {
-						   if (p.getPortPriority()[2] != hexToLong(bridgeIdentifier))
-						   {
-							   p.setSelectedRole(p.ALTERNATE);
-							   p.setUpdtInfo(false);
-						   } else
-						   {
-							   p.setSelectedRole(Port.BACKUP);
-							   p.setUpdtInfo(false);
-						   }
-					   } else
-					   {
-						   p.setSelectedRole(Port.DESIGNATED);
-						   p.setUpdtInfo(true);
-					   }
-				   }
-			   }
-		   }
-	   }
+		   p.connectTo(null);
+		   p.setState(Port.DISABLED);
+		   converged = false;
+		   return port;
+	   } else
+		   return -1;
    }
 }
