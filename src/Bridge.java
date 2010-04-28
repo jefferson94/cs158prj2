@@ -236,8 +236,11 @@ public class Bridge
             }
             else if(portList.get(i).getRootPathCost() == bestRootCost)
             {
-               if(portList.get(rootPortIndex).getSenderID().compareTo(portList.get(i).getSenderID()) > 0)
+               if((portList.get(rootPortIndex).getSenderID() != null) && (portList.get(i).getSenderID() != null))
+               {
+                  if(portList.get(rootPortIndex).getSenderID().compareTo(portList.get(i).getSenderID()) > 0)
                   rootPortIndex = i;
+               }
             }
          }
       }
@@ -260,6 +263,10 @@ public class Bridge
       
       if (isRootBridge())
          isDesignated = true;
+      else if(p.getConnected().getState() == Port.DISABLED)
+      {
+         isDesignated = true;
+      }
       else
       {
          if (rootCost < p.getRootPathCost())
