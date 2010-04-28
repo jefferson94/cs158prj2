@@ -2,16 +2,20 @@ public class Edge implements Comparable<Edge>
 {
    private Bridge target;
    private Bridge origin;
-   
+   private int targetPort;
+   private int originPort;
+
    public Edge()
    {
-      this(null, null);
+      this(null, null, -1, -1);
    }
    
-   public Edge(Bridge o, Bridge t)
+   public Edge(Bridge o, Bridge t, int op, int tp)
    {
       origin = o;
       target = t;
+      originPort = op;
+      targetPort = tp;
    }
 
    public boolean equals(Object other)
@@ -31,7 +35,7 @@ public class Edge implements Comparable<Edge>
    
    public String toString()
    {
-      return origin.getMacID() + " connected to " + target.getMacID();
+      return origin.getMacID() + " (" + originPort + ") connected to " + target.getMacID() + " (" + targetPort + ")";
    }
 
    public int compareTo(Edge e) {

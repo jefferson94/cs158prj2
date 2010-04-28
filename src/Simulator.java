@@ -19,7 +19,12 @@ public class Simulator
 {
    private ArrayList<Bridge> nodes;
    private ArrayList<Edge> edges;
-   
+
+   private static final int ADDLINK = 1;
+   private static final int ADDNODE = 2;
+   private static final int DELLINK = 3;
+   private static final int DELNODE = 4;
+   private static final int EXIT_PROG = 5;
    
    public Simulator()
    {
@@ -34,12 +39,12 @@ public class Simulator
    {
       // sort the edges by MAC for easier reading
       Collections.sort(edges);
-      System.out.println("Links in the topology (sorted by switch MAC)");
+      System.out.println("Links in the topology (sorted by bridge MAC)");
       
       for (int i = 0; i < edges.size() ; i++) 
          System.out.println((i + 1) + ". " + (edges.get(i)).toString());
 
-      System.out.println("Done with topology construction.\n");
+      System.out.println("Done with topology construction.\nConverging...");
    }
 
    
@@ -75,40 +80,7 @@ public class Simulator
          {
             Command cmd = new Command();
             cmd.parse(in.nextLine());
-            
-            
-            Bridge source = findSwitch(cmd.getOriginMAC());
-            if(source == null)
-            {
-               source = new Bridge(cmd.getOriginMAC());
-               nodes.add(source);
-            }
-            
-            Bridge target = findSwitch(cmd.getTargetMAC());
-            if (target == null)
-            {
-                target = new Bridge(cmd.getTargetMAC());
-                nodes.add(target);
-            }
-            
-            // create the edge between the switches
-            Edge temp = new Edge(source, target);
-
-            // make sure the two random switches are not the same switch (loop to self).
-            // make sure there's not already an edge between switches
-            if((!source.equals(target)) && (!edges.contains(temp)))
-            {
-               // add to array list
-               edges.add(temp);
-               
-               // Create the linkage between switches first for the origin port to the 
-               // destination, then destination to the origin.
-               Port sourcePort = new Port(cmd.getOrignPortNumber());
-               Port targetPort = new Port(cmd.getTargetPortNumber());
-               source.addPort(sourcePort);
-               target.addPort(targetPort);
-               sourcePort.connectTo(targetPort);
-            }
+            addToTopology(cmd);
          }
       }
       catch (FileNotFoundException ex)
@@ -136,11 +108,13 @@ public class Simulator
       
       while(!allConverge())
       {
-         display();
+         ;
       }
+
+      display();
+      System.out.println("Convergence Time: " + ((System.currentTimeMillis() - currentTime)  / 1000) + " seconds");
       
-      System.out.println("Convergence Time: " + ((System.currentTimeMillis() - currentTime)  / 1000));
-      
+
       for(Bridge b : nodes)
          b.stopTimers();
    }
@@ -150,48 +124,118 @@ public class Simulator
       for(Bridge b : nodes)
          System.out.println(b);
    }
-   
-	public static void main(String[] args)
-	{
-	   Simulator demo = new Simulator();
-	   BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	   if (args.length > 0)
-		   demo.processFile(args[0]);
-	   else
-	   {
-		   System.out.println("Enter a filename");
-		   try
-		   {
-			   demo.processFile(reader.readLine());
-		   }
-		   catch (IOException ioe)
-		   {
-			   System.out.println("Could not read filename");
-			   System.exit(1);
-		   }
-	   }
-	   demo.displayTopologyLink();
-	   boolean quit = false;
-	   do
-	   {
-		   demo.run();
-		   System.out.println("(b)reak a link or (q)uit");
-		   try
-		   {
-			   String choice = reader.readLine();
-			   if (choice.equals("q"))
-				   quit = true;
-			   else if (choice.equals("b"))
-			   {
-				   System.out.println("Choose a bridge");
-			   }
-		   }
-		   catch (IOException ioe)
-		   {
-			   System.out.println("Could not read input");
-			   System.exit(1);
-		   }
-	   } while (!quit);
-//	   System.exit(0);
-	}
+
+    private void addToTopology(Command cmd) {
+        Bridge source = findSwitch(cmd.getOriginMAC());
+        if (source == null) {
+            source = new Bridge(cmd.getOriginMAC());
+            nodes.add(source);
+        }
+
+        Bridge target = findSwitch(cmd.getTargetMAC());
+        if (target == null) {
+            target = new Bridge(cmd.getTargetMAC());
+            nodes.add(target);
+        }
+
+        int srcPort = cmd.getOrignPortNumber();
+        int dstPort = cmd.getTargetPortNumber();
+
+        // create the edge between the switches
+        Edge temp = new Edge(source, target, srcPort, dstPort);
+
+        // make sure the two random switches are not the same switch (loop to self).
+        // make sure there's not already an edge between switches
+        if ((!source.equals(target)) && (!edges.contains(temp))) {
+            // add to array list
+            edges.add(temp);
+
+            // Create the linkage between switches first for the origin port to the
+            // destination, then destination to the origin.
+            Port sourcePort = new Port(cmd.getOrignPortNumber());
+            Port targetPort = new Port(cmd.getTargetPortNumber());
+            source.addPort(sourcePort);
+            target.addPort(targetPort);
+            sourcePort.connectTo(targetPort);
+        }
+    }
+
+    private void editTopology(int action) {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String input = "";
+        try {
+            if (action == DELNODE) {
+                System.out.println("   Format: bridge");
+            } else {
+                System.out.println("   Format: bridge1 port1 bridge2 port2");
+            }
+            System.out.print("   Bridge to edit: ");
+            input = br.readLine();
+        } catch (IOException ioe) {
+            System.out.println("Error reading input");
+            System.exit(1);
+        }
+
+        // add link or node to topology
+        if (action != DELNODE) {
+            Command cmd = new Command();
+            cmd.parse(input);
+
+            if (action == ADDLINK || action == ADDNODE) {
+                addToTopology(cmd);
+            } else {
+                // delete link
+            }
+
+        } else {
+            // delete node
+        }
+    }
+
+    public static void main(String[] args)
+    {
+        Simulator demo = new Simulator();
+        demo.processFile(args[0]);
+        demo.displayTopologyLink();
+        demo.run();
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String input = "";
+        while (input.compareTo(String.valueOf(EXIT_PROG)) != 0) {
+            try {
+                System.out.println("[1]Add Link\n[2]Add Node\n[3]Delete Link\n[4]Delete Node\n[5]Exit");
+                System.out.print("Enter command: ");
+                input = br.readLine();
+            } catch (IOException ioe) {
+                System.out.println("Error reading input");
+                System.exit(1);
+            }
+            int opt = Integer.parseInt(input);
+            switch (opt) {
+                case 1:
+                    demo.editTopology(ADDLINK);
+                    demo.displayTopologyLink();
+                    demo.run();
+                    break;
+                case 2:
+                    demo.editTopology(ADDNODE);
+                    demo.displayTopologyLink();
+                    demo.run();
+                    break;
+                case 3:
+                    demo.editTopology(DELLINK);
+                    demo.displayTopologyLink();
+                    demo.run();
+                    break;
+                case 4:
+                    demo.editTopology(DELNODE);
+                    demo.displayTopologyLink();
+                    demo.run();
+                    break;
+                default:
+                    //System.out.println("Goodbye");
+                    break;
+            }
+        }
+    }
 }
